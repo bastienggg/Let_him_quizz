@@ -9,10 +9,9 @@
 - **Plusieurs manches :** Différents types de défis sont proposés aux joueurs.
 
 ## Modes de jeu
-1. **Family Feud (version tri)** – Trier des éléments selon une catégorie donnée.
-2. **Boîtes à échanger** – Un jeu de stratégie où il faut choisir la bonne boîte.
-3. **Money Drop (QCM)** – Répondre à un QCM tout en misant intelligemment son argent.
-4. **Flag Game** – Identifier correctement des drapeaux dans un temps limité.
+1. **Classer des plus famous** – Trier des éléments dans l'ordre.
+2. **Money Drop (QCM)** – Répondre à un QCM tout en misant intelligemment son argent.
+3. **Flag Game** – Identifier correctement des drapeaux dans un temps limité.
 
 ## Technologies utilisées
 - **A-Frame** : Framework WebVR basé sur Three.js
@@ -40,7 +39,7 @@ Accumuler le plus d'argent possible en répondant correctement aux questions.
 
 ## Équipe
 - Bastien Guitard
-- Enguerrand Caro--Alquier
+- Enguerran Caro--Alquier
 - Brad Savary
 
 

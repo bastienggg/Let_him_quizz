@@ -9,9 +9,10 @@
 - **Multiple Rounds**: Players face various types of challenges.
 
 ## Game Modes
-1. **Rank the Most Famous** – Sort elements in the correct order.
-2. **Money Drop (MCQ)** – Answer a multiple-choice quiz while strategically betting money.
-3. **Flag Game** – Identify flags correctly within a time limit.
+1. **⏲Ticking away (Timed MCQ)** – Answer as many questions as you can in 30s.
+2. **📊Sort it out** – Sort the boxes in the correct order (based on a given question).
+3. **🌎Find the place** – You land in a random 360 image and you have to find where it was taken.
+4. **💵Sorry not so rich** – Spread your gains across 4 answers and bet on the good one.
 
 ## Technologies Used
 - **A-Frame**: A WebVR framework based on Three.js.
@@ -21,7 +22,7 @@
 ## Installation & Execution
 1. git clone https://github.com/bastienggg/let-him-quizz.git
    ```bash
-   git clone https://github.com/bastienggg/let-him-quizz.git
+   git clone https://github.com/bastienggg/Let_him_quizz.git
    ```
 2. Navigate to the project folder:
    ```bash
@@ -35,7 +36,7 @@
 - **Interacting with boxes and choices**: Look and click.
 
 ## Objective
-Accumulate as much money as possible by answering questions correctly.
+Accumulate as much money as possible by answering questions correctly. And risk it all by betting what you've earned to try to win the jackpot !
 
 ## Team
 - Bastien Guitard

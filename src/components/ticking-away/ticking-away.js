@@ -1,5 +1,5 @@
-import { MCQ } from "../data/data-mcq.js";
-const templateFile = await fetch("src/components/template.html.inc");
+import { MCQ } from "../../data/data-mcq.js";
+const templateFile = await fetch("src/components/ticking-away/template.html.inc");
 const template = await templateFile.text();
 
 const scene = document.querySelector("#mainScene");

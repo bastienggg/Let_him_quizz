@@ -1,8 +1,7 @@
 import { MCQ } from './data/data-mcq.js';
 
 // Components imports
-import { TickingAway } from './components/ticking-away.js';
+import { TickingAway } from './components/ticking-away/ticking-away.js';
+import { DebugMenu } from './components/debug-menu/debug-menu.js';
 
-await TickingAway.renderQuizZone();
-TickingAway.newQuestion();
-TickingAway.startTimer();   
+DebugMenu.renderChoices();

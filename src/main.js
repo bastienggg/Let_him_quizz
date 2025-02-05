@@ -4,4 +4,5 @@ import { MCQ } from './data/data-mcq.js';
 import { TickingAway } from './components/ticking-away/ticking-away.js';
 import { DebugMenu } from './components/debug-menu/debug-menu.js';
 
-DebugMenu.renderChoices();
+TickingAway.renderQuizZone();
+TickingAway.newQuestion();

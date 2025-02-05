@@ -1,48 +1,48 @@
-# Let Him Quizz Show !
+# Let Him Quizz !
 
 ## Description
-*Let Him Quizz Show !* est un jeu en réalité virtuelle développé avec A-Frame, ce jeu à pour but d'aider ses joueurs à apprendre l'anglais, inspiré des jeux télévisés classiques avec une touche immersive unique. Le jeu met les joueurs au défi à travers plusieurs manches où rapidité, stratégie et culture générale sont essentielles pour accumuler de l'argent virtuel dans un sablier !
+*Let Him Quizz !* is a virtual reality game developed with A-Frame, designed to help players learn English. Inspired by classic TV game shows, it adds a unique immersive touch. Players face multiple rounds where speed, strategy, and general knowledge are essential to accumulate virtual money in an hourglass!
 
 ## Concept
-- **Introduction immersive :** Le jeu commence avec une séquence d'introduction dans laquelle nous plongeons dans une télévison, dans laquelle se trouve le plateau du jeu.
-- **Sablier d'argent :** L'argent tombe dans un cylindre au fur et à mesure que le joueur progresse, illustrant ses gains et ses points.
-- **Plusieurs manches :** Différents types de défis sont proposés aux joueurs.
+- **Immersive Introduction**: The game starts with an intro sequence where players dive into a television, entering the game show set.
+- **Money Hourglass**: Money falls into a cylinder as the player progresses, visually representing their earnings and points.
+- **Multiple Rounds**: Players face various types of challenges.
 
-## Modes de jeu
-1. **Family Feud (version tri)** – Trier des éléments selon une catégorie donnée.
-2. **Boîtes à échanger** – Un jeu de stratégie où il faut choisir la bonne boîte.
-3. **Money Drop (QCM)** – Répondre à un QCM tout en misant intelligemment son argent.
-4. **Flag Game** – Identifier correctement des drapeaux dans un temps limité.
+## Game Modes
+1. **⏲Ticking away (Timed MCQ)** – Answer as many questions as you can in 30s.
+2. **📊Sort it out** – Sort the boxes in the correct order (based on a given question).
+3. **🌎Find the place** – You land in a random 360 image and you have to find where it was taken.
+4. **💵Sorry not so rich** – Spread your gains across 4 answers and bet on the good one.
 
-## Technologies utilisées
-- **A-Frame** : Framework WebVR basé sur Three.js
-- **HTML, JavaScript** : Développement de la logique du jeu
-- **CSS** : Stylisation des éléments de l'interface
+## Technologies Used
+- **A-Frame**: A WebVR framework based on Three.js.
+- **HTML, JavaScript**: Game logic development.
+- **CSS**: Styling of UI elements.
 
-## Installation & Exécution
-1. Cloner ce dépôt :
+## Installation & Execution
+1. git clone https://github.com/bastienggg/let-him-quizz.git
    ```bash
-   git clone https://github.com/bastienggg/let-him-quizz.git
+   git clone https://github.com/bastienggg/Let_him_quizz.git
    ```
-2. Accéder au dossier du projet :
+2. Navigate to the project folder:
    ```bash
    cd let-him-quizz
    ```
-3. Ouvrir le fichier `index.html` dans un navigateur compatible WebXR (Chrome, Firefox).
+3. Open the `index.html` file in a WebXR-compatible browser (Chrome, Firefox).
 
-## Contrôles
-- **Déplacement** : Regard pour viser les éléments interactifs.
-- **Sélection** : Clic (si utilisé avec une souris) ou interaction VR.
-- **Interaction avec les boîtes et choix** : Regarder et cliquer.
+## Controls
+- **Movement**: Look to aim at interactive elements.
+- **Selection**: Click (if using a mouse) or VR interaction.
+- **Interacting with boxes and choices**: Look and click.
 
-## Objectif
-Accumuler le plus d'argent possible en répondant correctement aux questions.
+## Objective
+Accumulate as much money as possible by answering questions correctly. And risk it all by betting what you've earned to try to win the jackpot !
 
-## Équipe
+## Team
 - Bastien Guitard
-- Enguerrand Caro--Alquier
+- Enguerran Caro--Alquier
 - Brad Savary
 
 
-## Assets utilisés:
+## Assets Used:
 -Poly-pizza:

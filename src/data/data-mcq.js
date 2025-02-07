@@ -24,8 +24,6 @@ MCQ.getRandomQuestion = async function (difficulty) {
   propositions.push(correctAnswer)
   propositions.push(...wrongAnswers)
 
-  console.log(propositions)
-  console.log(question)
   return {question, propositions};
 };
 

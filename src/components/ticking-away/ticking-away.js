@@ -1,4 +1,6 @@
 import { MCQ } from "../../data/data-mcq.js";
+import { Money } from "../money-counter/money-counter.js";
+
 const templateFile = await fetch("src/components/ticking-away/template.html.inc");
 const template = await templateFile.text();
 
@@ -40,7 +42,6 @@ TickingAway.removeQuizZone = function () {
 TickingAway.newQuestion = async function () {
   // get a new question from the MCQ module
   let question = await MCQ.getRandomQuestion();
-  console.log(question);
 
   // display the question and the propositions
   document
@@ -53,6 +54,13 @@ TickingAway.newQuestion = async function () {
     const j = Math.floor(Math.random() * (i + 1));
     [propositions[i], propositions[j]] = [propositions[j], propositions[i]];
   }
+
+  // Remove the id "good answer" if it is set
+  document.querySelectorAll(".answer a-box").forEach((box) => {
+    if (box.getAttribute("id") === "good answer") {
+      box.removeAttribute("id");
+    }
+  });
 
   // Set the propositions to the answer elements
   document
@@ -74,20 +82,18 @@ TickingAway.newQuestion = async function () {
     .querySelector(`#answer${correctAnswerIndex + 1} a-box`)
     .setAttribute("id", "good answer");
 
-  // Debug
-  console.log("new question");
-  console.log(document.querySelector("#answer4"));
 };
 
 TickingAway.answerClicked = function (event) {
   // check if the answer is the correct one
   // if yes, display a message and remove the quiz zone
   // if no, display a message and remove the quiz zone
-  console.log(event.target);
   if (event.target.id === "good answer") {
     console.log("Good answer");
     TickingAway.newQuestion();
-    // add score
+
+    // adds money
+    Money.summonStack(1);
   } else {
     console.log("Bad answer");
     // next question

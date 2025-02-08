@@ -8,23 +8,20 @@ MCQ.getAll = function () {
 };
 
 MCQ.getRandomQuestion = async function (difficulty) {
-  // Later we will make a server request to get a random question based on the difficulty
-  
-  // Placeholder Question
-  let response = await fetch("https://opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple")
-  let newQuestion = await response.json()
-  
+  // Fetch a random question based on the difficulty
+  let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/MCQ?difficulty=" + difficulty);
+  let newQuestion = await response.json();
+
   // Format question
-  let correctAnswer = newQuestion.results[0].correct_answer
-  let wrongAnswers = newQuestion.results[0].incorrect_answers
-  let question = newQuestion.results[0].question
+  let question = newQuestion.question;
+  let propositions = [
+    newQuestion.reponse1,
+    newQuestion.reponse2,
+    newQuestion.reponse3,
+    newQuestion.reponse4
+  ];
 
-  // List propositions
-  let propositions = []
-  propositions.push(correctAnswer)
-  propositions.push(...wrongAnswers)
-
-  return {question, propositions};
+  return { question, propositions };
 };
 
 export { MCQ };

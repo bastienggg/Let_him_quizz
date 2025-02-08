@@ -21,7 +21,6 @@ Money.renderMoneyZone = function () {
   console.log("renderMoneyZone");
 
   // Create the a-entity for the money counter
-
   const tempDiv = document.createElement("div");
   tempDiv.id = "moneyZone";
   tempDiv.innerHTML = template;
@@ -61,16 +60,15 @@ Money.summonStack = function (amount) {
       scene.appendChild(entity);
 
       // Update the money counter
-      moneyAmount= moneyAmount + 100;
+      moneyAmount= moneyAmount + 50;
       Money.updateMoney(moneyAmount);
 
       // Remove the collisions of the entity after 5 seconds
       setTimeout(() => {
         entity.removeAttribute("dynamic-body");
         entity.setAttribute("static-body", "");
-      }, 2000);
-
-    }, i * 100); // 500ms delay
+      }, 3000);
+    }, i * 500); // 500ms delay
   }
 };
 

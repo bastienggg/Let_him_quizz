@@ -1,4 +1,4 @@
-<a-entity id="moneyZone" position="-6 2 -39">
+<a-entity id="moneyZone" position="-3 1 -39">
 
   <a-entity id="moneyCount" position="0 0 0">
     <a-text

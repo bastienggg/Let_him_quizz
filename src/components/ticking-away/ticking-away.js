@@ -162,7 +162,7 @@ TickingAway.answerClicked = function (event) {
 TickingAway.startTimer = function () {
   // start the timer
   timerValue = 0;
-  let timeLimit = 5;
+  let timeLimit = 30;
 
   document.querySelector("#timer a-text").setAttribute("value", (timeLimit - timerValue));
   

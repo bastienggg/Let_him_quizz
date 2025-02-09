@@ -28,7 +28,7 @@
       position="0 0 0"
       depth="0.1"
       height="0.5"
-      width="1.5"
+      width="1.8"
       color="#f65538"
     ></a-box>
   </a-entity>
@@ -44,7 +44,7 @@
       position="0 0 0"
       depth="0.1"
       height="0.5"
-      width="1.5"
+      width="1.8"
       color="#f65538"
     ></a-box>
   </a-entity>
@@ -59,7 +59,7 @@
       position="0 0 0"
       depth="0.1"
       height="0.5"
-      width="1.5"
+      width="1.8"
       color="#f65538"
     ></a-box>
   </a-entity>
@@ -74,7 +74,7 @@
       position="0 0 0"
       depth="0.1"
       height="0.5"
-      width="1.5"
+      width="1.8"
       color="#f65538"
     ></a-box>
   </a-entity>

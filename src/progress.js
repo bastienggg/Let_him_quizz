@@ -15,11 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("progress-bar-container").style.display = "none";
 
-            document.querySelector("a-scene").style.display = "block";
+            const scene = document.querySelector("a-scene");
+            scene.style.display = "block";
+            scene.setAttribute("cursor", "rayOrigin: mouse; ");
+
+
 
             setTimeout(function () {
-                Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 2.2, -33.5]);
+                Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
             }, 500);
+
 
         } else {
 
@@ -29,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-    }, 0); // 0ms interval for no minimum time
+    }, 10); // 10ms interval for smoother progress
+
 
 });

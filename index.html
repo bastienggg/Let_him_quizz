@@ -11,6 +11,12 @@
       href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script>
+      gsap.registerPlugin();
+    </script>
     <title>Let Him Quizz</title>
   </head>
   <body style="margin: 0; overflow: hidden">
@@ -57,20 +63,34 @@
         wasd-controls=""
       ></a-entity>
 
-      <!-- ambient light -->
+
+
+
+      <!-- ambient light --> 
       <a-light
+        class="ambient"
+        type="ambient"
+        color="#ffffff"
+        intensity="0.3"
+        position="5.82373 119.06988 -24.14106"
+      ></a-light>
+
+      <a-light
+      class="light spot"
         type="point"
         color="#ffffff"
         intensity="1"
         position="5.82373 119.06988 -24.14106"
       ></a-light>
       <a-light
+      class="light spot"
         type="point"
         color="#ffffff"
         intensity="0.5"
         position="5.82373 16.31798 42.8702"
       ></a-light>
 
+      
       <!-- tv -->
       <a-entity
         gltf-model="./src/assets/modele3d/tv.glb"
@@ -96,6 +116,7 @@
         scale="25 25 25"
         rotation="0 269.09000000000003 0"
       ></a-entity>
+      
       <!-- table -->
       <a-entity
         gltf-model="./src/assets/modele3d/table.glb"
@@ -121,26 +142,63 @@
         rotation=""
       ></a-entity>
 
-      <!-- presenter -->
+      <!-- anchor -->
       <a-entity
         gltf-model="./src/assets/modele3d/man.glb"
         position="8.8 0.2031 -39.14591"
         scale="0.75 0.75 0.75"
         rotation="-0.4 -40 2.4"
+        gltf-model="#monster"
+        animation-mixer="clip: *;"
       ></a-entity>
 
-      <a-sky color="#808080"></a-sky>
+      <!-- money drop table -->
+      <a-entity
+        gltf-model="./src/assets/modele3d/moneydroptable.glb"
+        position="8.8 0.2031 -39.14591"
+        scale="0.75 0.75 0.75"
+        rotation="0 90 0"
+        material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
+      ></a-entity>  <!-- FPS counter -->
+      <a-entity id="fps-counter" position="0 2 -3" text="value: 0 FPS; color: #FFF; width: 4;"></a-entity>
+      <script>
+        const fpsCounter = document.querySelector('#fps-counter');
+        let lastFrameTime = performance.now();
+        let frameCount = 0;
 
+        function updateFPS() {
+          const now = performance.now();
+          frameCount++;
+          if (now >= lastFrameTime + 1000) {
+            const fps = frameCount;
+            fpsCounter.setAttribute('text', 'value', `${fps} FPS`);
+            frameCount = 0;
+            lastFrameTime = now;
+          }
+          requestAnimationFrame(updateFPS);
+        }
+
+        updateFPS();
+      </script>
+      <a-sky color="#808080"></a-sky>
       <!-- cylinder for money -->
+      <!-- it has 4 hit boxes on the sides and one on the floor -->
       <a-cylinder
-        position="-6.525 2.072 -40.62386"
-        radius="0.5"
+        position="-4.525 2.600 -40.62386"
+        radius="0.7"
         height="1.5"
         color="#0000FF"
-        scale="2 3 2"
-        open-ended="true"
+        scale="2.2 3 2.2"
         material="opacity: 0.5; color: #d1d1ff"
+        body="type: static; shape: none;"
+        
+        shape__side1="shape: box; halfExtents: 0.5 1.5 0.05; offset: 0 0 0.5;"
+        shape__side2="shape: box; halfExtents: 0.5 1.5 0.05; offset: 0 0 -0.5;"
+        shape__side3="shape: box; halfExtents: 0.05 1.5 0.5; offset: 0.5 0 0;"
+        shape__side4="shape: box; halfExtents: 0.05 1.5 0.5; offset: -0.5 0 0;"
+        shape__bottom="shape: cylinder; height: 0.05; radiusTop: 0.5; radiusBottom: 0.5; offset: 0 -0.75 0;"
       ></a-cylinder>
+
 
       <!-- screen -->
       <a-box
@@ -149,8 +207,8 @@
         width="1"
         height="1"
         depth="1"
-        color="#4CC3D9"
-        scale="11.79 6.45 1"
+        color="#475cff"
+        scale="8 5 1"
         id="ecran"
       ></a-box>
 
@@ -163,6 +221,7 @@
       ></a-entity>
 
       <a-light
+        class="light spot"
         type="point"
         color="#b3b3ff"
         intensity="1"
@@ -335,6 +394,7 @@
         rotation="0 -230 0"
       ></a-entity>
     </a-scene>
+    
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

@@ -129,11 +129,11 @@ TickingAway.answerClicked = function (event) {
   const clickedBox = document.querySelector(`#${event.target.parentElement.id} a-box`); // Get the clicked box
   clickedBox.removeAttribute("animation"); // Remove any existing animation
   clickedBox.setAttribute("animation", "property: scale; to: 1.1 1.1 1.1; dur: 100; loop: 2; dir: alternate");
-
+  
   // check if the answer is the correct one
   // if yes, display a message and remove the quiz zone
-  
-  if (event.target.id === "good answer") {
+  console.log(clickedBox.id);
+  if (clickedBox.id === "good answer") {
     Light.flashColor("#00ff00");
     setTimeout(() => {
       TickingAway.newQuestion();
@@ -145,6 +145,7 @@ TickingAway.answerClicked = function (event) {
 
     // if no, display a message and goes on  to the next question
   } else {
+
     Light.flashColor("#ff0000");
 
     // Puts a delay before the next question

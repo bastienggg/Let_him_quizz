@@ -1,17 +1,10 @@
-<a-entity id="quizZone" position="0 0 0">
-  <a-entity id="timer" position="0 3 -3">
-    <a-text
-      align="center"
-      value="Timer"
-      color="#FFF"
-      position="0 0 0.1"
-    ></a-text>
-  </a-entity>
+ <a-entity animation__position="property: position; to: 0.99 2 -36;delay:1500; dur: 500; easing: linear;" animation__scale="property: scale; to: 1.03 1.02 1.03; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate;" id="propositionsZone" position="0.99 -3 -36">
+
 
   <a-entity id="question" position="0 2 -3">
     <a-text
       align="center"
-      value="Question"
+      value="Where is this place ?"
       color="#FFF"
       position="0 0 0.1"
     ></a-text>
@@ -77,4 +70,5 @@
       width="1"
       color="#4CC3D9"
     ></a-box> </a-entity
-></a-entity>
+>
+</a-entity>

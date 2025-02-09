@@ -16,14 +16,11 @@ Light.changeColor = function (hexColor) {
       easing: "easeInOutQuad"
     });
   });
-  
-  
-  
 };
 
 // Reset the color of the light to white
 Light.resetColor = function () {
-  Light.changeColor("#ffffff");
+  Light.changeColor("#8888ee");
 };
 
 // Flash the color of the light and resets it

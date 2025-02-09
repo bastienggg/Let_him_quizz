@@ -5,34 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/index.css" />
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script>
       gsap.registerPlugin();
     </script>
-
-
-    <title>Document</title>
+    <title>Let Him Quizz</title>
   </head>
-  <body>
-
-
-    <div id="LoadingPage"></div>
-    
-
-    <a-scene cursor="rayOrigin: mouse" id="mainScene" physics="debug:false;">
+  <body style="margin: 0; overflow: hidden">
+    <div
+      class="flex h-screen w-screen flex-col items-center justify-center gap-10 bg-slate-100"
+    >
+      <h1 class="font-title mb-40 text-center text-7xl text-black">
+        Let Him Quizz
+      </h1>
+      <div id="loading" class="text-center text-2xl text-black">Loading...</div>
+      <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+      </div>
+    </div>
+    <style>
+      #progress-bar-container {
+        width: 50%;
+        height: 30px;
+        background-color: #ccc;
+        z-index: 1000;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      #progress-bar {
+        width: 0;
+        height: 100%;
+        background-color: #4d3ae1;
+      }
+      a-scene {
+        display: none;
+      }
+    </style>
+    <script type="module" src="./src/progress.js"></script>
+    <a-scene cursor="rayOrigin: mouse" id="mainScene">
+      <a-assets timeout="2000"></a-assets>
+      <div id="LoadingPage"></div>
       <!-- camera -->
       <a-entity
+        id="camera"
         camera=""
-        look-controls=""
-        position="1.237 3 -35.03326"
-        rotation="7.678 4.469 0"
-        data-aframe-inspector-original-camera=""
+        look-controls="enabled: true"
+        position="0 2.2 0"
+        rotation="0 0 0"
         wasd-controls=""
       ></a-entity>
 
-      <!-- test sky -->
+
+
 
       <!-- ambient light --> 
       <a-light
@@ -206,6 +238,161 @@
         scale="0.23 0.2 1"
         material="metalness: 0; roughness: 1; shader: standard"
       ></a-plane>
+
+      <!-- audiance -->
+      <a-entity
+        gltf-model="./src/assets/audiance/Chicken_guy.glb"
+        position="10.2 -1.5 -24.8"
+        scale="1.3 1.4 1.3"
+        rotation="0 -150 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_1.glb"
+        position="7.3 -1.5 -24.9"
+        scale="1.1 1.2 1.1"
+        rotation="0 -160 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_2.glb"
+        position="4.1 -1.5 -24.7"
+        scale="1.5 1.6 1.5"
+        rotation="0 -170 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_3.glb"
+        position="-1.2 -1.5 -24.9"
+        scale="1.2 1.3 1.2"
+        rotation="0 -180 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Crypto_Bro.glb"
+        position="-4.4 -1.5 -24.8"
+        scale="1.4 1.5 1.4"
+        rotation="0 -190 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Female_Officer.glb"
+        position="-7.1 -1.5 -24.9"
+        scale="1.3 1.4 1.3"
+        rotation="0 -200 0"
+      ></a-entity>
+      <!-- fin premiere ligne -->
+      <a-entity
+        gltf-model="./src/assets/audiance/Food_Worker.glb"
+        position="11.3 -1.5 -28.1"
+        scale="1.1 1.2 1.1"
+        rotation="0 -120 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Generic_Female.glb"
+        position="8.1 -1.5 -28.2"
+        scale="1.5 1.6 1.5"
+        rotation="0 -130 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Generic_Male.glb"
+        position="5.4 -1.5 -28.3"
+        scale="1.2 1.3 1.2"
+        rotation="0 -140 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="./src/assets/audiance/Male_Officer.glb"
+        position="-2.1 -1.5 -28.1"
+        scale="1.4 1.5 1.4"
+        rotation="0 -210 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Prisoner.glb"
+        position="-5.2 -1.5 -28.2"
+        scale="1.3 1.4 1.3"
+        rotation="0 -220 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Retail_Worker.glb"
+        position="-8.4 -1.5 -28.3"
+        scale="1.1 1.2 1.1"
+        rotation="0 -230 0"
+      ></a-entity>
+      <!-- fin deuxieme ligne -->
+
+      <a-entity
+        gltf-model="./src/assets/audiance/Rubber_Duck.glb"
+        position="11.2 -1.5 -30.6"
+        scale="1.5 1.6 1.5"
+        rotation="0 -110 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Santa_Claus.glb"
+        position="8.4 -1.5 -30.4"
+        scale="1.2 1.3 1.2"
+        rotation="0 -120 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Snowman.glb"
+        position="5.3 -1.5 -30.5"
+        scale="1.4 1.5 1.4"
+        rotation="0 -130 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_2.glb"
+        position="-2.2 -1.5 -30.6"
+        scale="1.3 1.4 1.3"
+        rotation="0 -210 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_3.glb "
+        position="-5.3 -1.5 -30.4"
+        scale="1.1 1.2 1.1"
+        rotation="0 -220 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_1.glb"
+        position="-8.1 -1.5 -30.5"
+        scale="1.5 1.6 1.5"
+        rotation="0 -230 0"
+      ></a-entity>
+      <!-- fin troisieme ligne -->
+
+      <a-entity
+        gltf-model="./src/assets/audiance/Citizen_1.glb"
+        position="11.1 -1.5 -33.1"
+        scale="1.2 1.3 1.2"
+        rotation="0 -110 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Crypto_Bro.glb"
+        position="8.3 -1.5 -33.2"
+        scale="1.4 1.5 1.4"
+        rotation="0 -120 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Retail_Worker.glb"
+        position="5.2 -1.5 -33.3"
+        scale="1.3 1.4 1.3"
+        rotation="0 -130 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="./src/assets/audiance/Generic_Female.glb"
+        position="-2.3 -1.5 -33.1"
+        scale="1.1 1.2 1.1"
+        rotation="0 -210 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Food_Worker.glb"
+        position="-5.4 -1.5 -33.2"
+        scale="1.5 1.6 1.5"
+        rotation="0 -220 0"
+      ></a-entity>
+      <a-entity
+        gltf-model="./src/assets/audiance/Female_Officer.glb"
+        position="-8.2 -1.5 -33.3"
+        scale="1.2 1.3 1.2"
+        rotation="0 -230 0"
+      ></a-entity>
     </a-scene>
     
     <script type="module" src="./src/main.js"></script>

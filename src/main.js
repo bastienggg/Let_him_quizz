@@ -21,3 +21,10 @@ FindThePlace.renderQuestion();
 // Render the money counter
 Money.renderMoneyZone();
 // Start the timer
+
+
+const leftController = document.querySelector("#leftController");
+const rightController = document.querySelector("#rightController");
+
+leftController.setAttribute("movement-controls", "enabled: true");
+rightController.setAttribute("movement-controls", "enabled: true");

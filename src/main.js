@@ -21,21 +21,3 @@ FindThePlace.renderQuestion();
 // Render the money counter
 Money.renderMoneyZone();
 // Start the timer
-
-
-if (navigator.xr) {
-    navigator.xr.requestSession('immersive-vr').then((session) => {
-        session.addEventListener('inputsourceschange', (event) => {
-            event.added.forEach((inputSource) => {
-                if (inputSource.targetRayMode === 'tracked-pointer') {
-                    console.log('Controller detected:', inputSource);
-                    // Display controller information or handle controller input
-                }
-            });
-        });
-    }).catch((err) => {
-        console.error('Failed to start VR session:', err);
-    });
-} else {
-    console.log('WebXR not supported');
-}

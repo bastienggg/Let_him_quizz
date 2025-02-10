@@ -50,7 +50,7 @@
       }
     </style>
     <script type="module" src="./src/progress.js"></script>
-    <a-scene id="mainScene" physics="debug:false;" vr-mode-ui="enabled: true">
+    <a-scene id="mainScene" physics="debug:false;">
       <a-assets timeout="2000"></a-assets>
       <div id="LoadingPage"></div>
       <!-- camera -->
@@ -63,10 +63,15 @@
         wasd-controls="enabled: false"
       ></a-entity> -->
 
-      <!-- Caméra avec les contrôleurs attachés -->
-      <a-entity camera position="0 1.6 0">
-        <a-entity oculus-touch-controls="hand: left"></a-entity>
-        <a-entity oculus-touch-controls="hand: right"></a-entity>
+      <a-entity
+        id="leftController"
+        oculus-touch-controls="hand: left"
+      ></a-entity>
+      <a-entity id="rightController" oculus-touch-controls="hand: right">
+        <a-entity
+          raycaster="showLine:true;objects: .collidable"
+          cursor
+        ></a-entity>
       </a-entity>
 
       <!-- ambient light -->

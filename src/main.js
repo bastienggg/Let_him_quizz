@@ -22,25 +22,20 @@ FindThePlace.renderQuestion();
 Money.renderMoneyZone();
 // Start the timer
 
-// A-Frame setup for detecting VR controllers and displaying a laser pointer
-AFRAME.registerComponent('laser-controls', {
-    init: function () {
-        this.el.setAttribute('laser-controls', 'hand: right');
-    }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const scene = document.createElement('a-scene');
-    const camera = document.createElement('a-entity');
-    const laser = document.createElement('a-entity');
-
-    camera.setAttribute('camera', '');
-    camera.setAttribute('position', '0 1.6 0');
-    camera.setAttribute('look-controls', '');
-
-    laser.setAttribute('laser-controls', 'hand: right');
-
-    scene.appendChild(camera);
-    scene.appendChild(laser);
-    document.body.appendChild(scene);
-});
+if (navigator.xr) {
+    navigator.xr.requestSession('immersive-vr').then((session) => {
+        session.addEventListener('inputsourceschange', (event) => {
+            event.added.forEach((inputSource) => {
+                if (inputSource.targetRayMode === 'tracked-pointer') {
+                    console.log('Controller detected:', inputSource);
+                    // Display controller information or handle controller input
+                }
+            });
+        });
+    }).catch((err) => {
+        console.error('Failed to start VR session:', err);
+    });
+} else {
+    console.log('WebXR not supported');
+}

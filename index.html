@@ -50,7 +50,7 @@
       }
     </style>
     <script type="module" src="./src/progress.js"></script>
-    <a-scene cursor="rayOrigin: mouse" id="mainScene" physics="debug:false;">
+    <a-scene id="mainScene" physics="debug:false;">
       <a-assets timeout="2000"></a-assets>
       <div id="LoadingPage"></div>
       <!-- camera -->
@@ -60,7 +60,7 @@
         look-controls="enabled: true"
         position="0 2.2 0"
         rotation="0 0 0"
-        wasd-controls=""
+        wasd-controls="enabled: false"
       ></a-entity>
 
       <!-- ambient light -->

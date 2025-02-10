@@ -28,3 +28,4 @@ const rightController = document.querySelector("#rightController");
 
 leftController.setAttribute("movement-controls", "enabled: true");
 rightController.setAttribute("movement-controls", "enabled: true");
+

@@ -3,6 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./src/assets/favicon/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./src/assets/favicon/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./src/assets/favicon/favicon.png"
+    />
+    <link rel="manifest" href="./src/assets/favicon/favicon.png" />
     <link rel="stylesheet" href="./src/index.css" />
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,15 +40,18 @@
   </head>
   <body style="margin: 0; overflow: hidden">
     <div
-      class="flex h-screen w-screen flex-col items-center justify-center gap-10 bg-slate-100"
+      class="flex h-screen w-screen flex-col items-center justify-center bg-slate-100"
     >
       <h1 class="mb-40 text-center font-title text-7xl text-black">
         Let Him Quizz
       </h1>
-      <div id="loading" class="text-center text-2xl text-black">Loading...</div>
+      <div id="loading" class="mb-10 text-center text-2xl text-black">
+        Loading...
+      </div>
       <div id="progress-bar-container">
         <div id="progress-bar"></div>
       </div>
+      <h3>A game by Brad , Enguerran et Bastien</h3>
     </div>
     <style>
       #progress-bar-container {
@@ -63,15 +85,12 @@
         wasd-controls="enabled: false"
       ></a-entity>
 
+      <!-- controller  -->
       <a-entity
         id="leftController"
         oculus-touch-controls="hand: left"
       ></a-entity>
       <a-entity id="rightController" oculus-touch-controls="hand: right">
-        <a-entity
-          raycaster="showLine:true;objects: .collidable"
-          cursor
-        ></a-entity>
       </a-entity>
 
       <!-- ambient light -->

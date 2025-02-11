@@ -1,8 +1,11 @@
 import { MCQ } from "../../data/data-mcq.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Light } from "../light/light.js";
+import { Rounds } from "../rounds/rounds.js";
 
-const templateFile = await fetch("src/components/ticking-away/template.html.inc");
+const templateFile = await fetch(
+  "src/components/ticking-away/template.html.inc",
+);
 const template = await templateFile.text();
 
 const scene = document.querySelector("#mainScene");
@@ -13,8 +16,6 @@ let TickingAway = {};
 let freezed = false;
 
 TickingAway.renderQuizZone = function () {
-
-
   // Create the zone for the quiz with the 3d polygons for the answers
 
   // Create the a-entities for the answers and the question from the template
@@ -28,16 +29,12 @@ TickingAway.renderQuizZone = function () {
     scene.appendChild(entity);
   });
 
-
-
-
   // Add the event listener for the answers
   const answers = document.querySelectorAll(".answer");
 
   answers.forEach((answer) => {
     answer.addEventListener("click", TickingAway.answerClicked);
   });
-
 };
 
 TickingAway.removeQuizZone = function () {
@@ -49,7 +46,7 @@ TickingAway.removeQuizZone = function () {
     property: "position",
     to: "0.99 -3 -36",
     dur: 1000,
-    easing: "easeInOutQuad"
+    easing: "easeInOutQuad",
   });
 
   // remove the zone for the quiz with the 3d polygons for the answers
@@ -108,7 +105,6 @@ TickingAway.newQuestion = async function () {
   document
     .querySelector(`#answer${correctAnswerIndex + 1} a-box`)
     .setAttribute("id", "good answer");
-
 };
 
 TickingAway.answerClicked = function (event) {
@@ -124,20 +120,23 @@ TickingAway.answerClicked = function (event) {
       box.setAttribute("color", "#ff0000");
     }
   });
-  
+
   // Set an animation attribute to the clicked answer
-  const clickedBox = document.querySelector(`#${event.target.parentElement.id} a-box`); // Get the clicked box
+  const clickedBox = document.querySelector(
+    `#${event.target.parentElement.id} a-box`,
+  ); // Get the clicked box
   clickedBox.removeAttribute("animation"); // Remove any existing animation
-  clickedBox.setAttribute("animation", "property: scale; to: 1.1 1.1 1.1; dur: 100; loop: 2; dir: alternate");
-  
+  clickedBox.setAttribute(
+    "animation",
+    "property: scale; to: 1.1 1.1 1.1; dur: 100; loop: 2; dir: alternate",
+  );
+
   // check if the answer is the correct one
   // if yes, display a message and remove the quiz zone
-  console.log(clickedBox.id);
   if (clickedBox.id === "good answer") {
     Light.flashColor("#00ff00");
     setTimeout(() => {
       TickingAway.newQuestion();
-      
     }, 500);
 
     // adds money
@@ -145,36 +144,39 @@ TickingAway.answerClicked = function (event) {
 
     // if no, display a message and goes on  to the next question
   } else {
-
     Light.flashColor("#ff0000");
 
     // Puts a delay before the next question
     setTimeout(() => {
       TickingAway.newQuestion();
-      
     }, 2000);
   }
 
   // Freeze the game to prevent multiple clicks
   freezed = true;
-  
 };
 
 TickingAway.startTimer = function () {
   // start the timer
   timerValue = 0;
-  let timeLimit = 30;
+  let timeLimit = 15;
 
-  document.querySelector("#timer a-text").setAttribute("value", (timeLimit - timerValue));
-  
+  document
+    .querySelector("#timer a-text")
+    .setAttribute("value", timeLimit - timerValue);
+
   const intervalId = setInterval(() => {
     timerValue++;
-    document.querySelector("#timer a-text").setAttribute("value", (timeLimit - timerValue));
+    document
+      .querySelector("#timer a-text")
+      .setAttribute("value", timeLimit - timerValue);
 
+    // If the timer reaches the time limit, remove the quiz zone and go to the next round
     if (timerValue === timeLimit) {
       TickingAway.removeQuizZone();
       clearInterval(intervalId);
-      
+      // Goes to the next round
+      Rounds.nextRound();
     }
   }, 1000);
 };

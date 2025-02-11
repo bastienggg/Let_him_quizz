@@ -1,22 +1,23 @@
 import { Place } from "../../data/data-place.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Light } from "../light/light.js";
+import { Rounds } from "../rounds/rounds.js";
 const templateFile = await fetch(
   "src/components/find-the-place/template.html.inc",
 );
 const template = await templateFile.text();
 
 const scene = document.querySelector("#mainScene");
-const timer = document.querySelector("#timer");
 
 let timerValue = 0;
+let placeCounter = 0;
+let freezed = false;
 
 let FindThePlace = {};
 
 FindThePlace.renderPropositionsZone = function () {
   // Create the zone for the quiz with the 3d polygons for the answers
   // Create the a-entities for the answers and the question from the template
-
   const tempDiv = document.createElement("div");
   tempDiv.id = "propositionsZone";
   tempDiv.innerHTML = template;
@@ -25,8 +26,6 @@ FindThePlace.renderPropositionsZone = function () {
   entities.forEach((entity) => {
     scene.appendChild(entity);
   });
-
-  console.log(tempDiv);
 
   // Add the event listener for the answers
   const answers = document.querySelectorAll(".answer");
@@ -56,7 +55,6 @@ FindThePlace.removeQuizZone = function () {
 FindThePlace.renderQuestion = async function () {
   // get a new place from the Place module
   let place = await Place.getRandomPlace();
-  console.log(place);
 
   // Renders the sky box with the image of the place inside the 360Box
   const skyElement = document.createElement("a-sky");
@@ -65,7 +63,7 @@ FindThePlace.renderQuestion = async function () {
   skyElement.setAttribute("radius", "2");
   skyElement.setAttribute(
     "src",
-    `./src/assets/360locations/${place.placeImage}.jpg`,
+    `./src/assets/360locations/${place.placeImage}`,
   );
   skyElement.setAttribute(
     "animation__enter",
@@ -82,7 +80,6 @@ FindThePlace.renderQuestion = async function () {
 
   // Add the sky element to the scene
   scene.appendChild(skyElement);
-  console.log(skyElement);
 
   // Shuffle the propositions
   let propositions = place.propositions.slice();
@@ -110,19 +107,35 @@ FindThePlace.renderQuestion = async function () {
   document
     .querySelector(`#answer${correctAnswerIndex + 1} a-box`)
     .setAttribute("id", "good answer");
-
-  // Debug
-  console.log("new question");
-  console.log(document.querySelector("#answer4"));
 };
 
 FindThePlace.answerClicked = function (event) {
+  // Prevent clicking on the same answer multiple times
+  if (freezed) {
+    return;
+  }
+
+  // reveal the good answer by changing the color of the boxes
+  document.querySelectorAll(".answer a-box").forEach((box) => {
+    if (box.getAttribute("id") === "good answer") {
+      box.setAttribute("color", "#00ff00");
+    } else {
+      box.setAttribute("color", "#ff0000");
+    }
+  });
+
+  // Set an animation attribute to the clicked answer
+  const clickedBox = document.querySelector(
+    `#${event.target.parentElement.id} a-box`,
+  ); // Get the clicked box
+  clickedBox.removeAttribute("animation"); // Remove any existing animation
+  clickedBox.setAttribute(
+    "animation",
+    "property: scale; to: 1.1 1.1 1.1; dur: 100; loop: 2; dir: alternate",
+  );
+
   // check if the answer is the correct one
-  // if yes, display a message and remove the quiz zone
-  // if no, display a message and remove the quiz zone
-  console.log(event.target);
-  if (event.target.id === "good answer") {
-    console.log("Good answer");
+  if (clickedBox.id === "good answer") {
     Light.flashColor("#00ff00");
     setTimeout(() => {
       FindThePlace.newRound();
@@ -131,14 +144,14 @@ FindThePlace.answerClicked = function (event) {
     // add score
     Money.summonStack(5);
   } else {
-    console.log("Bad answer");
-
-    // next question
     Light.flashColor("#ff0000");
     setTimeout(() => {
       FindThePlace.newRound();
     }, 1000);
   }
+
+  // Freeze the game to prevent multiple clicks
+  freezed = true;
 };
 
 FindThePlace.startTimer = function () {
@@ -157,18 +170,26 @@ FindThePlace.startTimer = function () {
 };
 
 FindThePlace.newRound = function () {
-  // remove the sky box
-  const skyBox = document.getElementById("360Sky");
-  skyBox.remove();
+  placeCounter++;
+  if (placeCounter === 3) {
+    freezed = false;
+    // end the game
+    Rounds.nextRound();
+  } else {  
+    // remove the sky box
+    const skyBox = document.getElementById("360Sky");
+    skyBox.remove();
 
-  // remove the quiz zone
-  FindThePlace.removeQuizZone();
+    // remove the quiz zone
+    FindThePlace.removeQuizZone();
+    // render a new question
+    setTimeout(() => {
+      FindThePlace.renderPropositionsZone();
+      FindThePlace.renderQuestion();
+      freezed = false;
 
-  // render a new question
-  setTimeout(() => {
-  FindThePlace.renderPropositionsZone();
-  FindThePlace.renderQuestion();
-  }, 1200);
+    }, 1200);
+  }
 };
 
 export { FindThePlace };

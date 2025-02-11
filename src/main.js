@@ -91,8 +91,8 @@ function moveCameraVR(startPos, endPos, duration) {
 }
 
 
-console.log('Déplacer le joueur en 5 secondes');
-moveCameraVR({ x: 0, y: 1.6, z: 0 }, { x: 0, y: 1.6, z: -10 }, 5000);
+console.log('Déplacer le joueur en 20 secondes');
+moveCameraVR({ x: 0, y: 1.6, z: 0 }, { x: 0, y: 1.6, z: -35 }, 20000);
 
 //   Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
 

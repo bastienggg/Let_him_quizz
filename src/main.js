@@ -43,6 +43,3 @@ AFRAME.registerComponent('joystick-move', {
 
 // Appliquer le composant au contrôleur droit
 document.querySelector('#rightController').setAttribute('joystick-move', '');
-
-
-//   Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);

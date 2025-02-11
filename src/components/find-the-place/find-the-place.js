@@ -65,7 +65,7 @@ FindThePlace.renderQuestion = async function () {
   skyElement.setAttribute("radius", "2");
   skyElement.setAttribute(
     "src",
-    `./src/assets/360locations/${place.placeImage}.jpg`,
+    `./src/assets/360locations/${place.placeImage}`,
   );
   skyElement.setAttribute(
     "animation__enter",

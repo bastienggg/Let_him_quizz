@@ -93,6 +93,7 @@ function moveCameraVR(startPos, endPos, duration) {
 // Exemple d'utilisation : Déplacer le joueur en 5 secondes
 window.addEventListener('load', () => {
     setTimeout(() => {
+        console.log('Déplacer le joueur en 5 secondes');
         moveCameraVR({ x: 0, y: 1.6, z: 0 }, { x: 0, y: 1.6, z: -10 }, 5000);
     }, 2000); // Attendre 2 secondes avant de déclencher l'animation
 });

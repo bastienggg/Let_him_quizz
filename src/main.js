@@ -55,9 +55,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let intersectedEl = controller.components.raycaster.intersectedEls[0];
 
         if (intersectedEl) {
-            console.log("Clic sur :", intersectedEl);
-            intersectedEl.emit('click'); // Déclenche un événement personnalisé
+            console.log("Gâchette pressée sur :", intersectedEl);
+
+            // Simuler un clic de souris (mousedown + mouseup + click)
+            let mouseDownEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
+            let mouseUpEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
+            let clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+
+            intersectedEl.dispatchEvent(mouseDownEvent);
+            intersectedEl.dispatchEvent(mouseUpEvent);
+            intersectedEl.dispatchEvent(clickEvent);
         }
     });
 });
-

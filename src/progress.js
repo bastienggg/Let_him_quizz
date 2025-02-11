@@ -20,7 +20,7 @@ window.addEventListener("load", function () {
                 scene.style.display = "block";
 
                 setTimeout(function () {
-                    console.log('Déplacer le joueur en 8 secondes plus optimisation et fix loading screen et position 1.5 et corrextion loding screnn puis clique plus fix scene');
+                    console.log('Déplacer le joueur en 8 secondes plus optimisation et fix loading screen et position 1.5 et corrextion loding screnn puis clique fix');
                     scene.setAttribute("cursor", "rayOrigin: mouse; ");
 
 

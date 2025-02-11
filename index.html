@@ -194,9 +194,13 @@
         <!-- Contrôleurs VR -->
         <a-entity
           id="rightController"
+          laser-controls="hand: right"
+          raycaster="objects: .clickable"
           oculus-touch-controls="hand: right"
-          thumbstick-logging
-        ></a-entity>
+          vive-controls="hand: right"
+          windows-motion-controls="hand: right"
+        >
+        </a-entity>
         <a-entity
           id="leftController"
           oculus-touch-controls="hand: left"

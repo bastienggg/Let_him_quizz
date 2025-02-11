@@ -47,3 +47,23 @@ document.querySelector('#rightController').setAttribute('joystick-move', '');
 
 //   Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
 
+
+AFRAME.registerComponent('laser-click', {
+    init: function () {
+        this.controller = document.querySelector('#rightController');
+        this.laser = document.createElement('a-entity');
+        this.laser.setAttribute('raycaster', 'objects: .clickable');
+        this.laser.setAttribute('line', 'color: red; opacity: 0.75');
+        this.controller.appendChild(this.laser);
+
+        this.controller.addEventListener('triggerdown', () => {
+            const intersects = this.laser.components.raycaster.intersectedEls;
+            if (intersects.length > 0) {
+                intersects[0].emit('click');
+            }
+        });
+    }
+});
+
+// Appliquer le composant au contrôleur droit
+document.querySelector('#rightController').setAttribute('laser-click', '');

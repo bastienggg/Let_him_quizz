@@ -72,8 +72,12 @@
       }
     </style>
     <script type="module" src="./src/progress.js"></script>
-    <a-scene id="mainScene" physics="debug:false;">
-      <a-assets timeout="3000">
+    <a-scene
+      id="mainScene"
+      physics="debug:false;"
+      loading-screen="enabled: false"
+    >
+      <a-assets>
         <a-asset-item
           id="tvModel"
           src="./src/assets/modele3d/tv.glb"

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             setTimeout(function () {
-                Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
+                // Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
             }, 500);
 
 

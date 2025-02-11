@@ -11,7 +11,7 @@
  */
 let Camera = {};
 Camera.moveCamera = function (duration, startPosition, endPosition) {
-    const camera = document.querySelector('#head');
+    const camera = document.querySelector('#rig');
     if (!camera) {
         console.error('Camera not found');
         return;

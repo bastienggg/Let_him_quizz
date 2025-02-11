@@ -43,3 +43,37 @@ AFRAME.registerComponent('joystick-move', {
 
 // Appliquer le composant au contrôleur droit
 document.querySelector('#rightController').setAttribute('joystick-move', '');
+
+
+function moveCamera(startPos, endPos, duration) {
+    let rig = document.querySelector('#rig');
+
+    // S'assurer que la caméra commence bien à la position initiale
+    rig.object3D.position.set(startPos.x, startPos.y, startPos.z);
+
+    let startTime = null;
+
+    function animate(time) {
+        if (!startTime) startTime = time;
+        let elapsed = time - startTime;
+        let t = Math.min(elapsed / duration, 1); // Normalisation entre 0 et 1
+
+        // Interpolation linéaire entre startPos et endPos
+        rig.object3D.position.lerpVectors(
+            new THREE.Vector3(startPos.x, startPos.y, startPos.z),
+            new THREE.Vector3(endPos.x, endPos.y, endPos.z),
+            t
+        );
+
+        // Continue tant que la durée n'est pas écoulée
+        if (t < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+// Exemple : Déplace la caméra de (0,1.6,0) à (5,1.6,-5) en 3 secondes
+moveCamera({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 3, z: -35 }, 3000);
+

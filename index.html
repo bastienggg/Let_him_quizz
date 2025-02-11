@@ -73,7 +73,44 @@
     </style>
     <script type="module" src="./src/progress.js"></script>
     <a-scene id="mainScene" physics="debug:false;">
-      <a-assets timeout="2000"></a-assets>
+      <a-assets timeout="3000">
+        <a-asset-item
+          id="tvModel"
+          src="./src/assets/modele3d/tv.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="beerModel"
+          src="./src/assets/modele3d/beer.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="roomModel"
+          src="./src/assets/modele3d/room.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="tableModel"
+          src="./src/assets/modele3d/table.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="sofaModel"
+          src="./src/assets/modele3d/sofa.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="stageModel"
+          src="./src/assets/modele3d/stage.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="manModel"
+          src="./src/assets/modele3d/man.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="moneyDropTableModel"
+          src="./src/assets/modele3d/moneydroptable.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="spotModel"
+          src="./src/assets/modele3d/spot.glb"
+        ></a-asset-item>
+      </a-assets>
       <div id="LoadingPage"></div>
       <!-- camera -->
       <!-- <a-entity
@@ -124,20 +161,17 @@
         intensity="0.5"
         position="5.82373 16.31798 42.8702"
       ></a-light>
-
       <!-- tv -->
       <a-entity
-        gltf-model="./src/assets/modele3d/tv.glb"
+        gltf-model="#tvModel"
         position="5.94 4.28 -25"
         scale="40 40 40"
-        rotation="0
-         269.09000000000003 0
-         "
+        rotation="0 269.09000000000003 0"
       ></a-entity>
 
       <!-- beer -->
       <a-entity
-        gltf-model="./src/assets/modele3d/beer.glb"
+        gltf-model="#beerModel"
         position="-22.0848 -5.36063 12.97207"
         scale="0.5 0.5 0.5"
         rotation="0 269.09000000000003 0"
@@ -145,7 +179,7 @@
 
       <!-- room -->
       <a-entity
-        gltf-model="./src/assets/modele3d/room.glb"
+        gltf-model="#roomModel"
         position="5.94 -22.45 -25"
         scale="25 25 25"
         rotation="0 269.09000000000003 0"
@@ -153,7 +187,7 @@
 
       <!-- table -->
       <a-entity
-        gltf-model="./src/assets/modele3d/table.glb"
+        gltf-model="#tableModel"
         position="1.21 -14.6 -29.76"
         scale="30 30 40"
         rotation=""
@@ -162,7 +196,7 @@
 
       <!-- sofa -->
       <a-entity
-        gltf-model="./src/assets/modele3d/sofa.glb"
+        gltf-model="#sofaModel"
         position="24.39 -23.35 5"
         scale="50 50 50"
         rotation=""
@@ -170,7 +204,7 @@
 
       <!-- stage -->
       <a-entity
-        gltf-model="./src/assets/modele3d/stage.glb"
+        gltf-model="#stageModel"
         position="1.23833 -1.63184 -37.98841"
         scale="0.67 0.69 0.44"
         rotation=""
@@ -178,17 +212,16 @@
 
       <!-- anchor -->
       <a-entity
-        gltf-model="./src/assets/modele3d/man.glb"
+        gltf-model="#manModel"
         position="8.8 0.2031 -39.14591"
         scale="0.75 0.75 0.75"
         rotation="-0.4 -40 2.4"
-        gltf-model="#monster"
         animation-mixer="clip: *;"
       ></a-entity>
 
       <!-- money drop table -->
       <a-entity
-        gltf-model="./src/assets/modele3d/moneydroptable.glb"
+        gltf-model="#moneyDropTableModel"
         position="8.8 0.2031 -39.14591"
         scale="0.75 0.75 0.75"
         rotation="0 90 0"

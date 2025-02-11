@@ -22,8 +22,8 @@ window.addEventListener("load", function () {
 
 
             setTimeout(function () {
-                console.log('Déplacer le joueur en 8 secondes plus optimisation et fix loading screen et position');
-                Camera.moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 2.2, z: -35 }, 8000);
+                console.log('Déplacer le joueur en 8 secondes plus optimisation et fix loading screen et position 0 ');
+                Camera.moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 0, z: -35 }, 8000);
                 // Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
             }, 500);
 

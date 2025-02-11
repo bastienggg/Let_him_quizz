@@ -23,3 +23,22 @@ Money.renderMoneyZone();
 // Start the timer
 
 
+AFRAME.registerComponent('joystick-move', {
+    init: function () {
+        let rig = document.querySelector('#rig');
+        let controller = document.querySelector('#rightController');
+
+        controller.addEventListener('axismove', function (evt) {
+            let x = evt.detail.axis[0]; // Gauche/Droite
+            let z = evt.detail.axis[1]; // Avant/Arrière
+
+            // Applique le déplacement en multipliant par un facteur de vitesse
+            let speed = 0.1;
+            rig.object3D.position.x += x * speed;
+            rig.object3D.position.z += z * speed;
+        });
+    }
+});
+
+// Applique le composant sur le contrôleur
+document.querySelector('#rightController').setAttribute('joystick-move', '');

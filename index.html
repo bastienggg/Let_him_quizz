@@ -76,21 +76,29 @@
       <a-assets timeout="2000"></a-assets>
       <div id="LoadingPage"></div>
       <!-- camera -->
-      <a-entity
+      <!-- <a-entity
         id="camera"
         camera=""
         look-controls="enabled: true"
         position="0 2.2 0"
         rotation="0 0 0"
         wasd-controls="enabled: false"
-      ></a-entity>
+      ></a-entity> -->
 
-      <!-- controller  -->
-      <a-entity
-        id="leftController"
-        oculus-touch-controls="hand: left"
-      ></a-entity>
-      <a-entity id="rightController" oculus-touch-controls="hand: right">
+      <a-entity id="rig" position="0 1.6 0">
+        <a-entity camera look-controls></a-entity>
+
+        <!-- Contrôleur droit (avec joystick) -->
+        <a-entity
+          id="rightController"
+          oculus-touch-controls="hand: right"
+        ></a-entity>
+
+        <!-- Contrôleur gauche (optionnel) -->
+        <a-entity
+          id="leftController"
+          oculus-touch-controls="hand: left"
+        ></a-entity>
       </a-entity>
 
       <!-- ambient light -->

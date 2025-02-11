@@ -24,11 +24,7 @@ class UserRepositery extends EntityRepository {
         $sql->bindParam(":username", $username);
         $sql->bindParam(":score", $score);
         $sql->execute();
-
-        $user = new User($this->cnx->lastInsertId());
-        $user->setUsername($username);
-        $user->setScore($score);
-        return $user;
+        return $sql;
     }
 
     public function find($empty){

@@ -90,13 +90,9 @@ function moveCameraVR(startPos, endPos, duration) {
     rig.setAttribute('move-to', `to: ${endPos.x} ${endPos.y} ${endPos.z}; duration: ${duration}`);
 }
 
-// Exemple d'utilisation : Déplacer le joueur en 5 secondes
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        console.log('Déplacer le joueur en 5 secondes');
-        moveCameraVR({ x: 0, y: 1.6, z: 0 }, { x: 0, y: 1.6, z: -10 }, 5000);
-    }, 2000); // Attendre 2 secondes avant de déclencher l'animation
-});
+
+console.log('Déplacer le joueur en 5 secondes');
+moveCameraVR({ x: 0, y: 1.6, z: 0 }, { x: 0, y: 1.6, z: -10 }, 5000);
 
 //   Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
 

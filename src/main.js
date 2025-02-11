@@ -8,16 +8,19 @@ import { Camera } from './components/camera/camera.js';
 import { Loading } from './components/loading/loading.js';
 import { Light } from './components/light/light.js';
 import { FindThePlace } from './components/find-the-place/find-the-place.js';
+import { Rounds } from './components/rounds/rounds.js';
 
 // First mini game
 // TickingAway.renderQuizZone();
 // TickingAway.newQuestion();
 // TickingAway.startTimer();
 
-// Second mini game
-FindThePlace.renderPropositionsZone();
-FindThePlace.renderQuestion();
+// sSecond mini game
+// FindThePlace.renderPropositionsZone();
+// FindThePlace.renderQuestion();
 
-// Render the money counter
-Money.renderMoneyZone();
-// Start the timer
+
+// Second mini game
+setTimeout(() => {
+    Rounds.startGame();
+}, 5000);

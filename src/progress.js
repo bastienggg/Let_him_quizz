@@ -1,7 +1,7 @@
 
 import { Camera } from './components/camera/camera.js';
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
 
     const progressBar = document.getElementById("progress-bar");
 

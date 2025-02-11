@@ -46,25 +46,3 @@ document.querySelector('#rightController').setAttribute('joystick-move', '');
 
 
 //   Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    let controller = document.querySelector('#rightController');
-
-    controller.addEventListener('selectstart', function () {
-        let intersectedEl = controller.components.raycaster.intersectedEls[0];
-
-        if (intersectedEl) {
-            console.log("Gâchette pressée sur :", intersectedEl);
-
-            // Simuler un clic de souris (mousedown + mouseup + click)
-            let mouseDownEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
-            let mouseUpEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
-            let clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
-
-            intersectedEl.dispatchEvent(mouseDownEvent);
-            intersectedEl.dispatchEvent(mouseUpEvent);
-            intersectedEl.dispatchEvent(clickEvent);
-        }
-    });
-});

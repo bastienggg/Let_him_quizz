@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             setTimeout(function () {
-                console.log('Déplacer le joueur en 20 secondes apres le loading');
-                moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 3, z: -35 }, 8000);
+                console.log('Déplacer le joueur en 20 secondes apres le loading et pb régler');
+                Camera.moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 3, z: -35 }, 8000);
                 // Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
             }, 500);
 

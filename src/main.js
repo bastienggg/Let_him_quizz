@@ -25,20 +25,21 @@ Money.renderMoneyZone();
 
 AFRAME.registerComponent('joystick-move', {
     init: function () {
-        let rig = document.querySelector('#rig');
-        let controller = document.querySelector('#rightController');
+        this.rig = document.querySelector('#rig');
+        this.controller = document.querySelector('#rightController');
 
-        controller.addEventListener('axismove', function (evt) {
-            let x = evt.detail.axis[0]; // Gauche/Droite
-            let z = evt.detail.axis[1]; // Avant/Arrière
+        this.controller.addEventListener('thumbstickmoved', (evt) => {
+            let x = evt.detail.x; // Gauche/Droite
+            let z = evt.detail.y; // Avant/Arrière
 
-            // Applique le déplacement en multipliant par un facteur de vitesse
-            let speed = 0.1;
-            rig.object3D.position.x += x * speed;
-            rig.object3D.position.z += z * speed;
+            let speed = 0.1; // Ajuste la vitesse de déplacement
+
+            // Déplacer le rig en fonction du joystick
+            this.rig.object3D.position.x += x * speed;
+            this.rig.object3D.position.z += z * speed;
         });
     }
 });
 
-// Applique le composant sur le contrôleur
+// Appliquer le composant au contrôleur droit
 document.querySelector('#rightController').setAttribute('joystick-move', '');

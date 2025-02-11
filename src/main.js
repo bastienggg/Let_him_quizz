@@ -45,35 +45,51 @@ AFRAME.registerComponent('joystick-move', {
 document.querySelector('#rightController').setAttribute('joystick-move', '');
 
 
-function moveCamera(startPos, endPos, duration) {
-    let rig = document.querySelector('#rig');
+AFRAME.registerComponent('move-to', {
+    schema: {
+        to: { type: 'vec3' },
+        duration: { type: 'number', default: 3000 } // Durée en ms
+    },
 
-    // S'assurer que la caméra commence bien à la position initiale
-    rig.object3D.position.set(startPos.x, startPos.y, startPos.z);
+    init: function () {
+        this.startPos = this.el.object3D.position.clone();
+        this.elapsedTime = 0;
+        this.moving = true;
+    },
 
-    let startTime = null;
+    tick: function (time, deltaTime) {
+        if (!this.moving) return;
 
-    function animate(time) {
-        if (!startTime) startTime = time;
-        let elapsed = time - startTime;
-        let t = Math.min(elapsed / duration, 1); // Normalisation entre 0 et 1
+        this.elapsedTime += deltaTime;
+        let t = Math.min(this.elapsedTime / this.data.duration, 1); // Normalisation entre 0 et 1
 
-        // Interpolation linéaire entre startPos et endPos
-        rig.object3D.position.lerpVectors(
-            new THREE.Vector3(startPos.x, startPos.y, startPos.z),
-            new THREE.Vector3(endPos.x, endPos.y, endPos.z),
+        // Interpolation de la position
+        this.el.object3D.position.lerpVectors(
+            this.startPos,
+            new THREE.Vector3(this.data.to.x, this.data.to.y, this.data.to.z),
             t
         );
 
-        // Continue tant que la durée n'est pas écoulée
-        if (t < 1) {
-            requestAnimationFrame(animate);
+        if (t >= 1) {
+            this.moving = false; // Stopper l'animation
         }
     }
+});
 
-    requestAnimationFrame(animate);
+// Fonction pour déclencher le déplacement
+function moveCameraVR(startPos, endPos, duration) {
+    let rig = document.querySelector('#rig');
+
+    // Forcer la position de départ
+    rig.setAttribute('position', `${startPos.x} ${startPos.y} ${startPos.z}`);
+
+    // Appliquer l'animation
+    rig.setAttribute('move-to', `to: ${endPos.x} ${endPos.y} ${endPos.z}; duration: ${duration}`);
 }
 
-// Exemple : Déplace la caméra de (0,1.6,0) à (5,1.6,-5) en 3 secondes
-moveCamera({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 3, z: -35 }, 3000);
+// Exemple d'utilisation : Déplacer le joueur en 4 secondes
+window.addEventListener('load', () => {
+    moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 3, z: -35 }, 5000);
+});
+//   Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
 

@@ -3,6 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./src/assets/favicon/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./src/assets/favicon/favicon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./src/assets/favicon/favicon.png"
+    />
+    <link rel="manifest" href="./src/assets/favicon/favicon.png" />
     <link rel="stylesheet" href="./src/index.css" />
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,15 +40,18 @@
   </head>
   <body style="margin: 0; overflow: hidden">
     <div
-      class="flex h-screen w-screen flex-col items-center justify-center gap-10 bg-slate-100"
+      class="flex h-screen w-screen flex-col items-center justify-center bg-slate-100"
     >
       <h1 class="mb-40 text-center font-title text-7xl text-black">
         Let Him Quizz
       </h1>
-      <div id="loading" class="text-center text-2xl text-black">Loading...</div>
+      <div id="loading" class="mb-10 text-center text-2xl text-black">
+        Loading...
+      </div>
       <div id="progress-bar-container">
         <div id="progress-bar"></div>
       </div>
+      <h3>A game by Brad , Enguerran et Bastien</h3>
     </div>
     <style>
       #progress-bar-container {
@@ -50,18 +72,140 @@
       }
     </style>
     <script type="module" src="./src/progress.js"></script>
-    <a-scene id="mainScene" physics="debug:false;">
-      <a-assets timeout="2000"></a-assets>
+    <a-scene
+      id="mainScene"
+      physics="debug:false;"
+      loading-screen="enabled: false"
+    >
+      <a-assets>
+        <a-asset-item
+          id="tvModel"
+          src="./src/assets/modele3d/tv.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="beerModel"
+          src="./src/assets/modele3d/beer.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="roomModel"
+          src="./src/assets/modele3d/room.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="tableModel"
+          src="./src/assets/modele3d/table.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="sofaModel"
+          src="./src/assets/modele3d/sofa.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="stageModel"
+          src="./src/assets/modele3d/stage.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="manModel"
+          src="./src/assets/modele3d/man.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="moneyDropTableModel"
+          src="./src/assets/modele3d/moneydroptable.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="spotModel"
+          src="./src/assets/modele3d/spot.glb"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="chickenGuyModel"
+          src="./src/assets/audiance/Chicken_guy.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="citizen1Model"
+          src="./src/assets/audiance/Citizen_1.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="citizen2Model"
+          src="./src/assets/audiance/Citizen_2.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="citizen3Model"
+          src="./src/assets/audiance/Citizen_3.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="cryptoBroModel"
+          src="./src/assets/audiance/Crypto_Bro.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="femaleOfficerModel"
+          src="./src/assets/audiance/Female_Officer.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="foodWorkerModel"
+          src="./src/assets/audiance/Food_Worker.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="genericFemaleModel"
+          src="./src/assets/audiance/Generic_Female.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="genericMaleModel"
+          src="./src/assets/audiance/Generic_Male.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="maleOfficerModel"
+          src="./src/assets/audiance/Male_Officer.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="prisonerModel"
+          src="./src/assets/audiance/Prisoner.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="retailWorkerModel"
+          src="./src/assets/audiance/Retail_Worker.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="rubberDuckModel"
+          src="./src/assets/audiance/Rubber_Duck.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="santaClausModel"
+          src="./src/assets/audiance/Santa_Claus.glb"
+        ></a-asset-item>
+        <a-asset-item
+          id="snowmanModel"
+          src="./src/assets/audiance/Snowman.glb"
+        ></a-asset-item>
+      </a-assets>
       <div id="LoadingPage"></div>
       <!-- camera -->
-      <a-entity
+      <!-- <a-entity
         id="camera"
         camera=""
         look-controls="enabled: true"
         position="0 2.2 0"
         rotation="0 0 0"
         wasd-controls="enabled: false"
-      ></a-entity>
+      ></a-entity> -->
+
+      <!-- Conteneur de la caméra (rig) qui se déplace -->
+      <a-entity id="rig" position="0 2.2 0">
+        <a-entity id="head" camera look-controls position="0 0 0"></a-entity>
+
+        <!-- Contrôleurs VR -->
+        <a-entity
+          id="rightController"
+          laser-controls="hand: right"
+          raycaster="objects: .clickable"
+          oculus-touch-controls="hand: right"
+          vive-controls="hand: right"
+          windows-motion-controls="hand: right"
+        >
+        </a-entity>
+        <a-entity
+          id="leftController"
+          oculus-touch-controls="hand: left"
+        ></a-entity>
+      </a-entity>
 
       <!-- ambient light -->
       <a-light
@@ -86,20 +230,17 @@
         intensity="0.5"
         position="5.82373 16.31798 42.8702"
       ></a-light>
-
       <!-- tv -->
       <a-entity
-        gltf-model="./src/assets/modele3d/tv.glb"
+        gltf-model="#tvModel"
         position="5.94 4.28 -25"
         scale="40 40 40"
-        rotation="0
-         269.09000000000003 0
-         "
+        rotation="0 269.09000000000003 0"
       ></a-entity>
 
       <!-- beer -->
       <a-entity
-        gltf-model="./src/assets/modele3d/beer.glb"
+        gltf-model="#beerModel"
         position="-22.0848 -5.36063 12.97207"
         scale="0.5 0.5 0.5"
         rotation="0 269.09000000000003 0"
@@ -107,7 +248,7 @@
 
       <!-- room -->
       <a-entity
-        gltf-model="./src/assets/modele3d/room.glb"
+        gltf-model="#roomModel"
         position="5.94 -22.45 -25"
         scale="25 25 25"
         rotation="0 269.09000000000003 0"
@@ -115,7 +256,7 @@
 
       <!-- table -->
       <a-entity
-        gltf-model="./src/assets/modele3d/table.glb"
+        gltf-model="#tableModel"
         position="1.21 -14.6 -29.76"
         scale="30 30 40"
         rotation=""
@@ -124,7 +265,7 @@
 
       <!-- sofa -->
       <a-entity
-        gltf-model="./src/assets/modele3d/sofa.glb"
+        gltf-model="#sofaModel"
         position="24.39 -23.35 5"
         scale="50 50 50"
         rotation=""
@@ -132,7 +273,7 @@
 
       <!-- stage -->
       <a-entity
-        gltf-model="./src/assets/modele3d/stage.glb"
+        gltf-model="#stageModel"
         position="1.23833 -1.63184 -37.98841"
         scale="0.67 0.69 0.44"
         rotation=""
@@ -140,17 +281,16 @@
 
       <!-- anchor -->
       <a-entity
-        gltf-model="./src/assets/modele3d/man.glb"
+        gltf-model="#manModel"
         position="8.8 0.2031 -39.14591"
         scale="0.75 0.75 0.75"
         rotation="-0.4 -40 2.4"
-        gltf-model="#monster"
         animation-mixer="clip: *;"
       ></a-entity>
 
       <!-- money drop table -->
       <a-entity
-        gltf-model="./src/assets/modele3d/moneydroptable.glb"
+        gltf-model="#moneyDropTableModel"
         position="8.8 0.2031 -39.14591"
         scale="0.75 0.75 0.75"
         rotation="0 90 0"
@@ -240,76 +380,76 @@
 
       <!-- audiance -->
       <a-entity
-        gltf-model="./src/assets/audiance/Chicken_guy.glb"
+        gltf-model="#chickenGuyModel"
         position="10.2 -1.5 -24.8"
         scale="1.3 1.4 1.3"
         rotation="0 -150 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_1.glb"
+        gltf-model="#citizen1Model"
         position="7.3 -1.5 -24.9"
         scale="1.1 1.2 1.1"
         rotation="0 -160 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_2.glb"
+        gltf-model="#citizen2Model"
         position="4.1 -1.5 -24.7"
         scale="1.5 1.6 1.5"
         rotation="0 -170 0"
       ></a-entity>
 
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_3.glb"
+        gltf-model="#citizen3Model"
         position="-1.2 -1.5 -24.9"
         scale="1.2 1.3 1.2"
         rotation="0 -180 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Crypto_Bro.glb"
+        gltf-model="#cryptoBroModel"
         position="-4.4 -1.5 -24.8"
         scale="1.4 1.5 1.4"
         rotation="0 -190 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Female_Officer.glb"
+        gltf-model="#femaleOfficerModel"
         position="-7.1 -1.5 -24.9"
         scale="1.3 1.4 1.3"
         rotation="0 -200 0"
       ></a-entity>
       <!-- fin premiere ligne -->
       <a-entity
-        gltf-model="./src/assets/audiance/Food_Worker.glb"
+        gltf-model="#foodWorkerModel"
         position="11.3 -1.5 -28.1"
         scale="1.1 1.2 1.1"
         rotation="0 -120 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Generic_Female.glb"
+        gltf-model="#genericFemaleModel"
         position="8.1 -1.5 -28.2"
         scale="1.5 1.6 1.5"
         rotation="0 -130 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Generic_Male.glb"
+        gltf-model="#genericMaleModel"
         position="5.4 -1.5 -28.3"
         scale="1.2 1.3 1.2"
         rotation="0 -140 0"
       ></a-entity>
 
       <a-entity
-        gltf-model="./src/assets/audiance/Male_Officer.glb"
+        gltf-model="#maleOfficerModel"
         position="-2.1 -1.5 -28.1"
         scale="1.4 1.5 1.4"
         rotation="0 -210 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Prisoner.glb"
+        gltf-model="#prisonerModel"
         position="-5.2 -1.5 -28.2"
         scale="1.3 1.4 1.3"
         rotation="0 -220 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Retail_Worker.glb"
+        gltf-model="#retailWorkerModel"
         position="-8.4 -1.5 -28.3"
         scale="1.1 1.2 1.1"
         rotation="0 -230 0"
@@ -317,38 +457,38 @@
       <!-- fin deuxieme ligne -->
 
       <a-entity
-        gltf-model="./src/assets/audiance/Rubber_Duck.glb"
+        gltf-model="#rubberDuckModel"
         position="11.2 -1.5 -30.6"
         scale="1.5 1.6 1.5"
         rotation="0 -110 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Santa_Claus.glb"
+        gltf-model="#santaClausModel"
         position="8.4 -1.5 -30.4"
         scale="1.2 1.3 1.2"
         rotation="0 -120 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Snowman.glb"
+        gltf-model="#snowmanModel"
         position="5.3 -1.5 -30.5"
         scale="1.4 1.5 1.4"
         rotation="0 -130 0"
       ></a-entity>
 
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_2.glb"
+        gltf-model="#citizen2Model"
         position="-2.2 -1.5 -30.6"
         scale="1.3 1.4 1.3"
         rotation="0 -210 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_3.glb "
+        gltf-model="#citizen3Model"
         position="-5.3 -1.5 -30.4"
         scale="1.1 1.2 1.1"
         rotation="0 -220 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_1.glb"
+        gltf-model="#citizen1Model"
         position="-8.1 -1.5 -30.5"
         scale="1.5 1.6 1.5"
         rotation="0 -230 0"
@@ -356,38 +496,38 @@
       <!-- fin troisieme ligne -->
 
       <a-entity
-        gltf-model="./src/assets/audiance/Citizen_1.glb"
+        gltf-model="#citizen1Model"
         position="11.1 -1.5 -33.1"
         scale="1.2 1.3 1.2"
         rotation="0 -110 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Crypto_Bro.glb"
+        gltf-model="#cryptoBroModel"
         position="8.3 -1.5 -33.2"
         scale="1.4 1.5 1.4"
         rotation="0 -120 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Retail_Worker.glb"
+        gltf-model="#retailWorkerModel"
         position="5.2 -1.5 -33.3"
         scale="1.3 1.4 1.3"
         rotation="0 -130 0"
       ></a-entity>
 
       <a-entity
-        gltf-model="./src/assets/audiance/Generic_Female.glb"
+        gltf-model="#genericFemaleModel"
         position="-2.3 -1.5 -33.1"
         scale="1.1 1.2 1.1"
         rotation="0 -210 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Food_Worker.glb"
+        gltf-model="#foodWorkerModel"
         position="-5.4 -1.5 -33.2"
         scale="1.5 1.6 1.5"
         rotation="0 -220 0"
       ></a-entity>
       <a-entity
-        gltf-model="./src/assets/audiance/Female_Officer.glb"
+        gltf-model="#femaleOfficerModel"
         position="-8.2 -1.5 -33.3"
         scale="1.2 1.3 1.2"
         rotation="0 -230 0"

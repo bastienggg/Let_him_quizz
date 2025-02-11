@@ -10,49 +10,55 @@
  * camera.moveCamera(2000, [0, 0, 0], [10, 10, 10]);
  */
 let Camera = {};
-Camera.moveCamera = function (duration, startPosition, endPosition) {
-    const camera = document.querySelector('#rig');
-    if (!camera) {
-        console.error('Camera not found');
-        return;
-    }
 
-    const start = {
-        x: startPosition[0],
-        y: startPosition[1],
-        z: startPosition[2]
-    };
+AFRAME.registerComponent('move-to', {
+    schema: {
+        to: { type: 'vec3' },
+        duration: { type: 'number', default: 3000 } // Durée en ms
+    },
 
-    const end = {
-        x: endPosition[0],
-        y: endPosition[1],
-        z: endPosition[2]
-    };
+    init: function () {
+        this.startPos = new THREE.Vector3();
+        this.endPos = new THREE.Vector3(this.data.to.x, this.data.to.y, this.data.to.z);
+        this.elapsedTime = 0;
+        this.moving = true;
+    },
 
-    function easeInOutQuad(t) {
-        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-    }
+    tick: function (time, deltaTime) {
+        if (!this.moving) return;
 
-    let startTime = null;
+        // Obtenir la position actuelle à partir de l'attribut (compatible VR)
+        let position = this.el.getAttribute('position');
+        this.startPos.set(position.x, position.y, position.z);
 
-    function animate(time) {
-        if (!startTime) startTime = time;
-        const elapsed = time - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeInOutQuad(progress);
+        this.elapsedTime += deltaTime;
+        let t = Math.min(this.elapsedTime / this.data.duration, 1); // Valeur entre 0 et 1
 
-        camera.setAttribute('position', {
-            x: start.x + (end.x - start.x) * easedProgress,
-            y: start.y + (end.y - start.y) * easedProgress,
-            z: start.z + (end.z - start.z) * easedProgress
-        });
+        // Calculer la nouvelle position
+        let newPos = new THREE.Vector3().lerpVectors(this.startPos, this.endPos, t);
 
-        if (progress < 1) {
-            requestAnimationFrame(animate);
+        // Appliquer la nouvelle position avec setAttribute (obligatoire en VR)
+        this.el.setAttribute('position', `${newPos.x} ${newPos.y} ${newPos.z}`);
+
+        if (t >= 1) {
+            this.moving = false; // Stopper l'animation
         }
     }
+});
 
-    requestAnimationFrame(animate);
+// Fonction pour déclencher le déplacement
+Camera.moveCameraVR = function (startPos, endPos, duration) {
+    let rig = document.querySelector('#rig');
+
+    // Forcer la position de départ avec setAttribute (important pour WebXR)
+    rig.setAttribute('position', `${startPos.x} ${startPos.y} ${startPos.z}`);
+
+    // Appliquer l'animation
+    rig.setAttribute('move-to', `to: ${endPos.x} ${endPos.y} ${endPos.z}; duration: ${duration}`);
 }
+
+
+
+
 
 export { Camera };

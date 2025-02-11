@@ -24,7 +24,7 @@ AFRAME.registerComponent('move-to', {
         this.moving = true;
     },
 
-    tick: function (time, deltaTime) {
+    tick: function (deltaTime) {
         if (!this.moving) return;
 
         // Obtenir la position actuelle à partir de l'attribut (compatible VR)

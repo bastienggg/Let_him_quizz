@@ -49,3 +49,19 @@ setTimeout(() => {
     Rounds.startGame();
 }, 5000);
 
+document.addEventListener('DOMContentLoaded', function () {
+    let controller = document.querySelector('#rightController');
+    console.log("teste clique sur tout les objet");
+
+    controller.addEventListener('selectstart', function () {
+        let intersectedEl = controller.components.raycaster.intersectedEls[0];
+
+        if (intersectedEl) {
+            console.log("Clic sur :", intersectedEl);
+
+            // Simuler un vrai clic souris
+            let clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+            intersectedEl.dispatchEvent(clickEvent);
+        }
+    });
+});

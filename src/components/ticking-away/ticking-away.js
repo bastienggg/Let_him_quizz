@@ -2,6 +2,7 @@ import { MCQ } from "../../data/data-mcq.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Light } from "../light/light.js";
 import { Rounds } from "../rounds/rounds.js";
+import { Sound } from "../audio/audio.js";
 
 const templateFile = await fetch(
   "src/components/ticking-away/template.html.inc",
@@ -135,6 +136,7 @@ TickingAway.answerClicked = function (event) {
   // if yes, display a message and remove the quiz zone
   if (clickedBox.id === "good answer") {
     Light.flashColor("#00ff00");
+    Sound.renderCorrectAnswer();
     setTimeout(() => {
       TickingAway.newQuestion();
     }, 500);
@@ -145,10 +147,10 @@ TickingAway.answerClicked = function (event) {
     // if no, display a message and goes on  to the next question
   } else {
     Light.flashColor("#ff0000");
-
+    Sound.renderWrongAnswer();
     // Puts a delay before the next question
     setTimeout(() => {
-      TickingAway.newQuestion();
+      TickingAway.newQuestion();  
     }, 2000);
   }
 
@@ -160,6 +162,7 @@ TickingAway.startTimer = function () {
   // start the timer
   timerValue = 0;
   let timeLimit = 15;
+  Sound.renderTictac();
 
   document
     .querySelector("#timer a-text")

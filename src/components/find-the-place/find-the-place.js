@@ -2,6 +2,8 @@ import { Place } from "../../data/data-place.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Light } from "../light/light.js";
 import { Rounds } from "../rounds/rounds.js";
+import { Sound } from "../audio/audio.js";
+
 const templateFile = await fetch(
   "src/components/find-the-place/template.html.inc",
 );
@@ -137,6 +139,7 @@ FindThePlace.answerClicked = function (event) {
   // check if the answer is the correct one
   if (clickedBox.id === "good answer") {
     Light.flashColor("#00ff00");
+    Sound.renderCorrectAnswer();
     setTimeout(() => {
       FindThePlace.newRound();
     }, 1000);
@@ -145,6 +148,7 @@ FindThePlace.answerClicked = function (event) {
     Money.summonStack(5);
   } else {
     Light.flashColor("#ff0000");
+    Sound.renderWrongAnswer();
     setTimeout(() => {
       FindThePlace.newRound();
     }, 1000);

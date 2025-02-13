@@ -77,7 +77,7 @@ FindThePlace.renderQuestion = async function () {
   );
   skyElement.setAttribute(
     "animation__exit",
-    "property: position; to: 1.237 -10 -35.03326; delay:5000; dur: 3000; easing: easeInOutQuad",
+    "property: position; to: 1.237 -10 -35.03326; delay:10000; dur: 3000; easing: easeInOutQuad",
   );
 
   // Add the sky element to the scene
@@ -179,7 +179,7 @@ FindThePlace.newRound = function () {
     freezed = false;
     // end the game
     Rounds.nextRound();
-  } else {  
+  } else {
     // remove the sky box
     const skyBox = document.getElementById("360Sky");
     skyBox.remove();

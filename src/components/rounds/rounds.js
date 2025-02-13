@@ -26,7 +26,7 @@ Rounds.nextRound = async function () {
     setTimeout(() => {
       FindThePlace.renderPropositionsZone();
       FindThePlace.renderQuestion();
-      
+
       actualRound = "TickingAway";
     }, 2000); // Adjust the timeout duration as needed
   } else {
@@ -34,11 +34,11 @@ Rounds.nextRound = async function () {
       FindThePlace.removeQuizZone();
     }
     setTimeout(() => {
-    TickingAway.renderQuizZone();
-    TickingAway.newQuestion();
-    TickingAway.startTimer();
-    actualRound = "FindThePlace";
-  }, 2000); // Adjust the timeout duration as needed
+      TickingAway.renderQuizZone();
+      TickingAway.newQuestion();
+      TickingAway.startTimer();
+      actualRound = "FindThePlace";
+    }, 2000); // Adjust the timeout duration as needed
   }
   roundCounter++;
 };

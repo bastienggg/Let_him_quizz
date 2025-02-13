@@ -52,4 +52,14 @@ Sound.renderTictac = function(){
     }
 }
 
+Sound.stopTictac = function(){
+    const audioElement = document.getElementById('tictacSound');
+    if(audioElement){
+        audioElement.pause();
+    }
+    else{
+        console.error('Element with id "tictacSound" not found.');
+    }
+};
+
 export { Sound };

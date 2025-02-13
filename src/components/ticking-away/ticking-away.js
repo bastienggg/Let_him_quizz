@@ -180,6 +180,7 @@ TickingAway.startTimer = function () {
       clearInterval(intervalId);
       // Goes to the next round
       Rounds.nextRound();
+      Sound.stopTictac();
     }
   }, 1000);
 };

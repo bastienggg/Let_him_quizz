@@ -4,7 +4,7 @@ Place.getAll = function () {
   return data;
 };
 
-Place.getRandomPlace = async function (difficulty) {
+Place.getRandomPlace = async function () {
   // Fetch a random place
   let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/place?param=random");
   let newPlace = await response.json();

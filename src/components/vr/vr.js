@@ -1,22 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const leftController = document.querySelector("#leftController");
-    const rightController = document.querySelector("#rightController");
+let Vr = {};
 
-    leftController.setAttribute("movement-controls", "enabled: true");
-    rightController.setAttribute("movement-controls", "enabled: true");
-
-    leftController.addEventListener('thumbstickmoved', (event) => {
-        const camera = document.querySelector('#camera');
-        const { x, y } = event.detail;
-        camera.object3D.position.x += x * 0.1;
-        camera.object3D.position.z += y * 0.1;
+Vr.setupControllerClickHandler = function (controllerSelector) {
+    let controller = document.querySelector(controllerSelector);
+    console.log("teste clique sur tout les objet");
+    controller.addEventListener('selectstart', function () {
+        let intersectedEl = controller.components.raycaster.intersectedEls[0];
+        if (intersectedEl) {
+            console.log("Clic sur :", intersectedEl);
+            let clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+            intersectedEl.dispatchEvent(clickEvent);
+        }
     });
+}
 
-    rightController.addEventListener('thumbstickmoved', (event) => {
-        const camera = document.querySelector('#camera');
-        const { x, y } = event.detail;
-        camera.object3D.position.x += x * 0.1;
-        camera.object3D.position.z += y * 0.1;
-    });
-});
-
+export { Vr };

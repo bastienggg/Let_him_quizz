@@ -1,4 +1,5 @@
 import { Camera } from './components/camera/camera.js';
+import { Vr } from './components/vr/vr.js';
 
 window.addEventListener("load", function () {
 
@@ -21,20 +22,7 @@ window.addEventListener("load", function () {
                     scene.setAttribute("cursor", "rayOrigin: mouse; ");
                     Camera.moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 1.5, z: -35 }, 8000);
                     // Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
-                    let controller = document.querySelector('#rightController');
-                    console.log("teste clique sur tout les objet");
-
-                    controller.addEventListener('selectstart', function () {
-                        let intersectedEl = controller.components.raycaster.intersectedEls[0];
-
-                        if (intersectedEl) {
-                            console.log("Clic sur :", intersectedEl);
-
-                            // Simuler un vrai clic souris
-                            let clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
-                            intersectedEl.dispatchEvent(clickEvent);
-                        }
-                    });
+                    Vr.setupControllerClickHandler("#rightController");
                 }, 500);
             }, 1000); // 1 second delay before switching to the scene
         } else {

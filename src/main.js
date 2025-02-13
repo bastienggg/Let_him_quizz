@@ -19,7 +19,7 @@ import { Rounds } from './components/rounds/rounds.js';
 // FindThePlace.renderPropositionsZone();
 // FindThePlace.renderQuestion();
 // Render the money counter
-Money.renderMoneyZone();
+// Money.renderMoneyZone();
 // Start the timer
 
 

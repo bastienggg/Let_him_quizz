@@ -289,13 +289,13 @@
       ></a-entity>
 
       <!-- money drop table -->
-      <a-entity
+      <!-- <a-entity
         gltf-model="#moneyDropTableModel"
         position="8.8 0.2031 -39.14591"
         scale="0.75 0.75 0.75"
         rotation="0 90 0"
         material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
-      ></a-entity>
+      ></a-entity> -->
       <!-- FPS counter -->
       <a-entity
         id="fps-counter"
@@ -534,12 +534,23 @@
       ></a-entity>
 
       <!-- Wrong answer Sound -->
-      <audio id="wrongAnswerSound" src="./src/assets/audio/wrong-choice.mp3" position="0 1.6 -3"></audio>
+      <audio
+        id="wrongAnswerSound"
+        src="./src/assets/audio/wrong-choice.mp3"
+        position="0 1.6 -3"
+      ></audio>
       <!--Correct answer Sound-->
-      <audio id="correctAnswerSound" src="./src/assets/audio/correct-choice.mp3" position="0 1.6 -3"></audio>
+      <audio
+        id="correctAnswerSound"
+        src="./src/assets/audio/correct-choice.mp3"
+        position="0 1.6 -3"
+      ></audio>
       <!--Tic tac sound-->
-      <audio id="tictacSound" src="./src/assets/audio/tic-tac.mp3" position="0 1.6 -3"></audio>
-
+      <audio
+        id="tictacSound"
+        src="./src/assets/audio/tic-tac.mp3"
+        position="0 1.6 -3"
+      ></audio>
     </a-scene>
 
     <script type="module" src="./src/main.js"></script>

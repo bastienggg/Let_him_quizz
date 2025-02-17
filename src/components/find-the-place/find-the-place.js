@@ -73,7 +73,7 @@ FindThePlace.renderQuestion = async function () {
   );
   skyElement.setAttribute(
     "animation__scale",
-    "property: scale; from: 0.1 0.1 0.1; to: 1 1 1; dur: 3000; easing: easeInOutQuad",
+    "property: scale; from: 0.1 0.1 0.1; to: 1 1 -1; dur: 3000; easing: easeInOutQuad",
   );
   skyElement.setAttribute(
     "animation__exit",

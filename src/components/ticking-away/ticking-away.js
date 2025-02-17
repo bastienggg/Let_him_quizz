@@ -150,7 +150,7 @@ TickingAway.answerClicked = function (event) {
     Sound.renderWrongAnswer();
     // Puts a delay before the next question
     setTimeout(() => {
-      TickingAway.newQuestion();  
+      TickingAway.newQuestion();
     }, 2000);
   }
 

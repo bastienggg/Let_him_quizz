@@ -23,24 +23,6 @@ import { Rounds } from './components/rounds/rounds.js';
 // Start the timer
 
 
-AFRAME.registerComponent('joystick-move', {
-    init: function () {
-        this.rig = document.querySelector('#rig');
-        this.controller = document.querySelector('#rightController');
-
-        this.controller.addEventListener('thumbstickmoved', (evt) => {
-            let x = evt.detail.x; // Gauche/Droite
-            let z = evt.detail.y; // Avant/Arrière
-
-            let speed = 0.1; // Ajuste la vitesse de déplacement
-
-            // Déplacer le rig en fonction du joystick
-            this.rig.object3D.position.x += x * speed;
-            this.rig.object3D.position.z += z * speed;
-        });
-    }
-});
-
 // Appliquer le composant au contrôleur droit
 document.querySelector('#rightController').setAttribute('joystick-move', '');
 

@@ -77,6 +77,29 @@
       physics="debug:false;"
       loading-screen="enabled: false"
     >
+      <!-- Test screen top score on the left of the player while he plays -->
+       <a-box 
+       position="-9 3.6 -38"
+       rotation=""
+       width="1"
+       height="1"
+       depth="1"
+       color="#475cff"
+       scale="0.5 7 6"
+       >
+       </a-box>
+       <!-- keyboard test -->
+       <!-- <a-input position="-1.25 2.1 -5" placeholder="Username" color="black" scale="2 2 2" width="1"></a-input>
+
+       <a-keyboard></a-keyboard>
+ -->
+
+
+      <a-entity
+        id="topScore"
+        position="0 2 -3"
+        text="value: Top score: 0; color: #FFF; width: 4;"
+      ></a-entity>
       <a-assets>
         <a-asset-item
           id="tvModel"

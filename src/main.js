@@ -8,6 +8,7 @@ import { Camera } from './components/camera/camera.js';
 import { Loading } from './components/loading/loading.js';
 import { Light } from './components/light/light.js';
 import { FindThePlace } from './components/find-the-place/find-the-place.js';
+import { Leaderboard } from './components/leaderboard/leaderboard.js';
 import { Rounds } from './components/rounds/rounds.js';
 
 // First mini game
@@ -22,6 +23,9 @@ import { Rounds } from './components/rounds/rounds.js';
 // Money.renderMoneyZone();
 // Start the timer
 
+// Render the leaderboard
+
+
 
 // Appliquer le composant au contrôleur droit
 document.querySelector('#rightController').setAttribute('joystick-move', '');
@@ -29,5 +33,6 @@ document.querySelector('#rightController').setAttribute('joystick-move', '');
 // Second mini game
 setTimeout(() => {
     Rounds.startGame();
+    Leaderboard.renderZone();
 }, 5000);
 

@@ -21,40 +21,40 @@ import { Rounds } from './components/rounds/rounds.js';
 // Render the money counter
 // Money.renderMoneyZone();
 // Start the timer
-AFRAME.registerComponent("draggable", {
-    init: function () {
-        const el = this.el;
-        let isDragging = false;
+// AFRAME.registerComponent("draggable", {
+//     init: function () {
+//         const el = this.el;
+//         let isDragging = false;
 
-        el.addEventListener("mousedown", function () {
-            isDragging = true;
-            el.setAttribute("dynamic-body", "mass: 0"); // Désactive temporairement la gravité pendant le drag
-        });
+//         el.addEventListener("mousedown", function () {
+//             isDragging = true;
+//             el.setAttribute("dynamic-body", "mass: 0"); // Désactive temporairement la gravité pendant le drag
+//         });
 
-        document.addEventListener("mousemove", function (evt) {
-            if (isDragging) {
-                const raycaster =
-                    document.querySelector("a-scene").components.raycaster;
-                const intersection = raycaster.getIntersection(el);
+//         document.addEventListener("mousemove", function (evt) {
+//             if (isDragging) {
+//                 const raycaster =
+//                     document.querySelector("a-scene").components.raycaster;
+//                 const intersection = raycaster.getIntersection(el);
 
-                if (intersection) {
-                    const point = intersection.point;
-                    el.setAttribute(
-                        "position",
-                        `${point.x} ${point.y} ${el.getAttribute("position").z}`
-                    ); // Bloque sur Z
-                }
-            }
-        });
+//                 if (intersection) {
+//                     const point = intersection.point;
+//                     el.setAttribute(
+//                         "position",
+//                         `${point.x} ${point.y} ${el.getAttribute("position").z}`
+//                     ); // Bloque sur Z
+//                 }
+//             }
+//         });
 
-        document.addEventListener("mouseup", function () {
-            if (isDragging) {
-                isDragging = false;
-                el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
-            }
-        });
-    },
-});
+//         document.addEventListener("mouseup", function () {
+//             if (isDragging) {
+//                 isDragging = false;
+//                 el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+//             }
+//         });
+//     },
+// });
 
 function checkIfInside() {
     const box = document.querySelector("#movableBox");

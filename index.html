@@ -74,7 +74,7 @@
     <script type="module" src="./src/progress.js"></script>
     <a-scene
       id="mainScene"
-      physics="debug:false;"
+      physics="debug:true;"
       loading-screen="enabled: false"
     >
       <a-assets>
@@ -207,6 +207,74 @@
         ></a-entity>
       </a-entity>
 
+
+      <a-box
+        id="movableBox"
+        position="0 1 -37.48324"
+        width="1"
+        height="1"
+        depth="1"
+        color="red"
+        data-raycastable
+        dynamic-body="mass: 5"
+        data-valeur="50"
+      ></a-box>
+
+      <a-light
+        id="light"
+        type="point"
+        position="0 5 -37.48324"
+        color="white"
+      ></a-light>
+
+      <a-entity id="hollowBox" position="-3 1 -37.48324" data-valeur="50">
+        <a-box
+          position="0 -1.5 0"
+          width="2.8"
+          height="0.2"
+          depth="2.8"
+          color="blue"
+          opacity="0.3"
+          static-body
+        ></a-box>
+        <a-box
+          position="0 0 1.5"
+          width="2.8"
+          height="2.8"
+          depth="0.2"
+          color="blue"
+          static-body
+          opacity="0.3"
+        ></a-box>
+        <a-box
+          position="0 0 -1.5"
+          width="2.8"
+          height="2.8"
+          depth="0.2"
+          color="blue"
+          opacity="0.3"
+        ></a-box>
+        <a-box
+          position="1.5 0 0"
+          width="0.2"
+          height="2.8"
+          depth="2.8"
+          opacity="0.3"
+          static-body
+          color="blue"
+        ></a-box>
+        <a-box
+          position="-1.5 0 0"
+          width="0.2"
+          height="2.8"
+          depth="2.8"
+          opacity="0.3"
+          static-body
+          color="blue"
+        ></a-box>
+      </a-entity>
+
+
       <!-- ambient light -->
       <a-light
         class="ambient"
@@ -277,6 +345,27 @@
         position="1.23833 -1.63184 -37.98841"
         scale="0.67 0.69 0.44"
         rotation=""
+        shape=""
+      >
+        <a-box
+          position="0 0 0"
+          width="20"
+          height="3.6"
+          depth="10"
+          color="#FF0000"
+          opacity="0.5"
+          body="type: static; shape: box;"
+        ></a-box>
+      >
+        <a-box
+          position="0 0 0"
+          width="1"
+          height="1"
+          depth="1"
+          color="#FF0000"
+          opacity="0.5"
+        ></a-box>
+      </a-entity>
       ></a-entity>
 
       <!-- anchor -->
@@ -350,6 +439,8 @@
         scale="8 5 1"
         id="ecran"
       ></a-box>
+
+      
 
       <!-- stage light -->
       <!-- <a-entity
@@ -534,23 +625,11 @@
       ></a-entity>
 
       <!-- Wrong answer Sound -->
-      <audio
-        id="wrongAnswerSound"
-        src=""
-        position="0 1.6 -3"
-      ></audio>
+      <audio id="wrongAnswerSound" src="" position="0 1.6 -3"></audio>
       <!--Correct answer Sound-->
-      <audio
-        id="correctAnswerSound"
-        src=""
-        position="0 1.6 -3"
-      ></audio>
+      <audio id="correctAnswerSound" src="" position="0 1.6 -3"></audio>
       <!--Tic tac sound-->
-      <audio
-        id="tictacSound"
-        src=""
-        position="0 1.6 -3"
-      ></audio>
+      <audio id="tictacSound" src="" position="0 1.6 -3"></audio>
     </a-scene>
 
     <script type="module" src="./src/main.js"></script>

@@ -1,11 +1,11 @@
-import { checkIfInside } from '../../main.js';
+// import { checkIfInside } from '../../main.js';
 
 let Vr = {};
 
 Vr.setupControllerClickHandler = function (controllerSelector) {
     let controller = document.querySelector(controllerSelector);
     let grabbedObject = null; // Objet actuellement saisi
-    console.log("teste clique sur tout les objet v3");
+    console.log("teste clique sur tout les objet v4");
 
     // Quand la gâchette est pressée
     controller.addEventListener('selectstart', function () {
@@ -57,6 +57,35 @@ Vr.setupControllerClickHandler = function (controllerSelector) {
     });
 };
 
+function checkIfInside(box) {
+    const hollowBox = document.querySelector("#hollowBox");
+    const light = document.querySelector("#light");
+
+    const boxPos = box.object3D.position;
+    const hollowPos = hollowBox.object3D.position;
+
+    const minX = hollowPos.x - 1.4,
+        maxX = hollowPos.x + 1.4;
+    const minY = hollowPos.y - 1.4,
+        maxY = hollowPos.y + 1.4;
+    const minZ = hollowPos.z - 1.4,
+        maxZ = hollowPos.z + 1.4;
+
+    if (
+        boxPos.x >= minX &&
+        boxPos.x <= maxX &&
+        boxPos.y >= minY &&
+        boxPos.y <= maxY &&
+        boxPos.z >= minZ &&
+        boxPos.z <= maxZ
+    ) {
+        console.log("Boîte rouge DEDANS !");
+        light.setAttribute("color", "green");
+    } else {
+        console.log("Boîte rouge DEHORS !");
+        light.setAttribute("color", "white");
+    }
+}
 
 // Vr.setupControllerClickHandler = function (controllerSelector) {
 //     let controller = document.querySelector(controllerSelector);

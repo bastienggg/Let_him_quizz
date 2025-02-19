@@ -21,39 +21,41 @@ import { Rounds } from './components/rounds/rounds.js';
 // Render the money counter
 // Money.renderMoneyZone();
 // Start the timer
-AFRAME.registerComponent("draggable", {
+AFRAME.registerComponent('draggable', {
     init: function () {
         const el = this.el;
         let isDragging = false;
+        let grabbedObject = null;
+        let offset = new THREE.Vector3();
 
-        el.addEventListener("mousedown", function () {
-            isDragging = true;
-            el.setAttribute("dynamic-body", "mass: 0"); // Désactive temporairement la gravité pendant le drag
-        });
+        el.addEventListener('selectstart', function () {
+            let intersectedEl = el.components.raycaster.intersectedEls[0];
 
-        document.addEventListener("mousemove", function (evt) {
-            if (isDragging) {
-                const raycaster =
-                    document.querySelector("a-scene").components.raycaster;
-                const intersection = raycaster.getIntersection(el);
-
-                if (intersection) {
-                    const point = intersection.point;
-                    el.setAttribute(
-                        "position",
-                        `${point.x} ${point.y} ${el.getAttribute("position").z}`
-                    ); // Bloque sur Z
-                }
+            if (intersectedEl) {
+                grabbedObject = intersectedEl;
+                grabbedObject.setAttribute('dynamic-body', 'mass: 0');
+                let objPos = grabbedObject.object3D.position.clone();
+                let controllerPos = el.object3D.position.clone();
+                offset.copy(objPos).sub(controllerPos);
+                isDragging = true;
             }
         });
 
-        document.addEventListener("mouseup", function () {
-            if (isDragging) {
+        el.addEventListener('axismove', function () {
+            if (isDragging && grabbedObject) {
+                let controllerPos = el.object3D.position;
+                grabbedObject.object3D.position.copy(controllerPos).add(offset);
+            }
+        });
+
+        el.addEventListener('selectend', function () {
+            if (grabbedObject) {
+                grabbedObject.setAttribute('dynamic-body', 'mass: 5');
+                grabbedObject = null;
                 isDragging = false;
-                el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
             }
         });
-    },
+    }
 });
 
 function checkIfInside() {

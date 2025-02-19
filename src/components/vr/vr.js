@@ -3,39 +3,30 @@ let Vr = {};
 Vr.setupControllerClickHandler = function (controllerSelector) {
     let controller = document.querySelector(controllerSelector);
     console.log("teste clique sur tout les objet");
+
+    let isTriggerPressed = false;
     let intersectedEl = null;
-    let isDragging = false;
 
     controller.addEventListener('selectstart', function () {
+        isTriggerPressed = true;
         intersectedEl = controller.components.raycaster.intersectedEls[0];
         if (intersectedEl) {
             console.log("Clic sur :", intersectedEl);
-            isDragging = true;
-            intersectedEl.setAttribute("dynamic-body", "mass: 0"); // Désactive temporairement la gravité pendant le drag
+            let mousedownEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true });
+            intersectedEl.dispatchEvent(mousedownEvent);
         }
     });
 
     controller.addEventListener('selectend', function () {
-        if (intersectedEl) {
-            isDragging = false;
-            intersectedEl.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+        if (isTriggerPressed && intersectedEl) {
+            let mouseupEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true });
+            intersectedEl.dispatchEvent(mouseupEvent);
             intersectedEl = null;
         }
-    });
-
-    controller.addEventListener('axismove', function (evt) {
-        if (isDragging && intersectedEl) {
-            const intersection = controller.components.raycaster.getIntersection(intersectedEl);
-            if (intersection) {
-                const point = intersection.point;
-                intersectedEl.setAttribute(
-                    "position",
-                    `${point.x} ${point.y} ${intersectedEl.getAttribute("position").z}`
-                ); // Bloque sur Z
-            }
-        }
+        isTriggerPressed = false;
     });
 }
+
 // Vr.setupControllerClickHandler = function (controllerSelector) {
 //     let controller = document.querySelector(controllerSelector);
 //     console.log("teste clique sur tout les objet");

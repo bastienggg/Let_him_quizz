@@ -3,7 +3,7 @@ let Vr = {};
 Vr.setupControllerClickHandler = function (controllerSelector) {
     let controller = document.querySelector(controllerSelector);
     let grabbedObject = null; // Objet actuellement saisi
-    let originalParent = null; // Sauvegarde du parent d'origine
+    console.log("teste clique sur tout les objet");
 
     // Quand la gâchette est pressée
     controller.addEventListener('selectstart', function () {
@@ -20,24 +20,28 @@ Vr.setupControllerClickHandler = function (controllerSelector) {
             if (intersectedEl.hasAttribute("dynamic-body")) {
                 console.log("Objet saisi :", intersectedEl);
                 grabbedObject = intersectedEl;
-                originalParent = grabbedObject.parentElement; // Sauvegarde du parent d'origine
 
                 // Désactiver la gravité temporairement
                 grabbedObject.setAttribute("dynamic-body", "mass: 0");
 
-                // Attacher l'objet au contrôleur pour le déplacer
-                controller.object3D.attach(grabbedObject.object3D);
+                // Mise à jour de la position de l'objet en fonction du contrôleur
+                controller.addEventListener("controllerMove", moveObject);
             }
         }
     });
+
+    // Met à jour la position de l'objet pour suivre le contrôleur
+    function moveObject() {
+        if (grabbedObject) {
+            let controllerPos = controller.object3D.position;
+            grabbedObject.setAttribute("position", `${controllerPos.x} ${controllerPos.y} ${controllerPos.z}`);
+        }
+    }
 
     // Quand la gâchette est relâchée
     controller.addEventListener('selectend', function () {
         if (grabbedObject) {
             console.log("Objet relâché :", grabbedObject);
-
-            // Replacer l'objet dans la scène (lâché du contrôleur)
-            originalParent.object3D.attach(grabbedObject.object3D);
 
             // Réactiver la gravité
             grabbedObject.setAttribute("dynamic-body", "mass: 1");
@@ -46,10 +50,10 @@ Vr.setupControllerClickHandler = function (controllerSelector) {
             checkIfInside(grabbedObject);
 
             grabbedObject = null; // Réinitialiser l'objet
+            controller.removeEventListener("controllerMove", moveObject);
         }
     });
-}
-
+};
 // Vr.setupControllerClickHandler = function (controllerSelector) {
 //     let controller = document.querySelector(controllerSelector);
 //     console.log("teste clique sur tout les objet");

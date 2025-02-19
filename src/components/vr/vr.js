@@ -1,9 +1,11 @@
+import { checkIfInside } from '../../main.js';
+
 let Vr = {};
 
 Vr.setupControllerClickHandler = function (controllerSelector) {
     let controller = document.querySelector(controllerSelector);
     let grabbedObject = null; // Objet actuellement saisi
-    console.log("teste clique sur tout les objet v2");
+    console.log("teste clique sur tout les objet v3");
 
     // Quand la gâchette est pressée
     controller.addEventListener('selectstart', function () {
@@ -54,6 +56,8 @@ Vr.setupControllerClickHandler = function (controllerSelector) {
         }
     });
 };
+
+
 // Vr.setupControllerClickHandler = function (controllerSelector) {
 //     let controller = document.querySelector(controllerSelector);
 //     console.log("teste clique sur tout les objet");

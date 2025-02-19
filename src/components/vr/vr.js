@@ -1,11 +1,9 @@
-// import { checkIfInside } from '../../main.js';
-
 let Vr = {};
 
 Vr.setupControllerClickHandler = function (controllerSelector) {
     let controller = document.querySelector(controllerSelector);
     let grabbedObject = null; // Objet actuellement saisi
-    console.log("teste clique sur tout les objet v5");
+    console.log("teste clique sur tout les objet v6");
 
     // Quand la gâchette est pressée
     controller.addEventListener('selectstart', function () {
@@ -86,18 +84,5 @@ function checkIfInside(box) {
         light.setAttribute("color", "white");
     }
 }
-
-// Vr.setupControllerClickHandler = function (controllerSelector) {
-//     let controller = document.querySelector(controllerSelector);
-//     console.log("teste clique sur tout les objet");
-//     controller.addEventListener('selectstart', function () {
-//         let intersectedEl = controller.components.raycaster.intersectedEls[0];
-//         if (intersectedEl) {
-//             console.log("Clic sur :", intersectedEl);
-//             let clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
-//             intersectedEl.dispatchEvent(clickEvent);
-//         }
-//     });
-// }
 
 export { Vr };

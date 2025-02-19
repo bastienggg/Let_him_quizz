@@ -1,96 +1,65 @@
-AFRAME.registerComponent("draggable", {
+AFRAME.registerComponent('draggable', {
     init: function () {
         const el = this.el;
         let isDragging = false;
+        let grabbedObject = null;
+        let offset = new THREE.Vector3();
 
-        el.addEventListener("mousedown", function () {
-            isDragging = true;
-            el.setAttribute("dynamic-body", "mass: 0"); // Désactive temporairement la gravité pendant le drag
+        // Support for VR controller dragging
+        el.addEventListener('selectstart', function () {
+            let intersectedEl = el.components.raycaster.intersectedEls[0];
+
+            if (intersectedEl) {
+                grabbedObject = intersectedEl;
+                grabbedObject.setAttribute('dynamic-body', 'mass: 0');
+                let objPos = grabbedObject.object3D.position.clone();
+                let controllerPos = el.object3D.position.clone();
+                offset.copy(objPos).sub(controllerPos);
+                isDragging = true;
+            }
         });
 
-        document.addEventListener("mousemove", function (evt) {
+        el.addEventListener('axismove', function () {
+            if (isDragging && grabbedObject) {
+                let controllerPos = el.object3D.position;
+                grabbedObject.object3D.position.copy(controllerPos).add(offset);
+            }
+        });
+
+        el.addEventListener('selectend', function () {
+            if (grabbedObject) {
+                grabbedObject.setAttribute('dynamic-body', 'mass: 5');
+                grabbedObject = null;
+                isDragging = false;
+            }
+        });
+
+        // Support for mouse dragging in web mode
+        el.addEventListener('mousedown', function (evt) {
+            isDragging = true;
+            el.setAttribute('dynamic-body', 'mass: 0'); // Disable gravity while dragging
+        });
+
+        document.addEventListener('mousemove', function (evt) {
             if (isDragging) {
-                const raycaster =
-                    document.querySelector("a-scene").components.raycaster;
+                const raycaster = document.querySelector('a-scene').components.raycaster;
                 const intersection = raycaster.getIntersection(el);
 
                 if (intersection) {
                     const point = intersection.point;
-                    el.setAttribute(
-                        "position",
-                        `${point.x} ${point.y} ${el.getAttribute("position").z}`
-                    ); // Bloque sur Z
+                    el.setAttribute('position', `${point.x} ${point.y} ${el.getAttribute('position').z}`); // Lock on Z axis
                 }
             }
         });
 
-        document.addEventListener("mouseup", function () {
+        document.addEventListener('mouseup', function () {
             if (isDragging) {
                 isDragging = false;
-                el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+                el.setAttribute('dynamic-body', 'mass: 5'); // Re-enable gravity
             }
         });
-    },
-});
-
-function checkIfInside() {
-    const box = document.querySelector("#movableBox");
-    const hollowBox = document.querySelector("#hollowBox");
-    const light = document.querySelector("#light");
-
-    const boxPos = box.object3D.position;
-    const hollowPos = hollowBox.object3D.position;
-
-    const minX = hollowPos.x - 1.4,
-        maxX = hollowPos.x + 1.4;
-    const minY = hollowPos.y - 1.4,
-        maxY = hollowPos.y + 1.4;
-    const minZ = hollowPos.z - 1.4,
-        maxZ = hollowPos.z + 1.4;
-
-    // Valeurs des boîtes
-    const movableBoxValue = parseInt(box.getAttribute("data-valeur"));
-    const hollowBoxValue = parseInt(hollowBox.getAttribute("data-valeur"));
-
-    // Vérifier si la boîte rouge est dans la boîte creuse
-    if (
-        boxPos.x >= minX &&
-        boxPos.x <= maxX &&
-        boxPos.y >= minY &&
-        boxPos.y <= maxY &&
-        boxPos.z >= minZ &&
-        boxPos.z <= maxZ
-    ) {
-        // Vérification si les valeurs des deux boîtes sont égales
-        if (movableBoxValue === hollowBoxValue) {
-            console.log(
-                `✅ Boîte rouge DEDANS avec les mêmes valeurs! Valeur boîte rouge: ${movableBoxValue} | Valeur boîte creuse: ${hollowBoxValue}`
-            );
-            light.setAttribute("color", "green");
-        } else {
-            console.log(
-                `❌ Boîte rouge DEDANS mais avec des valeurs différentes! Valeur boîte rouge: ${movableBoxValue} | Valeur boîte creuse: ${hollowBoxValue}`
-            );
-            light.setAttribute("color", "white");
-        }
-    } else {
-        console.log(
-            `❌ Boîte rouge DEHORS! Valeur boîte rouge: ${movableBoxValue} | Valeur boîte creuse: ${hollowBoxValue}`
-        );
-        light.setAttribute("color", "white");
     }
-}
-
-// Appeler la vérification en continu pendant la scène
-function update() {
-    checkIfInside();
-    requestAnimationFrame(update); // Continuer l'appel à chaque frame
-}
-
-// Démarre la vérification continue
-update();
-
-document.querySelector("#movableBox").setAttribute("draggable", "");
+});
 
 let Vr = {};
 

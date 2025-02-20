@@ -36,12 +36,20 @@ Vr.setupControllerClickHandler = function (controllerSelector) {
         }
     });
 
-    // Mise à jour de la position pendant le déplacement
-    controller.addEventListener('controllerconnected', function () {
-        controller.addEventListener('frame', function () {
+    // Boucle d'animation pour suivre le contrôleur
+    controller.sceneEl.addEventListener('renderstart', function () {
+        controller.sceneEl.addEventListener('tick', function () {
             if (grabbedEl) {
-                let controllerPosition = controller.object3D.position;
+                let controllerPosition = new THREE.Vector3();
+                let controllerRotation = new THREE.Quaternion();
+
+                // Récupère la position et la rotation du contrôleur
+                controller.object3D.getWorldPosition(controllerPosition);
+                controller.object3D.getWorldQuaternion(controllerRotation);
+
+                // Applique la position et la rotation à l'objet attrapé
                 grabbedEl.object3D.position.copy(controllerPosition);
+                grabbedEl.object3D.quaternion.copy(controllerRotation);
             }
         });
     });

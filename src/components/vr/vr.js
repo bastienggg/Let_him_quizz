@@ -6,10 +6,10 @@ AFRAME.registerComponent('draggable', {
         let offset = new THREE.Vector3();
 
         // Support for VR controller dragging
-        el.addEventListener('selectstart', function () {
-            let intersectedEl = el.components.raycaster.intersectedEls[0];
+        el.addEventListener('selectstart', function (evt) {
+            let intersectedEl = evt.detail.intersectedEl;
 
-            if (intersectedEl) {
+            if (intersectedEl && intersectedEl.classList.contains('draggable')) {
                 grabbedObject = intersectedEl;
                 grabbedObject.setAttribute('dynamic-body', 'mass: 0');
                 let objPos = grabbedObject.object3D.position.clone();

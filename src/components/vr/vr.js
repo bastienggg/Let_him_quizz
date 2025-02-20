@@ -19,23 +19,32 @@ Vr.setupControllerClickHandler = function () {
             let isFollowing = false;
             let controller = null;
 
-            // Sélectionne le contrôleur directement
-            const sceneEl = document.querySelector("a-scene");
-            const controllers = sceneEl.querySelectorAll("[laser-controls]");
+            // Détection explicite du contrôleur après chargement de la scène
+            el.sceneEl.addEventListener("loaded", () => {
+                controller = document.querySelector("[laser-controls]");
+                if (controller) {
+                    console.log("🎮 Contrôleur détecté :", controller);
+                } else {
+                    console.error("❌ Contrôleur non trouvé");
+                }
+            });
 
             // Quand la boîte est cliquée
             el.addEventListener("click", function () {
+                if (!controller) {
+                    console.error("⚠️ Contrôleur non disponible au moment du clic");
+                    return;
+                }
+
                 if (!isFollowing) {
-                    // Utilise le premier contrôleur trouvé
-                    controller = controllers[0];
                     isFollowing = true;
-                    el.setAttribute("color", "#FFC65D"); // Change de couleur pendant le suivi
-                    el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
+                    el.setAttribute("color", "#FFC65D");
+                    el.removeAttribute("dynamic-body"); // Désactive la physique pendant le suivi
                     console.log("🚀 Suivi activé");
                 } else {
                     isFollowing = false;
-                    el.setAttribute("color", "#4CC3D9"); // Restaure la couleur
-                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+                    el.setAttribute("color", "#4CC3D9");
+                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la physique
                     console.log("💥 Suivi désactivé");
                 }
             });
@@ -47,14 +56,15 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
 
                     // Vérifie si la position est bien récupérée
-                    console.log("Position contrôleur :", controllerPos);
+                    console.log("📍 Position contrôleur :", controllerPos);
 
-                    // Met à jour la position de l'objet
-                    el.object3D.position.copy(controllerPos);
+                    // Applique la position
+                    el.setAttribute("position", `${controllerPos.x} ${controllerPos.y} ${controllerPos.z}`);
                 }
             });
         },
     });
+
 };
 
 export { Vr };

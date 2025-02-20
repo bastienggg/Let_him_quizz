@@ -28,7 +28,6 @@ import { Vr } from './components/vr/vr.js';
 Vr.setupDraggablesVR("#rightController");
 
 SortItOut.setupDraggables();
-
 // Appeler la vérification en continu pendant la scène
 function update() {
     SortItOut.ChekIfInside();

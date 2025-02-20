@@ -24,9 +24,11 @@ import { Vr } from './components/vr/vr.js';
 // Render the money counter
 // Money.renderMoneyZone();
 // Start the timer
-Vr.setupDraggablesVR("#rightController");
+
+Vr.setupControllerClickHandler("#rightController")
 
 SortItOut.setupDraggables();
+
 // Appeler la vérification en continu pendant la scène
 function update() {
     SortItOut.ChekIfInside();

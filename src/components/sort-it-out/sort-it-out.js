@@ -1,6 +1,5 @@
 let SortItOut = {};
 
-
 SortItOut.setupDraggables = function () {
     AFRAME.registerComponent("draggable", {
         init: function () {
@@ -34,9 +33,37 @@ SortItOut.setupDraggables = function () {
                     el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
                 }
             });
+
+            // Support for VR controller dragging
+            el.addEventListener('selectstart', function (evt) {
+                let intersectedEl = evt.detail.intersectedEl;
+
+                if (intersectedEl && intersectedEl.classList.contains('draggable')) {
+                    grabbedObject = intersectedEl;
+                    grabbedObject.setAttribute('dynamic-body', 'mass: 0');
+                    let objPos = grabbedObject.object3D.position.clone();
+                    let controllerPos = el.object3D.position.clone();
+                    offset.copy(objPos).sub(controllerPos);
+                    isDragging = true;
+                }
+            });
+
+            el.addEventListener('axismove', function () {
+                if (isDragging && grabbedObject) {
+                    let controllerPos = el.object3D.position;
+                    grabbedObject.object3D.position.copy(controllerPos).add(offset);
+                }
+            });
+
+            el.addEventListener('selectend', function () {
+                if (grabbedObject) {
+                    grabbedObject.setAttribute('dynamic-body', 'mass: 5');
+                    grabbedObject = null;
+                    isDragging = false;
+                }
+            });
         },
     });
-
 }
 
 SortItOut.ChekIfInside = function () {

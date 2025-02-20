@@ -13,37 +13,33 @@ let Vr = {};
 //     });
 // }
 Vr.setupControllerClickHandler = function () {
-    AFRAME.registerComponent("vr-draggable", {
+    AFRAME.registerComponent("toggle-drag", {
         init: function () {
             const el = this.el;
-            let isDragging = false;
+            let isFollowing = false;
             let controller = null;
 
-            // Quand la gâchette est pressée sur un objet
-            el.addEventListener("selectstart", function (evt) {
-                isDragging = true;
-                controller = evt.detail?.controller || evt.target;
-                el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
-                console.log("Objet attrapé !");
-            });
-
-            // Quand la gâchette est relâchée
-            el.addEventListener("selectend", function () {
-                if (isDragging) {
-                    isDragging = false;
+            // Ecoute les clics (gâchette)
+            el.addEventListener("click", function (evt) {
+                if (!isFollowing) {
+                    // Commence à suivre le contrôleur
+                    controller = evt.detail.cursorEl;
+                    el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
+                    isFollowing = true;
+                    console.log("Suivi activé");
+                } else {
+                    // Relâche l'objet
                     el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
-                    console.log("Objet relâché !");
+                    isFollowing = false;
+                    console.log("Suivi désactivé");
                 }
             });
 
-            // Suivi de l'objet pendant le drag
+            // Mise à jour pendant le suivi
             el.sceneEl.addEventListener("tick", function () {
-                if (isDragging && controller) {
-                    // Récupère la position du contrôleur
+                if (isFollowing && controller) {
                     let controllerPos = new THREE.Vector3();
                     controller.object3D.getWorldPosition(controllerPos);
-
-                    // Met à jour la position de l'objet
                     el.object3D.position.copy(controllerPos);
                 }
             });

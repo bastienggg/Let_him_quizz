@@ -13,58 +13,58 @@ let Vr = {};
 //     });
 // }
 Vr.setupControllerClickHandler = function () {
-    AFRAME.registerComponent("toggle-drag", {
+    AFRAME.registerComponent("occulus-grab", {
         init: function () {
-            const el = this.el;
-            let isFollowing = false;
+            let el = this.el;
+            let isGrabbed = false;
             let controller = null;
 
-            // Détection explicite du contrôleur après chargement de la scène
-            el.sceneEl.addEventListener("loaded", () => {
-                controller = document.querySelector("[laser-controls]");
-                if (controller) {
-                    console.log("🎮 Contrôleur détecté :", controller);
-                } else {
-                    console.error("❌ Contrôleur non trouvé");
-                }
-            });
+            this.onGrabStart = function (evt) {
+                let raycaster = evt.traget.component.raycaster;
+                if (!raycaster) return;
+                let intersectedEls = raycaster.intersectedEls;
+                if (intersectedEls.length === 0 || intersectedEls[0] !== el) return;
 
-            // Quand la boîte est cliquée
-            el.addEventListener("click", function () {
-                if (!controller) {
-                    console.error("⚠️ Contrôleur non disponible au moment du clic");
-                    return;
-                }
+                isGrabbed = true;
+                controller = evt.traget;
+                el.setAttribute("dynamic-body", "mass: 0");
+                controller.addEventListener("triggerup", this.onGrabEnd);
 
-                if (!isFollowing) {
-                    isFollowing = true;
-                    el.setAttribute("color", "#FFC65D");
-                    el.removeAttribute("dynamic-body"); // Désactive la physique pendant le suivi
-                    console.log("🚀 Suivi activé");
-                } else {
-                    isFollowing = false;
-                    el.setAttribute("color", "#4CC3D9");
-                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la physique
-                    console.log("💥 Suivi désactivé");
-                }
-            });
+            };
 
-            // Mise à jour de la position pendant le suivi
-            el.sceneEl.addEventListener("tick", function () {
-                if (isFollowing && controller) {
+            this.onGrabEnd = function () {
+                if (isGrabbed) {
+                    el.setAttribute("dynamic-body", "mass: 5; restitution: 0.5; friction:0.5");
+                    el.removeAttribute("grab");
+                    isGrabbed = false;
+                    controller.removeEventListener("triggerup", this.onGrabEnd);
+                    controller = null;
+                }
+            };
+
+            this.tick = function () {
+                if (isGrabbed && controller) {
                     let controllerPos = new THREE.Vector3();
+                    let controllerQuat = new THREE.Quaternion();
+
                     controller.object3D.getWorldPosition(controllerPos);
+                    controller.object3D.getWorldQuaternion(controllerQuat);
 
-                    // Vérifie si la position est bien récupérée
-                    console.log("📍 Position contrôleur :", controllerPos);
+                    let offset = new THREE.Vector3(0, 0, -0.1);
+                    offset.applyQuaternion(controllerQuat);
 
-                    // Applique la position
-                    el.setAttribute("position", `${controllerPos.x} ${controllerPos.y} ${controllerPos.z}`);
-                }
-            });
-        },
-    });
+                    let newPosition = controllerPos.clone().add(offset);
+                    el.object3D.position.copy(newPosition);
 
+                };
+            };
+
+            el.sceneEl.addEventListener("triggerdown", this.onGrabStart);
+
+        }
+    })
 };
+
+
 
 export { Vr };

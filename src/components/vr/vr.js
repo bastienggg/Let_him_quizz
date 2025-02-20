@@ -12,19 +12,21 @@ let Vr = {};
 //         }
 //     });
 // }
-
 Vr.setupControllerClickHandler = function (controllerSelector) {
     let controller = document.querySelector(controllerSelector);
     let grabbedEl = null;
 
-    console.log("Contrôleur VR prêt pour déplacer les objets.");
+    console.log("Contrôleur VR prêt (avec parenting).");
 
     // Quand la gâchette est pressée
     controller.addEventListener('selectstart', function () {
-        let intersectedEl = controller.components.raycaster.intersectedEls[0];
-        if (intersectedEl) {
-            console.log("Objet attrapé :", intersectedEl);
-            grabbedEl = intersectedEl;
+        let intersectedEls = controller.components.raycaster.intersectedEls;
+        if (intersectedEls.length > 0) {
+            grabbedEl = intersectedEls[0];
+            console.log("Objet attrapé :", grabbedEl);
+
+            // Parent l'objet au contrôleur pour qu'il suive ses mouvements
+            controller.object3D.attach(grabbedEl.object3D);
         }
     });
 
@@ -32,26 +34,11 @@ Vr.setupControllerClickHandler = function (controllerSelector) {
     controller.addEventListener('selectend', function () {
         if (grabbedEl) {
             console.log("Objet relâché :", grabbedEl);
+
+            // Détache l'objet du contrôleur et le replace dans la scène
+            controller.sceneEl.object3D.attach(grabbedEl.object3D);
             grabbedEl = null;
         }
-    });
-
-    // Boucle d'animation pour suivre le contrôleur
-    controller.sceneEl.addEventListener('renderstart', function () {
-        controller.sceneEl.addEventListener('tick', function () {
-            if (grabbedEl) {
-                let controllerPosition = new THREE.Vector3();
-                let controllerRotation = new THREE.Quaternion();
-
-                // Récupère la position et la rotation du contrôleur
-                controller.object3D.getWorldPosition(controllerPosition);
-                controller.object3D.getWorldQuaternion(controllerRotation);
-
-                // Applique la position et la rotation à l'objet attrapé
-                grabbedEl.object3D.position.copy(controllerPosition);
-                grabbedEl.object3D.quaternion.copy(controllerRotation);
-            }
-        });
     });
 };
 

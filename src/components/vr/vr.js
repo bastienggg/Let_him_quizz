@@ -19,17 +19,22 @@ Vr.setupControllerClickHandler = function () {
             let isFollowing = false;
             let controller = null;
 
+            // Sélectionne le contrôleur directement
+            const sceneEl = document.querySelector("a-scene");
+            const controllers = sceneEl.querySelectorAll("[laser-controls]");
+
             // Quand la boîte est cliquée
-            el.addEventListener("click", function (evt) {
+            el.addEventListener("click", function () {
                 if (!isFollowing) {
-                    controller = evt.detail.cursorEl;
+                    // Utilise le premier contrôleur trouvé
+                    controller = controllers[0];
                     isFollowing = true;
                     el.setAttribute("color", "#FFC65D"); // Change de couleur pendant le suivi
                     el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
                     console.log("🚀 Suivi activé");
                 } else {
                     isFollowing = false;
-                    el.setAttribute("color", "#4CC3D9"); // Restaure la couleur d'origine
+                    el.setAttribute("color", "#4CC3D9"); // Restaure la couleur
                     el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
                     console.log("💥 Suivi désactivé");
                 }
@@ -40,6 +45,11 @@ Vr.setupControllerClickHandler = function () {
                 if (isFollowing && controller) {
                     let controllerPos = new THREE.Vector3();
                     controller.object3D.getWorldPosition(controllerPos);
+
+                    // Vérifie si la position est bien récupérée
+                    console.log("Position contrôleur :", controllerPos);
+
+                    // Met à jour la position de l'objet
                     el.object3D.position.copy(controllerPos);
                 }
             });

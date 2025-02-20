@@ -68,6 +68,7 @@ SortItOut.setupDraggables = function () {
 }
 
 
+
 SortItOut.ChekIfInside = function () {
     const box = document.querySelector("#movableBox");
     const hollowBox = document.querySelector("#hollowBox");

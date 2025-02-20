@@ -23,6 +23,7 @@ window.addEventListener("load", function () {
                     Camera.moveCameraVR({ x: 0, y: 2.2, z: 0 }, { x: 1.237, y: 1.5, z: -35 }, 8000);
                     // Camera.moveCamera(8000, [0, 2.2, 0], [1.237, 3, -35.03326]);
                     Vr.setupControllerClickHandler("#rightController");
+                    Vr.setupDraggablesVR("#rightController");
                 }, 500);
             }, 1000); // 1 second delay before switching to the scene
         } else {

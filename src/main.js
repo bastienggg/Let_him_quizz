@@ -24,7 +24,6 @@ import { Vr } from './components/vr/vr.js';
 // Render the money counter
 // Money.renderMoneyZone();
 // Start the timer
-
 Vr.setupDraggablesVR("#rightController");
 
 SortItOut.setupDraggables();

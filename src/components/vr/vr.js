@@ -12,33 +12,42 @@ let Vr = {};
 //         }
 //     });
 // }
-Vr.setupControllerClickHandler = function (controllerSelector) {
-    let controller = document.querySelector(controllerSelector);
-    let grabbedEl = null;
+Vr.setupControllerClickHandler = function () {
+    AFRAME.registerComponent("vr-draggable", {
+        init: function () {
+            const el = this.el;
+            let isDragging = false;
+            let controller = null;
 
-    console.log("Contrôleur VR prêt (avec parenting).");
+            // Quand la gâchette est pressée sur un objet
+            el.addEventListener("selectstart", function (evt) {
+                isDragging = true;
+                controller = evt.detail?.controller || evt.target;
+                el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
+                console.log("Objet attrapé !");
+            });
 
-    // Quand la gâchette est pressée
-    controller.addEventListener('selectstart', function () {
-        let intersectedEls = controller.components.raycaster.intersectedEls;
-        if (intersectedEls.length > 0) {
-            grabbedEl = intersectedEls[0];
-            console.log("Objet attrapé :", grabbedEl);
+            // Quand la gâchette est relâchée
+            el.addEventListener("selectend", function () {
+                if (isDragging) {
+                    isDragging = false;
+                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+                    console.log("Objet relâché !");
+                }
+            });
 
-            // Parent l'objet au contrôleur pour qu'il suive ses mouvements
-            controller.object3D.attach(grabbedEl.object3D);
-        }
-    });
+            // Suivi de l'objet pendant le drag
+            el.sceneEl.addEventListener("tick", function () {
+                if (isDragging && controller) {
+                    // Récupère la position du contrôleur
+                    let controllerPos = new THREE.Vector3();
+                    controller.object3D.getWorldPosition(controllerPos);
 
-    // Quand la gâchette est relâchée
-    controller.addEventListener('selectend', function () {
-        if (grabbedEl) {
-            console.log("Objet relâché :", grabbedEl);
-
-            // Détache l'objet du contrôleur et le replace dans la scène
-            controller.sceneEl.object3D.attach(grabbedEl.object3D);
-            grabbedEl = null;
-        }
+                    // Met à jour la position de l'objet
+                    el.object3D.position.copy(controllerPos);
+                }
+            });
+        },
     });
 };
 

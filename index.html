@@ -195,7 +195,7 @@
         <a-entity
           id="rightController"
           laser-controls="hand: right"
-          raycaster="objects: .draggable"
+          raycaster="objects: * ; showLine: true"
           oculus-touch-controls="hand: right"
           vive-controls="hand: right"
           windows-motion-controls="hand: right"
@@ -213,7 +213,7 @@
         width="1"
         height="1"
         depth="1"
-        color="blue"
+        color="red"
         class="draggable"
         dynamic-body="mass: 5"
         data-valeur="50"
@@ -270,7 +270,7 @@
           depth="2.8"
           opacity="0.3"
           static-body
-          color="red"
+          color="blue"
         ></a-box>
       </a-entity>
 

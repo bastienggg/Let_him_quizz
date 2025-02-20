@@ -9,7 +9,8 @@ AFRAME.registerComponent('draggable', {
         el.addEventListener('selectstart', function (evt) {
             let intersectedEl = evt.detail.intersectedEl;
 
-            if (intersectedEl && intersectedEl.classList.contains('draggable')) {
+            // Vérifie que ce n'est pas le contrôleur lui-même
+            if (intersectedEl && intersectedEl !== el && intersectedEl.classList.contains('draggable')) {
                 grabbedObject = intersectedEl;
                 grabbedObject.setAttribute('dynamic-body', 'mass: 0');
                 let objPos = grabbedObject.object3D.position.clone();

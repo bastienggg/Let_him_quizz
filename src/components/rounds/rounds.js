@@ -3,6 +3,7 @@ import { Money } from "../money-counter/money-counter.js";
 import { Light } from "../light/light.js";
 import { TickingAway } from "../ticking-away/ticking-away.js";
 import { FindThePlace } from "../find-the-place/find-the-place.js";
+import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
 
 let Rounds = {};
 
@@ -13,7 +14,8 @@ Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
 
-  Rounds.nextRound();
+  sorryNotSoRich.renderQuizZone();
+  // Rounds.nextRound();
 };
 
 Rounds.nextRound = async function () {

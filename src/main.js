@@ -15,7 +15,7 @@ import { Rounds } from './components/rounds/rounds.js';
 // TickingAway.newQuestion();
 // TickingAway.startTimer();
 
-// sSecond mini game
+// Second mini game
 // FindThePlace.renderPropositionsZone();
 // FindThePlace.renderQuestion();
 // Render the money counter
@@ -25,9 +25,9 @@ import { Rounds } from './components/rounds/rounds.js';
 
 // Appliquer le composant au contrôleur droit
 document.querySelector('#rightController').setAttribute('joystick-move', '');
+Money.summonStack(10);
 
 // Second mini game
 setTimeout(() => {
     Rounds.startGame();
 }, 5000);
-

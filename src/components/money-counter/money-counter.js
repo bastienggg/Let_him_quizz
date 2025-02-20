@@ -78,4 +78,12 @@ Money.updateMoney = async function (money) {
   await moneyCounter.setAttribute("value", `$${money} `);
 };
 
+Money.getMoney = function () {
+  return moneyAmount;
+};
+
+Money.setMoney = function (amount) {
+  moneyAmount = amount;
+};
+
 export { Money };

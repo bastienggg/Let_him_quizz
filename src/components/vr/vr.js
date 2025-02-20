@@ -19,23 +19,23 @@ Vr.setupControllerClickHandler = function () {
             let isFollowing = false;
             let controller = null;
 
-            // Ecoute les clics (gâchette)
+            // Quand la boîte est cliquée
             el.addEventListener("click", function (evt) {
                 if (!isFollowing) {
-                    // Commence à suivre le contrôleur
                     controller = evt.detail.cursorEl;
-                    el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
                     isFollowing = true;
-                    console.log("Suivi activé");
+                    el.setAttribute("color", "#FFC65D"); // Change de couleur pendant le suivi
+                    el.setAttribute("dynamic-body", "mass: 0"); // Désactive la gravité
+                    console.log("🚀 Suivi activé");
                 } else {
-                    // Relâche l'objet
-                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
                     isFollowing = false;
-                    console.log("Suivi désactivé");
+                    el.setAttribute("color", "#4CC3D9"); // Restaure la couleur d'origine
+                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+                    console.log("💥 Suivi désactivé");
                 }
             });
 
-            // Mise à jour pendant le suivi
+            // Mise à jour de la position pendant le suivi
             el.sceneEl.addEventListener("tick", function () {
                 if (isFollowing && controller) {
                     let controllerPos = new THREE.Vector3();

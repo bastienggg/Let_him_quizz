@@ -26,8 +26,7 @@ import { Vr } from './components/vr/vr.js';
 // Start the timer
 
 // Vr.setupControllerClickHandler();
-
-// SortItOut.setupDraggables();
+SortItOut.renderSortItOutZone();
 
 // Appeler la vérification en continu pendant la scène
 function update() {

@@ -74,8 +74,9 @@
     <script type="module" src="./src/progress.js"></script>
     <a-scene
       id="mainScene"
-      physics="debug:true;"
+      physics="gravity: -9.8"
       loading-screen="enabled: false"
+      raycaster="objects: .interactable"
     >
       <a-assets>
         <a-asset-item
@@ -195,7 +196,7 @@
         <a-entity
           id="rightController"
           laser-controls="hand: right"
-          raycaster="objects: .draggable; showLine: true"
+          raycaster="objects: .interactable ; showLine: true"
           oculus-touch-controls="hand: right"
           vive-controls="hand: right"
           windows-motion-controls="hand: right"
@@ -205,126 +206,6 @@
           oculus-touch-controls="hand: left"
         ></a-entity>
       </a-entity>
-
-      <a-box
-  id="movableBox"
-  class="draggable"
-  position="0 1 -37.48324"
-  width="1"
-  height="1"
-  depth="1"
-  color="magenta"
-  dynamic-body="mass: 5"
-  occulus-grab
-></a-box>
-
-<script>
-  AFRAME.registerComponent("occulus-grab", {
-        init: function () {
-            let el = this.el;
-            let isGrabbed = false;
-            let controller = null;
-
-            this.onGrabStart = function (evt) {
-                let raycaster = evt.traget.component.raycaster;
-                if (!raycaster) return;
-                let intersectedEls = raycaster.intersectedEls;
-                if (intersectedEls.length === 0 || intersectedEls[0] !== el) return;
-
-                isGrabbed = true;
-                controller = evt.traget;
-                el.setAttribute("dynamic-body", "mass: 0");
-                controller.addEventListener("triggerup", this.onGrabEnd);
-
-            };
-
-            this.onGrabEnd = function () {
-                if (isGrabbed) {
-                    el.setAttribute("dynamic-body", "mass: 5; restitution: 0.5; friction:0.5");
-                    el.removeAttribute("grab");
-                    isGrabbed = false;
-                    controller.removeEventListener("triggerup", this.onGrabEnd);
-                    controller = null;
-                }
-            };
-
-            this.tick = function () {
-                if (isGrabbed && controller) {
-                    let controllerPos = new THREE.Vector3();
-                    let controllerQuat = new THREE.Quaternion();
-
-                    controller.object3D.getWorldPosition(controllerPos);
-                    controller.object3D.getWorldQuaternion(controllerQuat);
-
-                    let offset = new THREE.Vector3(0, 0, -0.1);
-                    offset.applyQuaternion(controllerQuat);
-
-                    let newPosition = controllerPos.clone().add(offset);
-                    el.object3D.position.copy(newPosition);
-
-                };
-            };
-
-            el.sceneEl.addEventListener("triggerdown", this.onGrabStart);
-
-        }
-    })
-</script>
-
-      <a-light
-        id="light"
-        type="point"
-        position="0 5 -37.48324"
-        color="white"
-      ></a-light>
-
-      <a-entity id="hollowBox" position="-3 1 -37.48324" data-valeur="50">
-        <a-box
-          position="0 -1.5 0"
-          width="2.8"
-          height="0.2"
-          depth="2.8"
-          color="blue"
-          opacity="0.3"
-          static-body
-        ></a-box>
-        <a-box
-          position="0 0 1.5"
-          width="2.8"
-          height="2.8"
-          depth="0.2"
-          color="blue"
-          static-body
-          opacity="0.3"
-        ></a-box>
-        <a-box
-          position="0 0 -1.5"
-          width="2.8"
-          height="2.8"
-          depth="0.2"
-          color="blue"
-          opacity="0.3"
-        ></a-box>
-        <a-box
-          position="1.5 0 0"
-          width="0.2"
-          height="2.8"
-          depth="2.8"
-          opacity="0.3"
-          static-body
-          color="blue"
-        ></a-box>
-        <a-box
-          position="-1.5 0 0"
-          width="0.2"
-          height="2.8"
-          depth="2.8"
-          opacity="0.3"
-          static-body
-          color="blue"
-        ></a-box>
-      </a-entity>
-
 
       <!-- ambient light -->
       <a-light
@@ -407,7 +288,6 @@
           opacity="0.5"
           body="type: static; shape: box;"
         ></a-box>
-      >
         <a-box
           position="0 0 0"
           width="1"
@@ -417,7 +297,6 @@
           opacity="0.5"
         ></a-box>
       </a-entity>
-      ></a-entity>
 
       <!-- anchor -->
       <a-entity
@@ -490,8 +369,6 @@
         scale="8 5 1"
         id="ecran"
       ></a-box>
-
-      
 
       <!-- stage light -->
       <!-- <a-entity

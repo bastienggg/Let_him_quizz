@@ -6,6 +6,7 @@ import { TickingAway } from "../ticking-away/ticking-away.js";
 import { FindThePlace } from "../find-the-place/find-the-place.js";
 import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
+import { SortItOut } from "../sort-it-out/sort-it-out.js";
 
 let Rounds = {};
 
@@ -15,12 +16,15 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
+  SortItOut.renderSortItOutZone();
+
+
 
   // Money.summonStack(10);
   // setTimeout(() => {
   //   sorryNotSoRich.renderQuizZone();
   // }, 8000);
-  Rounds.nextRound();
+  // Rounds.nextRound();
 };
 
 Rounds.nextRound = async function () {

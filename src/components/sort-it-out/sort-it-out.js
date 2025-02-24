@@ -1,6 +1,18 @@
 import { Light } from "../light/light";
-//https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/sort?difficulty=easy;
+import { SortItOutData } from "../../data/data-sortitout";
+import { Money } from "../money-counter/money-counter";
+import { Vr } from "../vr/vr";
+
 let SortItOut = {};
+let gameFinished = false;
+
+
+SortItOut.resetGameState = function () {
+    gameFinished = false;
+    console.log("Game state reset" + gameFinished);
+    Light.resetColor();
+};
+
 async function loadTemplate() {
     const response = await fetch("src/components/sort-it-out/template.html.inc");
     if (!response.ok) {
@@ -12,26 +24,75 @@ async function loadTemplate() {
 const scene = document.querySelector("#mainScene");
 
 SortItOut.renderSortItOutZone = async function () {
-    // Create the zone for the game with the 3d polygons for the answers
+    SortItOut.resetGameState();
 
-    // Create the a-entities for the answers and the question from the template
-
+    let data = await SortItOutData.getRandomSortItOut();
     const template = await loadTemplate();
-    const tempDiv = document.createElement("div");
+
+    const tempDiv = document.createElement("a-entity");
     tempDiv.id = "sortItOutZone";
     tempDiv.innerHTML = template;
-    const entities = tempDiv.querySelectorAll("a-entity");
+    scene.appendChild(tempDiv);
 
-    entities.forEach((entity) => {
-        scene.appendChild(entity);
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    data.responses.forEach((response, index) => {
+        const hollowBox = document.querySelector(`#hollowBox${index + 1}`);
+        if (hollowBox) {
+            hollowBox.setAttribute("data-valeur", response.answer);
+        }
     });
 
-    document.querySelectorAll("#movableBox").forEach(box => {
+    const shuffledResponses = [...data.responses];
+    shuffle(shuffledResponses);
+
+    shuffledResponses.forEach((response, index) => {
+        const movableBox = document.querySelector(`#movableBox${index + 1}`);
+        const answerBox = document.querySelector(`#answer${index + 1}`);
+
+        if (movableBox) {
+            movableBox.setAttribute("data-valeur", response.answer);
+        }
+
+        if (answerBox) {
+            answerBox.setAttribute("value", response.answer);
+        }
+    });
+
+    const questionElement = document.querySelector("#question");
+    questionElement.setAttribute("value", data.question);
+
+
+
+    setTimeout(() => {
+        function update() {
+            SortItOut.CheckIfInside();
+            if (!gameFinished) requestAnimationFrame(update);
+        }
+        update();
+    }, 1000);
+
+    document.querySelectorAll("#movableBox1, #movableBox2, #movableBox3, #movableBox4").forEach(box => {
         box.setAttribute("draggable", "");
+        box.setAttribute("occulus-grab", "");
     });
 
     SortItOut.setupDraggables();
+    Vr.setupControllerClickHandler();
+
 };
+
+SortItOut.removeSortItOutZone = function () {
+    const sortItOutZone = document.querySelector("#sortItOutZone");
+    if (sortItOutZone) sortItOutZone.remove();
+    Light.resetColor();
+};
+
 
 
 SortItOut.setupDraggables = function () {
@@ -40,38 +101,44 @@ SortItOut.setupDraggables = function () {
             const el = this.el;
             let isDragging = false;
 
-            el.addEventListener("mousedown", function () {
+            el.addEventListener("mousedown", () => {
                 isDragging = true;
-                el.setAttribute("dynamic-body", "mass: 0"); // Désactive temporairement la gravité pendant le drag
+                el.setAttribute("dynamic-body", "mass: 0");
             });
 
-            document.addEventListener("mousemove", function (evt) {
+            document.addEventListener("mousemove", (evt) => {
                 if (isDragging) {
-                    const raycaster =
-                        document.querySelector("a-scene").components.raycaster;
+                    const raycaster = document.querySelector("a-scene").components.raycaster;
                     const intersection = raycaster.getIntersection(el);
 
                     if (intersection) {
                         const point = intersection.point;
-                        el.setAttribute(
-                            "position",
-                            `${point.x} ${point.y} ${el.getAttribute("position").z}`
-                        ); // Bloque sur Z
+                        el.setAttribute("position", `${point.x} ${point.y} ${el.getAttribute("position").z}`);
                     }
                 }
             });
 
-            document.addEventListener("mouseup", function () {
+            document.addEventListener("mouseup", () => {
                 if (isDragging) {
                     isDragging = false;
-                    el.setAttribute("dynamic-body", "mass: 5"); // Réactive la gravité
+                    el.setAttribute("dynamic-body", "mass: 5");
                 }
             });
         },
     });
-}
+};
 
-SortItOut.ChekIfInside = function () {
+SortItOut.resetAndRenderZone = function () {
+    SortItOut.removeSortItOutZone();
+    SortItOut.resetGameState();
+    setTimeout(() => {
+        SortItOut.renderSortItOutZone();
+    }, 2000);
+};
+
+SortItOut.CheckIfInside = function () {
+    if (gameFinished) return;
+
     const boxes = document.querySelectorAll("[id^='movableBox']");
     const hollowBoxes = document.querySelectorAll("[id^='hollowBox']");
 
@@ -84,7 +151,7 @@ SortItOut.ChekIfInside = function () {
         hollowBoxes.forEach(hollowBox => {
             const hollowPos = hollowBox.object3D.position;
 
-            const hollowBoxSize = 0.8; // Adjust this value to match the actual size of the hollow box
+            const hollowBoxSize = 0.8;
             const minX = hollowPos.x - hollowBoxSize / 2,
                 maxX = hollowPos.x + hollowBoxSize / 2;
             const minY = hollowPos.y - hollowBoxSize / 2,
@@ -92,43 +159,34 @@ SortItOut.ChekIfInside = function () {
             const minZ = hollowPos.z - hollowBoxSize / 2,
                 maxZ = hollowPos.z + hollowBoxSize / 2;
 
-            // Valeurs des boîtes
-            const movableBoxValue = parseInt(box.getAttribute("data-valeur"));
-            const hollowBoxValue = parseInt(hollowBox.getAttribute("data-valeur"));
+            const movableBoxValue = box.getAttribute("data-valeur");
+            const hollowBoxValue = hollowBox.getAttribute("data-valeur");
 
-            // Vérifier si la boîte rouge est dans la boîte creuse
             if (
-                boxPos.x >= minX &&
-                boxPos.x <= maxX &&
-                boxPos.y >= minY &&
-                boxPos.y <= maxY &&
-                boxPos.z >= minZ &&
-                boxPos.z <= maxZ
+                boxPos.x >= minX && boxPos.x <= maxX &&
+                boxPos.y >= minY && boxPos.y <= maxY &&
+                boxPos.z >= minZ && boxPos.z <= maxZ
             ) {
-                // Vérification si les valeurs des deux boîtes sont égales
                 if (movableBoxValue === hollowBoxValue) {
-                    console.log(
-                        `✅ Boîte rouge DEDANS avec les mêmes valeurs! Valeur boîte rouge: ${movableBoxValue} | Valeur boîte creuse: ${hollowBoxValue}`
-                    );
                     isInsideCorrectBox = true;
-                } else {
-                    console.log(
-                        `❌ Boîte rouge DEDANS mais avec des valeurs différentes! Valeur boîte rouge: ${movableBoxValue} | Valeur boîte creuse: ${hollowBoxValue}`
-                    );
                 }
             }
         });
 
         if (!isInsideCorrectBox) {
-            console.log(`❌ Boîte rouge DEHORS!`);
             allBoxesCorrect = false;
         }
     });
 
     if (allBoxesCorrect) {
         Light.changeColor("#00FF00");
+        gameFinished = true;
+        setTimeout(() => {
+            SortItOut.resetAndRenderZone();
+        }, 2000);
     } else {
         Light.resetColor();
     }
 };
+
 export { SortItOut };

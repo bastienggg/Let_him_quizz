@@ -1,5 +1,5 @@
 <a-asset-item
-id="moneyDropTable"
+id="moneyDropTableModel"
 src="./src/assets/modele3d/moneydroptable.glb"
 ></a-asset-item>
 <a-entity
@@ -88,7 +88,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
     ></a-box></a-entity
 >
 <a-entity class="plusminus" id="plusminus1" position="1.5 2.75 -4.5" >
-    <a-entity id="plus1">
+    <a-entity id="plus1" class="interactable">
         <a-text
         align="center"
         value="+"
@@ -105,7 +105,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
         scale="1.2 1.2 1.2">
         </a-box>
     </a-entity>
-    <a-entity id="minus1">
+    <a-entity id="minus1" class="interactable">
         <a-text
         value="-"
         align="center"
@@ -125,7 +125,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
 </a-entity>
 
 <a-entity class="plusminus" id="plusminus2" position="3.15 2.75 -4.5" >
-    <a-entity id="plus2">
+    <a-entity id="plus2" class="interactable">
         <a-text
         align="center"
         value="+"
@@ -142,7 +142,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
         scale="1.2 1.2 1.2">
         </a-box>
     </a-entity>
-    <a-entity id="minus2">
+    <a-entity id="minus2" class="interactable">
         <a-text
         value="-"
         align="center"
@@ -162,7 +162,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
 </a-entity>
 
 <a-entity class="plusminus" id="plusminus3" position="4.75 2.75 -4.5" >
-    <a-entity id="plus3">
+    <a-entity id="plus3" class="interactable">
         <a-text
         align="center"
         value="+"
@@ -179,7 +179,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
         scale="1.2 1.2 1.2">
         </a-box>
     </a-entity>
-    <a-entity id="minus3">
+    <a-entity id="minus3" class="interactable">
         <a-text
         value="-"
         align="center"
@@ -199,7 +199,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
 </a-entity>
 
 <a-entity class="plusminus" id="plusminus4" position="6.50 2.75 -4.5" >
-    <a-entity id="plus4">
+    <a-entity id="plus4" class="interactable">
         <a-text
         align="center"
         value="+"
@@ -216,7 +216,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
         scale="1.2 1.2 1.2">
         </a-box>
     </a-entity>
-    <a-entity id="minus4">
+    <a-entity id="minus4" class="interactable">
         <a-text
         value="-"
         align="center"
@@ -268,7 +268,7 @@ material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
 
 </a-entity>
 
-<a-entity id="validButton" position="5.60 1 -3.8">
+<a-entity id="validButton" class="interactable" position="5.60 1 -3.8">
     <a-text
     value="Confirm"
     align="center"

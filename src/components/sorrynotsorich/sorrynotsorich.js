@@ -45,9 +45,6 @@ sorryNotSoRich.newQuestion = async function () {
   //Get random hard question
   let question = await MCQ.getRandomQuestion("hard");
 
-  // Unfreeze the game
-  let freezed = false;
-
   // reset the color of the boxes
   document.querySelectorAll(".answer a-box").forEach((box) => {
     box.setAttribute("color", "#3246E7");
@@ -67,7 +64,7 @@ sorryNotSoRich.newQuestion = async function () {
   }
 
   // Remove the class "good-answer" if it is set
-  document.querySelectorAll(".answer a-box").forEach((box) => {
+  document.querySelectorAll(".good-answer").forEach((box) => {
     box.classList.remove("good-answer");
   });
 
@@ -115,14 +112,15 @@ sorryNotSoRich.calculateMoney = function () {
     document.querySelector("#minus4"),
   ];
 
-  minusButtons.forEach(button => button.setAttribute("visible", false));
-  document.querySelector("#validButton").setAttribute("visible", false);
-
-  // let totalBet = 0;
+  // Initialize bets to $0
+  bets.forEach(bet => bet.setAttribute("value", "$0"));
 
   const updateTotalBet = () => {
     totalBet = bets.reduce((sum, bet) => sum + parseInt(bet.getAttribute("value").replace('$', '')), 0);
   };
+
+  minusButtons.forEach(button => button.setAttribute("visible", false));
+  document.querySelector("#validButton").setAttribute("visible", false);
 
   const checkBetStatus = () => {
     const allBetsPlaced = totalBet === moneyAmount;
@@ -132,54 +130,80 @@ sorryNotSoRich.calculateMoney = function () {
 
   const canBetMore = (amount) => totalBet + amount <= moneyAmount;
 
-  plusButtons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      if (canBetMore(100)) {
-        bets[index].setAttribute("value", `$${parseInt(bets[index].getAttribute("value").replace('$', '')) + 100}`);
-        updateTotalBet();
-        checkBetStatus();
-        minusButtons[index].setAttribute("visible", true);
-      }
-    });
-  });
+  const handlePlusButtonClick = (index) => {
+    let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
+    if (canBetMore(100)) {
+      bets[index].setAttribute("value", `$${currentValue + 100}`);
+      updateTotalBet();
+      checkBetStatus();
+      minusButtons[index].setAttribute("visible", true);
+    }
+  };
 
-  minusButtons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
-      if (currentValue > 0) {
-        bets[index].setAttribute("value", `$${currentValue - 100}`);
-        updateTotalBet();
-        checkBetStatus();
-      }
-      if (parseInt(bets[index].getAttribute("value").replace('$', '')) === 0) {
-        button.setAttribute("visible", false);
-      }
-    });
-  });
+  const handleMinusButtonClick = (index) => {
+    let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
+    if (currentValue > 0) {
+      bets[index].setAttribute("value", `$${currentValue - 100}`);
+      updateTotalBet();
+      checkBetStatus();
+    }
+    if (parseInt(bets[index].getAttribute("value").replace('$', '')) === 0) {
+      minusButtons[index].setAttribute("visible", false);
+    }
+  };
 
-  document.querySelector("#validButton").addEventListener("click", () => {
+  const handleValidButtonClick = () => {
     let correctAnswerBox = document.querySelector(".good-answer");
+    console.log("correcrAnwserBox"+correctAnswerBox);
     let correctBet = parseInt(correctAnswerBox.getAttribute("value").replace('$', ''));
-
-
-    // Add the bet amount to the player's total money if the answer is correct
     moneyAmount = Money.setMoney(correctBet);
 
     // Reset all bets to $0
     bets.forEach(bet => bet.setAttribute("value", "$0"));
-
+    console.log("moneyAmount= "+moneyAmount);
     // Check if the player has any money left
     if (moneyAmount === 0) {
-      // End the game
-      alert("Game over! You have no money left.");
+      sorryNotSoRich.removeQuizZone();
     } else {
-      // Display a new question
       checkBetStatus();
       updateTotalBet();
       sorryNotSoRich.newQuestion();
     }
+  };
+
+  const addEventListeners = () => {
+    plusButtons.forEach((button, index) => {
+      button.addEventListener("click", () => handlePlusButtonClick(index));
+    });
+
+    minusButtons.forEach((button, index) => {
+      button.addEventListener("click", () => handleMinusButtonClick(index));
+    });
+
+    document.querySelector("#validButton").addEventListener("click", handleValidButtonClick);
+  };
+
+  // Remove existing event listeners and add new ones
+  plusButtons.forEach((button, index) => {
+    const newButton = button.cloneNode(true);
+    button.parentNode.replaceChild(newButton, button);
+    plusButtons[index] = newButton;
   });
+
+  minusButtons.forEach((button, index) => {
+    const newButton = button.cloneNode(true);
+    button.parentNode.replaceChild(newButton, button);
+    minusButtons[index] = newButton;
+  });
+
+  document.querySelector("#validButton").replaceWith(document.querySelector("#validButton").cloneNode(true));
+
+  addEventListeners();
 };
 
+sorryNotSoRich.removeQuizZone = function () {
+  const quizZone = document.querySelector("#sorryNotSoRichDiv");
+  quizZone.parentNode.removeChild(quizZone);
+};
 
 export { sorryNotSoRich };

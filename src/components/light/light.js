@@ -5,7 +5,7 @@ let Light = {};
 Light.changeColor = function (hexColor) {
   // Select all lights in the scene
   const light = document.querySelectorAll(".light");
-  
+
   // Change the color of the lights smoothly with Aframe
   light.forEach((el) => {
     // Change the color of the light
@@ -20,7 +20,7 @@ Light.changeColor = function (hexColor) {
 
 // Reset the color of the light to white
 Light.resetColor = function () {
-  Light.changeColor("#8888ee");
+  Light.changeColor("#FFFFFF");
 };
 
 // Flash the color of the light and resets it

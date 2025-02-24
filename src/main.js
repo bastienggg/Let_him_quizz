@@ -13,7 +13,6 @@ import { Rounds } from './components/rounds/rounds.js';
 import { SortItOut } from './components/sort-it-out/sort-it-out.js';
 import { Vr } from './components/vr/vr.js';
 
-
 // First mini game
 // TickingAway.renderQuizZone();
 // TickingAway.newQuestion();
@@ -27,7 +26,6 @@ import { Vr } from './components/vr/vr.js';
 // Start the timer
 
 // Vr.setupControllerClickHandler();
-// SortItOut.renderSortItOutZone();
 
 // Appeler la vérification en continu pendant la scène
 function update() {
@@ -37,6 +35,7 @@ function update() {
 
 // Démarre la vérification continue
 update();
+
 
 // Second mini game
 setTimeout(() => {

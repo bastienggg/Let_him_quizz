@@ -29,8 +29,16 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
+  SortItOut.renderSortItOutZone();
+
+
 
   Rounds.nextRound();
+  // Money.summonStack(10);
+  // setTimeout(() => {
+  //   sorryNotSoRich.renderQuizZone();
+  // }, 8000);
+  // Rounds.nextRound();
 };
 
 Rounds.nextRound = async function () {

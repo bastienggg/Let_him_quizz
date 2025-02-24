@@ -5,11 +5,13 @@ import { Vr } from "../vr/vr.js";
 
 let SortItOut = {};
 let gameFinished = false;
+let roundCounter = 1;
+const maxRounds = 3;
 
 
 SortItOut.resetGameState = function () {
     gameFinished = false;
-    console.log("Game state reset" + gameFinished);
+    console.log("Game state reset. Rounds: " + roundCounter);
     Light.resetColor();
 };
 
@@ -22,6 +24,7 @@ async function loadTemplate() {
 }
 
 const scene = document.querySelector("#mainScene");
+
 
 SortItOut.renderSortItOutZone = async function () {
     SortItOut.resetGameState();
@@ -67,8 +70,6 @@ SortItOut.renderSortItOutZone = async function () {
     const questionElement = document.querySelector("#question");
     questionElement.setAttribute("value", data.question);
 
-
-
     setTimeout(() => {
         function update() {
             SortItOut.CheckIfInside();
@@ -84,7 +85,6 @@ SortItOut.renderSortItOutZone = async function () {
 
     SortItOut.setupDraggables();
     Vr.setupControllerClickHandler();
-
 };
 
 SortItOut.removeSortItOutZone = function () {
@@ -129,11 +129,18 @@ SortItOut.setupDraggables = function () {
 };
 
 SortItOut.resetAndRenderZone = function () {
-    SortItOut.removeSortItOutZone();
-    SortItOut.resetGameState();
-    setTimeout(() => {
-        SortItOut.renderSortItOutZone();
-    }, 2000);
+    if (roundCounter < maxRounds) {
+        roundCounter++;
+        console.log("Starting round " + roundCounter);
+        SortItOut.removeSortItOutZone();
+        setTimeout(() => {
+            SortItOut.renderSortItOutZone();
+        }, 2000);
+    } else {
+        console.log("Game finished after " + maxRounds + " rounds.");
+        SortItOut.removeSortItOutZone();
+        // Optionally, you can add code here to display a message or perform other actions when the game is finished
+    }
 };
 
 SortItOut.CheckIfInside = function () {
@@ -188,5 +195,6 @@ SortItOut.CheckIfInside = function () {
         Light.resetColor();
     }
 };
+
 
 export { SortItOut };

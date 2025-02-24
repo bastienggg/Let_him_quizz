@@ -12,8 +12,6 @@ import { Leaderboard } from './components/leaderboard/leaderboard.js';
 import { Rounds } from './components/rounds/rounds.js';
 import { SortItOut } from './components/sort-it-out/sort-it-out.js';
 import { Vr } from './components/vr/vr.js';
-import { sorryNotSoRich } from './components/sorrynotsorich/sorrynotsorich.js';
-
 
 // First mini game
 // TickingAway.renderQuizZone();
@@ -28,7 +26,6 @@ import { sorryNotSoRich } from './components/sorrynotsorich/sorrynotsorich.js';
 // Start the timer
 
 // Vr.setupControllerClickHandler();
-// SortItOut.renderSortItOutZone();
 
 // Appeler la vérification en continu pendant la scène
 function update() {
@@ -39,12 +36,10 @@ function update() {
 // Démarre la vérification continue
 update();
 
-Money.summonStack(10);
 
 // Second mini game
 setTimeout(() => {
-    sorryNotSoRich.renderQuizZone();
-    // Rounds.startGame();
+    Rounds.startGame();
     Leaderboard.renderZone();
 }, 5000);
 

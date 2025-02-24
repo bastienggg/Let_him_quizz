@@ -1,7 +1,82 @@
+<a-entity position="0.99 3.75 -39">
+  <a-text
+    id="question"
+    align="center"
+    value="question"
+    color="#FFF"
+    position="0 0 0.1"
+  ></a-text>
+</a-entity>
+
+<a-entity class="answer" position="0 3 -39">
+  <a-text
+    id="answer1"
+    align="center"
+    value="answer"
+    color="#FFF"
+    position="0 0 0.1"
+  ></a-text>
+  <a-box
+    position="0 0 0"
+    depth="0.1"
+    height="0.5"
+    width="1.8"
+    color="red"
+  ></a-box>
+</a-entity>
+<a-entity class="answer" position="2 3 -39">
+  <a-text
+    id="answer2"
+    value="answer"
+    align="center"
+    color="#FFF"
+    position="0 0 0.1"
+  ></a-text>
+
+  <a-box
+    position="0 0 0"
+    depth="0.1"
+    height="0.5"
+    width="1.8"
+    color="green"
+  ></a-box>
+</a-entity>
+<a-entity class="answer" position="0 2 -39">
+  <a-text
+    id="answer3"
+    align="center"
+    value="answer"
+    color="#FFF"
+    position="0 0 0.1"
+  ></a-text>
+  <a-box
+    position="0 0 0"
+    depth="0.1"
+    height="0.5"
+    width="1.8"
+    color="blue"
+  ></a-box>
+</a-entity>
+<a-entity class="answer" position="2 2 -39">
+  <a-text
+    id="answer4"
+    align="center"
+    value="answer"
+    color="#FFF"
+    position="0 0 0.1"
+  ></a-text>
+  <a-box
+    position="0 0 0"
+    depth="0.1"
+    height="0.5"
+    width="1.8"
+    color="magenta"
+  ></a-box>
+</a-entity>
 <a-entity>
   <a-box
     class="interactable"
-    id="movableBox"
+    id="movableBox1"
     position="2.5 1 -37.5"
     width="0.3"
     height="0.3"
@@ -14,7 +89,7 @@
 <a-entity>
   <a-box
     class="interactable"
-    id="movableBox"
+    id="movableBox2"
     position="3 1 -37.5"
     width="0.3"
     height="0.3"
@@ -27,7 +102,7 @@
 <a-entity>
   <a-box
     class="interactable"
-    id="movableBox"
+    id="movableBox3"
     position="3.5 1 -37.5"
     width="0.3"
     height="0.3"
@@ -40,7 +115,7 @@
 <a-entity>
   <a-box
     class="interactable"
-    id="movableBox"
+    id="movableBox4"
     position="4 1 -37.5"
     width="0.3"
     height="0.3"
@@ -51,101 +126,7 @@
   ></a-box>
 </a-entity>
 
-<a-entity id="hollowBox" position="-0.9 0.1 -37.5" data-valeur="1">
-  <a-box
-    position="0 0 0"
-    width="0.8"
-    height="0.1"
-    depth="0.8"
-    color="red"
-    opacity="0.3"
-    static-body
-  ></a-box>
-  <a-box
-    position="0 0.35 0.35"
-    width="0.8"
-    height="0.8"
-    depth="0.1"
-    color="red"
-    static-body
-    opacity="0.3"
-  ></a-box>
-  <a-box
-    position="0 0.35 -0.35"
-    width="0.8"
-    height="0.8"
-    depth="0.1"
-    color="red"
-    opacity="0.3"
-    static-body
-  ></a-box>
-  <a-box
-    position="0.35 0.35 0"
-    width="0.1"
-    height="0.8"
-    depth="0.8"
-    opacity="0.3"
-    static-body
-    color="red"
-  ></a-box>
-  <a-box
-    position="-0.35 0.35 0"
-    width="0.1"
-    height="0.8"
-    depth="0.8"
-    opacity="0.3"
-    static-body
-    color="red"
-  ></a-box>
-</a-entity>
-<a-entity id="hollowBox" position="0 0.1 -37.5" data-valeur="2">
-  <a-box
-    position="0 0 0"
-    width="0.8"
-    height="0.1"
-    depth="0.8"
-    color="green"
-    opacity="0.3"
-    static-body
-  ></a-box>
-  <a-box
-    position="0 0.35 0.35"
-    width="0.8"
-    height="0.8"
-    depth="0.1"
-    color="green"
-    static-body
-    opacity="0.3"
-  ></a-box>
-  <a-box
-    position="0 0.35 -0.35"
-    width="0.8"
-    height="0.8"
-    depth="0.1"
-    color="green"
-    opacity="0.3"
-    static-body
-  ></a-box>
-  <a-box
-    position="0.35 0.35 0"
-    width="0.1"
-    height="0.8"
-    depth="0.8"
-    opacity="0.3"
-    static-body
-    color="green"
-  ></a-box>
-  <a-box
-    position="-0.35 0.35 0"
-    width="0.1"
-    height="0.8"
-    depth="0.8"
-    opacity="0.3"
-    static-body
-    color="green"
-  ></a-box>
-</a-entity>
-<a-entity id="hollowBox" position="0.9 0.1 -37.5" data-valeur="3">
+<a-entity id="hollowBox1" position="-0.9 0.1 -37.5" data-valeur="1">
   <a-box
     position="0 0 0"
     width="0.8"
@@ -192,13 +173,13 @@
     color="blue"
   ></a-box>
 </a-entity>
-<a-entity id="hollowBox" position="1.8 0.1 -37.5" data-valeur="4">
+<a-entity id="hollowBox2" position="0 0.1 -37.5" data-valeur="2">
   <a-box
     position="0 0 0"
     width="0.8"
     height="0.1"
     depth="0.8"
-    color="magenta"
+    color="blue"
     opacity="0.3"
     static-body
   ></a-box>
@@ -207,7 +188,7 @@
     width="0.8"
     height="0.8"
     depth="0.1"
-    color="magenta"
+    color="blue"
     static-body
     opacity="0.3"
   ></a-box>
@@ -216,7 +197,7 @@
     width="0.8"
     height="0.8"
     depth="0.1"
-    color="magenta"
+    color="blue"
     opacity="0.3"
     static-body
   ></a-box>
@@ -227,7 +208,7 @@
     depth="0.8"
     opacity="0.3"
     static-body
-    color="magenta"
+    color="blue"
   ></a-box>
   <a-box
     position="-0.35 0.35 0"
@@ -236,6 +217,100 @@
     depth="0.8"
     opacity="0.3"
     static-body
-    color="magenta"
+    color="blue"
+  ></a-box>
+</a-entity>
+<a-entity id="hollowBox3" position="0.9 0.1 -37.5" data-valeur="3">
+  <a-box
+    position="0 0 0"
+    width="0.8"
+    height="0.1"
+    depth="0.8"
+    color="blue"
+    opacity="0.3"
+    static-body
+  ></a-box>
+  <a-box
+    position="0 0.35 0.35"
+    width="0.8"
+    height="0.8"
+    depth="0.1"
+    color="blue"
+    static-body
+    opacity="0.3"
+  ></a-box>
+  <a-box
+    position="0 0.35 -0.35"
+    width="0.8"
+    height="0.8"
+    depth="0.1"
+    color="blue"
+    opacity="0.3"
+    static-body
+  ></a-box>
+  <a-box
+    position="0.35 0.35 0"
+    width="0.1"
+    height="0.8"
+    depth="0.8"
+    opacity="0.3"
+    static-body
+    color="blue"
+  ></a-box>
+  <a-box
+    position="-0.35 0.35 0"
+    width="0.1"
+    height="0.8"
+    depth="0.8"
+    opacity="0.3"
+    static-body
+    color="blue"
+  ></a-box>
+</a-entity>
+<a-entity id="hollowBox4" position="1.8 0.1 -37.5" data-valeur="4">
+  <a-box
+    position="0 0 0"
+    width="0.8"
+    height="0.1"
+    depth="0.8"
+    color="blue"
+    opacity="0.3"
+    static-body
+  ></a-box>
+  <a-box
+    position="0 0.35 0.35"
+    width="0.8"
+    height="0.8"
+    depth="0.1"
+    color="blue"
+    static-body
+    opacity="0.3"
+  ></a-box>
+  <a-box
+    position="0 0.35 -0.35"
+    width="0.8"
+    height="0.8"
+    depth="0.1"
+    color="blue"
+    opacity="0.3"
+    static-body
+  ></a-box>
+  <a-box
+    position="0.35 0.35 0"
+    width="0.1"
+    height="0.8"
+    depth="0.8"
+    opacity="0.3"
+    static-body
+    color="blue"
+  ></a-box>
+  <a-box
+    position="-0.35 0.35 0"
+    width="0.1"
+    height="0.8"
+    depth="0.8"
+    opacity="0.3"
+    static-body
+    color="blue"
   ></a-box>
 </a-entity>

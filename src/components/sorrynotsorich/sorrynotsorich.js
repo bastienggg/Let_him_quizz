@@ -22,14 +22,14 @@ let totalBet = 0;
 
 // Render the template in the scene
 sorryNotSoRich.renderQuizZone = function () {
-    const tempDiv = document.createElement("div");
-    tempDiv.id = "sorryNotSoRichDiv";
-    tempDiv.innerHTML = template;
+  const tempDiv = document.createElement("div");
+  tempDiv.id = "sorryNotSoRichDiv";
+  tempDiv.innerHTML = template;
 
-    while (tempDiv.firstChild) {
-      scene.appendChild(tempDiv.firstChild);
-    }
-    sorryNotSoRich.newQuestion();
+  while (tempDiv.firstChild) {
+    scene.appendChild(tempDiv.firstChild);
+  }
+  sorryNotSoRich.newQuestion();
 };
 
 // // Remove the template from the scene
@@ -39,8 +39,8 @@ sorryNotSoRich.renderQuizZone = function () {
 
 // Get a new question from the MCQ data
 sorryNotSoRich.newQuestion = async function () {
-  
-//Ajout d'argent pour les tests
+
+  //Ajout d'argent pour les tests
 
   //Get random hard question
   let question = await MCQ.getRandomQuestion("hard");
@@ -112,6 +112,7 @@ sorryNotSoRich.calculateMoney = function () {
     document.querySelector("#minus4"),
   ];
 
+  console.log("moneyAmount= " + moneyAmount);
   // Initialize bets to $0
   bets.forEach(bet => bet.setAttribute("value", "$0"));
 
@@ -154,13 +155,13 @@ sorryNotSoRich.calculateMoney = function () {
 
   const handleValidButtonClick = () => {
     let correctAnswerBox = document.querySelector(".good-answer");
-    console.log("correcrAnwserBox"+correctAnswerBox);
+    console.log("correcrAnwserBox" + correctAnswerBox);
     let correctBet = parseInt(correctAnswerBox.getAttribute("value").replace('$', ''));
     moneyAmount = Money.setMoney(correctBet);
 
     // Reset all bets to $0
     bets.forEach(bet => bet.setAttribute("value", "$0"));
-    console.log("moneyAmount= "+moneyAmount);
+    console.log("moneyAmount= " + moneyAmount);
     // Check if the player has any money left
     if (moneyAmount === 0) {
       sorryNotSoRich.removeQuizZone();

@@ -16,13 +16,16 @@ Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
 
-  sorryNotSoRich.renderQuizZone();
-  // Rounds.nextRound();
+  // Money.summonStack(10);
+  // setTimeout(() => {
+  //   sorryNotSoRich.renderQuizZone();
+  // }, 8000);
+  Rounds.nextRound();
 };
 
 Rounds.nextRound = async function () {
   // End the game if the round counter is greater than 2  
-  if (roundCounter > 2) {
+  if (roundCounter > 4) {
     Rounds.endGame();
     return;
   }

@@ -8,11 +8,18 @@ import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
 import { SortItOut } from "../sort-it-out/sort-it-out.js";
 
+const templateFile = await fetch(
+  "src/components/rounds/template.html.inc",
+);
+const template = await templateFile.text();
+
+const scene = document.querySelector("#mainScene");
+
 let Rounds = {};
 
 let roundsOrder = [
   "TickingAway",
-  "FindThePlace", 
+  "FindThePlace",
   "SortItOut",
   "SorryNotSoRich",
 ];
@@ -48,29 +55,35 @@ Rounds.nextRound = async function () {
     }
   }
 
-    // Change the actual round to the next one
-    setTimeout(() => {
-      actualRound = roundsOrder[roundCounter - 1];
-    }, 500); // Adjust the timeout duration as needed
+  // Change the actual round to the next one
+  setTimeout(() => {
+    actualRound = roundsOrder[roundCounter - 1];
+  }, 500); // Adjust the timeout duration as needed
 
   // Render the current round's quiz zone
   setTimeout(() => {
     if (actualRound === "FindThePlace") {
       FindThePlace.renderPropositionsZone();
       FindThePlace.renderQuestion();
+      Rounds.explainGame("Find the correct place");
     } else if (actualRound === "TickingAway") {
       TickingAway.renderQuizZone();
       TickingAway.newQuestion();
       TickingAway.startTimer();
+      Rounds.explainGame("Answer the questions before the timer runs out");
     } else if (actualRound === "SortItOut") {
       SortItOut.renderSortItOutZone();
+      Rounds.explainGame("Sort the answers in the correct order");
+
     } else if (actualRound === "SorryNotSoRich") {
       sorryNotSoRich.renderQuizZone();
+      Rounds.explainGame("Bet on the correct answer but save some money !");
     }
-    
-  roundCounter++;
-  }, 2000); // Adjust the timeout duration as needed
 
+
+
+    roundCounter++;
+  }, 2000); // Adjust the timeout duration as needed
 };
 
 Rounds.endGame = function () {
@@ -80,5 +93,36 @@ Rounds.endGame = function () {
   // Render the leaderboard
   Leaderboard.renderZone();
 };
+
+Rounds.explainGame = function (explanationText) {
+  // Explain the game
+
+  // Render the explanation
+  const explanationHtml = document.createElement("a-entity");
+  explanationHtml.id = "explanationZone";
+  explanationHtml.innerHTML = template.replace("{{message}}", explanationText);
+  console.log("Explanation: ", explanationHtml);
+  scene.appendChild(explanationHtml);
+
+  setTimeout(() => {
+    Rounds.removeExplanation();
+  }, 3000);
+};
+
+Rounds.removeExplanation = function () {
+  // Remove the explanation
+  
+  explanationZone.setAttribute("animation", {
+    property: "position",
+    to: "0 -5 0",
+    dur: 600,
+    easing: "easeInOutQuad",
+  });
+  
+  setTimeout(() => {
+  const explanationZone = document.querySelector("#explanationZone");
+  explanationZone.remove();
+  }, 1000);
+}
 
 export { Rounds };

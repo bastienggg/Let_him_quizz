@@ -252,6 +252,4 @@ sorryNotSoRich.removeQuizZone = function () {
   scene.removeChild(document.querySelector("#sorrynotsorich-container"));
 };
 
-//ajouter une template avec tous les billets
-
 export { sorryNotSoRich };

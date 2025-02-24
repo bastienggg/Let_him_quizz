@@ -159,6 +159,7 @@ sorryNotSoRich.calculateMoney = function () {
       bets[index].setAttribute("value", `$${currentValue - 100}`);
       updateTotalBet();
       checkBetStatus();
+      document.querySelector("#validButton a-box").classList.remove("interactable");
     }
     if (parseInt(bets[index].getAttribute("value").replace('$', '')) === 0) {
       minusButtons[index].setAttribute("visible", false);

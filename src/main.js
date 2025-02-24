@@ -10,25 +10,33 @@ import { Light } from './components/light/light.js';
 import { FindThePlace } from './components/find-the-place/find-the-place.js';
 import { Leaderboard } from './components/leaderboard/leaderboard.js';
 import { Rounds } from './components/rounds/rounds.js';
+import { SortItOut } from './components/sort-it-out/sort-it-out.js';
+import { Vr } from './components/vr/vr.js';
+
 
 // First mini game
 // TickingAway.renderQuizZone();
 // TickingAway.newQuestion();
 // TickingAway.startTimer();
 
-// sSecond mini game
+// Second mini game
 // FindThePlace.renderPropositionsZone();
 // FindThePlace.renderQuestion();
 // Render the money counter
 // Money.renderMoneyZone();
 // Start the timer
 
-// Render the leaderboard
+// Vr.setupControllerClickHandler();
+// SortItOut.renderSortItOutZone();
 
+// Appeler la vérification en continu pendant la scène
+function update() {
+    SortItOut.ChekIfInside();
+    requestAnimationFrame(update); // Continuer l'appel à chaque frame
+}
 
-
-// Appliquer le composant au contrôleur droit
-document.querySelector('#rightController').setAttribute('joystick-move', '');
+// Démarre la vérification continue
+update();
 
 // Second mini game
 setTimeout(() => {

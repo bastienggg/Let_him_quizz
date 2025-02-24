@@ -85,8 +85,9 @@
     <script type="module" src="./src/progress.js"></script>
     <a-scene
       id="mainScene"
-      physics="debug:false;"
+      physics="gravity: -9.8"
       loading-screen="enabled: false"
+      raycaster="objects: .interactable"
     >
         <!-- keyboard test -->
         <!-- <a-entity id="keyboard"
@@ -229,12 +230,11 @@
         <a-entity
           id="rightController"
           laser-controls="hand: right"
-          raycaster="objects: * "
+          raycaster="objects: .interactable ; showLine: true"
           oculus-touch-controls="hand: right"
           vive-controls="hand: right"
           windows-motion-controls="hand: right"
-        >
-        </a-entity>
+        ></a-entity>
         <a-entity
           id="leftController"
           oculus-touch-controls="hand: left"
@@ -311,7 +311,26 @@
         position="1.23833 -1.63184 -37.98841"
         scale="0.67 0.69 0.44"
         rotation=""
-      ></a-entity>
+        shape=""
+      >
+        <a-box
+          position="0 0 0"
+          width="20"
+          height="3.6"
+          depth="10"
+          color="#FF0000"
+          opacity="0.5"
+          body="type: static; shape: box;"
+        ></a-box>
+        <a-box
+          position="0 0 0"
+          width="1"
+          height="1"
+          depth="1"
+          color="#FF0000"
+          opacity="0.5"
+        ></a-box>
+      </a-entity>
 
       <!-- anchor -->
       <a-entity

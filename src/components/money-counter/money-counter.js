@@ -80,6 +80,10 @@ Money.updateMoney = async function (money) {
 
 Money.getMoney = function () {
   return moneyAmount;
-}
+};
+
+Money.setMoney = function (amount) {
+  moneyAmount = amount;
+};
 
 export { Money };

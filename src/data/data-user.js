@@ -8,8 +8,6 @@ Users.getTopUsers = async function () {
   // Fetch the top players
   let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/user?param=top10");
   let usersTop = await response.json();
-
-  console.log(usersTop);
   
   return usersTop;
 };

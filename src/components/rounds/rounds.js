@@ -8,9 +8,22 @@ import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
 import { SortItOut } from "../sort-it-out/sort-it-out.js";
 
+const templateFile = await fetch(
+  "src/components/rounds/template.html.inc",
+);
+const template = await templateFile.text();
+
+const scene = document.querySelector("#mainScene");
+
 let Rounds = {};
 
-let actualRound = "TickingAway";
+let roundsOrder = [
+  "TickingAway",
+  "FindThePlace",
+  "SortItOut",
+  "SorryNotSoRich",
+];
+let actualRound = "";
 let roundCounter = 1;
 
 Rounds.startGame = async function () {
@@ -20,6 +33,7 @@ Rounds.startGame = async function () {
 
 
 
+  Rounds.nextRound();
   // Money.summonStack(10);
   // setTimeout(() => {
   //   sorryNotSoRich.renderQuizZone();
@@ -28,50 +42,59 @@ Rounds.startGame = async function () {
 };
 
 Rounds.nextRound = async function () {
-  // End the game if the round counter is greater than 2  
-  if (roundCounter > 4) {
+  // End the game if the round counter is greater than the length of roundsOrder
+  if (roundCounter > roundsOrder.length) {
     Rounds.endGame();
     return;
   }
 
-  if (actualRound === "FindThePlace") {
-    // Remove the propositions zone
-    if (roundCounter != 1) {
-      TickingAway.removeQuizZone();
-    }
+  console.log("Round: ", roundCounter, " - ", roundsOrder[roundCounter - 1]);
 
-    setTimeout(() => {
+  // Remove the previous round's quiz zone if it's not the first round
+  if (roundCounter != 1) {
+    if (actualRound === "FindThePlace") {
+      FindThePlace.removeQuizZone();
+    } else if (actualRound === "TickingAway") {
+      TickingAway.removeQuizZone();
+    } else if (actualRound === "SortItOut") {
+      SortItOut.removeQuizZone();
+    } else if (actualRound === "SorryNotSoRich") {
+      sorryNotSoRich.removeQuizZone();
+    }
+  }
+
+  // Change the actual round to the next one
+  setTimeout(() => {
+    actualRound = roundsOrder[roundCounter - 1];
+  }, 500); // Adjust the timeout duration as needed
+
+  // Render the current round's quiz zone
+  setTimeout(() => {
+    if (actualRound === "FindThePlace") {
       FindThePlace.renderPropositionsZone();
       FindThePlace.renderQuestion();
-
-      actualRound = "TickingAway";
-    }, 2000); // Adjust the timeout duration as needed
-  } else {
-    if (roundCounter != 1) {
-      FindThePlace.removeQuizZone();
-    }
-    setTimeout(() => {
+      Rounds.explainGame("Find the correct place");
+    } else if (actualRound === "TickingAway") {
       TickingAway.renderQuizZone();
       TickingAway.newQuestion();
       TickingAway.startTimer();
-      actualRound = "FindThePlace";
-    }, 2000); // Adjust the timeout duration as needed
-  }
-  roundCounter++;
+      Rounds.explainGame("Answer the questions before the timer runs out");
+    } else if (actualRound === "SortItOut") {
+      SortItOut.renderSortItOutZone();
+      Rounds.explainGame("Sort the answers in the correct order");
+
+    } else if (actualRound === "SorryNotSoRich") {
+      sorryNotSoRich.renderQuizZone();
+      Rounds.explainGame("Bet on the correct answer but save some money !");
+    }
+
+
+
+    roundCounter++;
+  }, 2000); // Adjust the timeout duration as needed
 };
 
 Rounds.endGame = function () {
-  // // Remove the quiz zone
-  // if (actualRound === "FindThePlace") {
-  //   FindThePlace.removeQuizZone();
-  // } else {
-  //   TickingAway.removeQuizZone();
-  // }
-
-  // // Remove the money counter
-  // Money.removeMoneyZone();
-
-
   // Add the user to the leaderboard
   Users.addUser("Test", Money.getMoney());
 
@@ -79,5 +102,35 @@ Rounds.endGame = function () {
   Leaderboard.renderZone();
 };
 
+Rounds.explainGame = function (explanationText) {
+  // Explain the game
+
+  // Render the explanation
+  const explanationHtml = document.createElement("a-entity");
+  explanationHtml.id = "explanationZone";
+  explanationHtml.innerHTML = template.replace("{{message}}", explanationText);
+  console.log("Explanation: ", explanationHtml);
+  scene.appendChild(explanationHtml);
+
+  setTimeout(() => {
+    Rounds.removeExplanation();
+  }, 3000);
+};
+
+Rounds.removeExplanation = function () {
+  // Remove the explanation
+  
+  explanationZone.setAttribute("animation", {
+    property: "position",
+    to: "0 -5 0",
+    dur: 600,
+    easing: "easeInOutQuad",
+  });
+  
+  setTimeout(() => {
+  const explanationZone = document.querySelector("#explanationZone");
+  explanationZone.remove();
+  }, 1000);
+}
 
 export { Rounds };

@@ -18,7 +18,6 @@ let Money = {};
 let moneyAmount = 0;
 
 Money.renderMoneyZone = function () {
-  console.log("renderMoneyZone");
 
   // Create the a-entity for the money counter
   const tempDiv = document.createElement("div");
@@ -27,8 +26,6 @@ Money.renderMoneyZone = function () {
   const entities = tempDiv.querySelectorAll("#moneyZone");
 
   entities.forEach((entity) => {
-    console.log(entity);
-
     scene.appendChild(entity);
   });
 };

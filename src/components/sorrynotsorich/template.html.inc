@@ -1,3 +1,4 @@
+<a-entity id="sorrynotsorich-container">
 <a-asset-item
   id="moneyDropTableModel"
   src="./src/assets/modele3d/moneydroptable.glb"
@@ -318,4 +319,5 @@
     rotation="340 0 0"
   >
   </a-box>
+</a-entity>
 </a-entity>

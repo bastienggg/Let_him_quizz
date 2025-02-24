@@ -12,6 +12,7 @@ import { Leaderboard } from './components/leaderboard/leaderboard.js';
 import { Rounds } from './components/rounds/rounds.js';
 import { SortItOut } from './components/sort-it-out/sort-it-out.js';
 import { Vr } from './components/vr/vr.js';
+import { sorryNotSoRich } from './components/sorrynotsorich/sorrynotsorich.js';
 
 
 // First mini game
@@ -38,9 +39,12 @@ function update() {
 // Démarre la vérification continue
 update();
 
+Money.summonStack(10);
+
 // Second mini game
 setTimeout(() => {
-    Rounds.startGame();
+    sorryNotSoRich.renderQuizZone();
+    // Rounds.startGame();
     Leaderboard.renderZone();
 }, 5000);
 

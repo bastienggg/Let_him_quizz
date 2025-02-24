@@ -32,15 +32,9 @@ sorryNotSoRich.renderQuizZone = function () {
   sorryNotSoRich.newQuestion();
 };
 
-// // Remove the template from the scene
-// sorryNotSoRich.removeQuizZone = function () {
-
-// };
 
 // Get a new question from the MCQ data
 sorryNotSoRich.newQuestion = async function () {
-
-  //Ajout d'argent pour les tests
 
   //Get random hard question
   let question = await MCQ.getRandomQuestion("hard");
@@ -67,6 +61,8 @@ sorryNotSoRich.newQuestion = async function () {
   document.querySelectorAll(".good-answer").forEach((box) => {
     box.classList.remove("good-answer");
   });
+  document.querySelectorAll(".good-answerbox").forEach((answer) => {
+    answer.classList.remove("good-answerbox");});
 
   // Set the propositions to the answer elements
   document.querySelector("#answer1 a-text").setAttribute("value", propositions[0]);
@@ -77,20 +73,36 @@ sorryNotSoRich.newQuestion = async function () {
   // Add the class "good-answer" to the correct answer
   const correctAnswerIndex = propositions.indexOf(question.propositions[0]);
   document.querySelector(`#bet${correctAnswerIndex + 1}`).classList.add("good-answer");
+  document.querySelector(`#answer${correctAnswerIndex + 1}`).classList.add("good-answerbox");
 
   sorryNotSoRich.calculateMoney();
 };
 
-// // Met a jour l'argent sur la table et l'argent sur le tas
-// sorryNotSoRich.renderBetMoney() = function(){
-//   //récupère l'argent des différentes réponses et du tas de sorryNotSoRich.calculateMoney() pour afficher le bon nombre de billet pour chacun
-// };
+// Change the color of the answer boxes based on correctness
+sorryNotSoRich.updateAnswerColors = function () {
+  const answerBoxes = [
+    document.querySelector("#answer1 a-box"),
+    document.querySelector("#answer2 a-box"),
+    document.querySelector("#answer3 a-box"),
+    document.querySelector("#answer4 a-box"),
+  ];
 
+  answerBoxes.forEach((box) => {
+    if (box.parentElement.classList.contains("good-answerbox")) {
+      box.setAttribute("color", "green");
+    } else {
+      box.setAttribute("color", "red");
+    }
+  });
+};
 
 // Calculate the money that the player has and the money that he is betting
 sorryNotSoRich.calculateMoney = function () {
+
+  // Get the money amount gain from the previous games
   let moneyAmount = Money.getMoney();
 
+  //Attributes divs to variables
   const bets = [
     document.querySelector("#bet1"),
     document.querySelector("#bet2"),
@@ -112,25 +124,24 @@ sorryNotSoRich.calculateMoney = function () {
     document.querySelector("#minus4"),
   ];
 
-  console.log("moneyAmount= " + moneyAmount);
   // Initialize bets to $0
   bets.forEach(bet => bet.setAttribute("value", "$0"));
 
+  // Update the total bet and check if the player can bet more
   const updateTotalBet = () => {
     totalBet = bets.reduce((sum, bet) => sum + parseInt(bet.getAttribute("value").replace('$', '')), 0);
   };
-
-  minusButtons.forEach(button => button.setAttribute("visible", false));
-  document.querySelector("#validButton").setAttribute("visible", false);
 
   const checkBetStatus = () => {
     const allBetsPlaced = totalBet === moneyAmount;
     plusButtons.forEach(button => button.setAttribute("visible", !allBetsPlaced));
     document.querySelector("#validButton").setAttribute("visible", allBetsPlaced);
+    document.querySelector("#validButton a-box").classList.add("interactable");
   };
 
   const canBetMore = (amount) => totalBet + amount <= moneyAmount;
 
+  // Handle the click on the plus button
   const handlePlusButtonClick = (index) => {
     let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
     if (canBetMore(100)) {
@@ -141,6 +152,7 @@ sorryNotSoRich.calculateMoney = function () {
     }
   };
 
+  // Handle the click on the minus button
   const handleMinusButtonClick = (index) => {
     let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
     if (currentValue > 0) {
@@ -153,23 +165,27 @@ sorryNotSoRich.calculateMoney = function () {
     }
   };
 
+  // Handle the click on the valid button
   const handleValidButtonClick = () => {
     let correctAnswerBox = document.querySelector(".good-answer");
     console.log("correcrAnwserBox" + correctAnswerBox);
     let correctBet = parseInt(correctAnswerBox.getAttribute("value").replace('$', ''));
     moneyAmount = Money.setMoney(correctBet);
 
+    sorryNotSoRich.updateAnswerColors();
+
     // Reset all bets to $0
     bets.forEach(bet => bet.setAttribute("value", "$0"));
-    console.log("moneyAmount= " + moneyAmount);
     // Check if the player has any money left
-    if (moneyAmount === 0) {
+    setTimeout(() => {
+    if (correctBet === 0) {
       sorryNotSoRich.removeQuizZone();
     } else {
       checkBetStatus();
       updateTotalBet();
       sorryNotSoRich.newQuestion();
     }
+  }, 2000);
   };
 
   const addEventListeners = () => {
@@ -199,12 +215,17 @@ sorryNotSoRich.calculateMoney = function () {
 
   document.querySelector("#validButton").replaceWith(document.querySelector("#validButton").cloneNode(true));
 
+    // Hide all minus buttons and the valid button at the beginning
+    minusButtons.forEach(button => button.setAttribute("visible", false));
+    document.querySelector("#validButton").setAttribute("visible", false);
+    document.querySelector("#validButton a-box").classList.remove("interactable");
+
   addEventListeners();
 };
 
 sorryNotSoRich.removeQuizZone = function () {
-  const quizZone = document.querySelector("#sorryNotSoRichDiv");
-  quizZone.parentNode.removeChild(quizZone);
+  scene.removeChild(document.querySelector("#sorrynotsorich-container"));
 };
+
 
 export { sorryNotSoRich };

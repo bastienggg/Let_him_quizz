@@ -41,3 +41,4 @@ update();
 setTimeout(() => {
     Rounds.startGame();
 }, 5000);
+

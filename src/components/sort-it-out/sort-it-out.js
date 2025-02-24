@@ -1,5 +1,5 @@
 import { Light } from "../light/light";
-
+//https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/sort?difficulty=easy;
 let SortItOut = {};
 async function loadTemplate() {
     const response = await fetch("src/components/sort-it-out/template.html.inc");

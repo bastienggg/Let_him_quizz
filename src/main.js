@@ -26,7 +26,7 @@ import { Vr } from './components/vr/vr.js';
 // Start the timer
 
 // Vr.setupControllerClickHandler();
-SortItOut.renderSortItOutZone();
+// SortItOut.renderSortItOutZone();
 
 // Appeler la vérification en continu pendant la scène
 function update() {
@@ -36,8 +36,6 @@ function update() {
 
 // Démarre la vérification continue
 update();
-
-
 
 // Second mini game
 setTimeout(() => {

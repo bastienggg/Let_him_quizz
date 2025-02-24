@@ -18,9 +18,9 @@ const scene = document.querySelector("#mainScene");
 let Rounds = {};
 
 let roundsOrder = [
+  "SortItOut",
   "TickingAway",
   "FindThePlace",
-  "SortItOut",
   "SorryNotSoRich",
 ];
 let actualRound = "";
@@ -29,7 +29,7 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
-  SortItOut.renderSortItOutZone();
+  // SortItOut.renderSortItOutZone();
 
 
 
@@ -57,7 +57,7 @@ Rounds.nextRound = async function () {
     } else if (actualRound === "TickingAway") {
       TickingAway.removeQuizZone();
     } else if (actualRound === "SortItOut") {
-      SortItOut.removeQuizZone();
+      SortItOut.removeSortItOutZone();
     } else if (actualRound === "SorryNotSoRich") {
       sorryNotSoRich.removeQuizZone();
     }
@@ -119,17 +119,17 @@ Rounds.explainGame = function (explanationText) {
 
 Rounds.removeExplanation = function () {
   // Remove the explanation
-  
+
   explanationZone.setAttribute("animation", {
     property: "position",
     to: "0 -5 0",
     dur: 600,
     easing: "easeInOutQuad",
   });
-  
+
   setTimeout(() => {
-  const explanationZone = document.querySelector("#explanationZone");
-  explanationZone.remove();
+    const explanationZone = document.querySelector("#explanationZone");
+    explanationZone.remove();
   }, 1000);
 }
 

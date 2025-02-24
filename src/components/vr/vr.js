@@ -19,26 +19,33 @@ Vr.setupControllerClickHandler = function () {
             let isGrabbed = false;
             let controller = null;
 
-            this.onGrabStart = function (evt) {
-                let raycaster = evt.traget.component.raycaster;
+            this.onGrabStart = (evt) => {
+                let raycaster = evt.target.components.raycaster;
                 if (!raycaster) return;
+
                 let intersectedEls = raycaster.intersectedEls;
-                if (intersectedEls.length === 0 || intersectedEls[0] !== el) return;
+                let intersectedEl = intersectedEls.find(obj => obj === el);
+                if (!intersectedEl) return;
 
                 isGrabbed = true;
-                controller = evt.traget;
-                el.setAttribute("dynamic-body", "mass: 0");
-                controller.addEventListener("triggerup", this.onGrabEnd);
+                controller = evt.target;
 
+                // Désactive la gravité pendant le grab
+                el.setAttribute("dynamic-body", "mass: 0");
+
+                controller.addEventListener("triggerup", this.onGrabEnd);
             };
 
-            this.onGrabEnd = function () {
+            this.onGrabEnd = () => {
                 if (isGrabbed) {
-                    el.setAttribute("dynamic-body", "mass: 5; restitution: 0.5; friction:0.5");
-                    el.removeAttribute("grab");
+                    // Restaure les paramètres physiques
+                    el.setAttribute("dynamic-body", "mass: 5; restitution: 0.5; friction: 0.5");
                     isGrabbed = false;
-                    controller.removeEventListener("triggerup", this.onGrabEnd);
-                    controller = null;
+
+                    if (controller) {
+                        controller.removeEventListener("triggerup", this.onGrabEnd);
+                        controller = null;
+                    }
                 }
             };
 
@@ -50,19 +57,20 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
-                    let offset = new THREE.Vector3(0, 0, -0.1);
-                    offset.applyQuaternion(controllerQuat);
-
+                    let offset = new THREE.Vector3(0, 0, -0.1).applyQuaternion(controllerQuat);
                     let newPosition = controllerPos.clone().add(offset);
-                    el.object3D.position.copy(newPosition);
 
-                };
+                    // Lissage du mouvement
+                    el.object3D.position.lerp(newPosition, 0.2);
+                }
             };
 
-            el.sceneEl.addEventListener("triggerdown", this.onGrabStart);
-
+            // Écoute directement sur le contrôleur
+            el.sceneEl.addEventListener("controllerconnected", (evt) => {
+                evt.detail.target.addEventListener("triggerdown", this.onGrabStart);
+            });
         }
-    })
+    });
 };
 
 

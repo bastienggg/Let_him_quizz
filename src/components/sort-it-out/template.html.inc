@@ -1,3 +1,25 @@
+<a-entity id="validButton" position="1.25 0.6 -36">
+  <a-text
+    value="Confirm"
+    align="center"
+    color="#FFF"
+    position="0 0.18 0.2"
+    scale="0.8 0.8 0.8  "
+    rotation="340 0 0"
+  >
+  </a-text>
+  <a-box
+    position="0 0 0"
+    class="interactable"
+    depth="0.1"
+    height="0.3"
+    width="1"
+    color="#3246E7"
+    rotation="340 0 0"
+  >
+  </a-box>
+</a-entity>
+
 <a-entity position="0.99 3.75 -39">
   <a-text
     id="question"
@@ -312,5 +334,58 @@
     opacity="0.3"
     static-body
     color="blue"
+  ></a-box>
+</a-entity>
+
+<a-entity position="-0.9 0.1 -37.5">
+  <!-- haut -->
+  <a-box
+    position="2 4 0"
+    width="8"
+    height="0.1"
+    depth="0.8"
+    color="#FF0000"
+    opacity="0"
+    body="type: static; shape: box;"
+  ></a-box>
+  <!-- devant -->
+  <a-box
+    position="2 0 0.4"
+    width="8"
+    height="7.5"
+    depth="0.1"
+    color="#FF0000"
+    opacity="0"
+    body="type: static; shape: box;"
+  ></a-box>
+  <!-- derrier -->
+  <a-box
+    position="2 0 -0.4"
+    width="8"
+    height="7.5"
+    depth="0.1"
+    color="#FF0000"
+    opacity="0"
+    body="type: static; shape: box;"
+  ></a-box>
+  <!-- droite -->
+  <a-box
+    position="6 0.5 0"
+    width="0.1"
+    height="6.8"
+    depth="0.8"
+    color="#FF0000"
+    opacity="0"
+    body="type: static; shape: box;"
+  ></a-box>
+  <!-- gauche -->
+  <a-box
+    position="-2 0.5 0"
+    width="0.1"
+    height="6.8"
+    depth="0.8"
+    color="#FF0000"
+    opacity="0"
+    body="type: static; shape: box;"
   ></a-box>
 </a-entity>

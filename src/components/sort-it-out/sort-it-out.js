@@ -2,12 +2,13 @@ import { Light } from "../light/light.js";
 import { SortItOutData } from "../../data/data-sortitout.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Vr } from "../vr/vr.js";
+import { Rounds } from "../rounds/rounds.js";
+import { Sound } from "../audio/audio.js";
 
 let SortItOut = {};
 let gameFinished = false;
 let roundCounter = 1;
 const maxRounds = 3;
-
 
 SortItOut.resetGameState = function () {
     gameFinished = false;
@@ -24,7 +25,6 @@ async function loadTemplate() {
 }
 
 const scene = document.querySelector("#mainScene");
-
 
 SortItOut.renderSortItOutZone = async function () {
     SortItOut.resetGameState();
@@ -70,13 +70,14 @@ SortItOut.renderSortItOutZone = async function () {
     const questionElement = document.querySelector("#question");
     questionElement.setAttribute("value", data.question);
 
-    setTimeout(() => {
-        function update() {
+    // Ajoutez un gestionnaire d'événements pour le bouton "Confirmer"
+    const confirmButton = document.querySelector("#validButton");
+    if (confirmButton) {
+        confirmButton.addEventListener("click", () => {
             SortItOut.CheckIfInside();
-            if (!gameFinished) requestAnimationFrame(update);
-        }
-        update();
-    }, 1000);
+            console.log("Check if inside");
+        });
+    }
 
     document.querySelectorAll("#movableBox1, #movableBox2, #movableBox3, #movableBox4").forEach(box => {
         box.setAttribute("draggable", "");
@@ -92,8 +93,6 @@ SortItOut.removeSortItOutZone = function () {
     if (sortItOutZone) sortItOutZone.remove();
     Light.resetColor();
 };
-
-
 
 SortItOut.setupDraggables = function () {
     AFRAME.registerComponent("draggable", {
@@ -133,12 +132,11 @@ SortItOut.resetAndRenderZone = function () {
         roundCounter++;
         console.log("Starting round " + roundCounter);
         SortItOut.removeSortItOutZone();
-        setTimeout(() => {
-            SortItOut.renderSortItOutZone();
-        }, 2000);
+        SortItOut.renderSortItOutZone();
     } else {
         console.log("Game finished after " + maxRounds + " rounds.");
         SortItOut.removeSortItOutZone();
+        Rounds.nextRound();
         // Optionally, you can add code here to display a message or perform other actions when the game is finished
     }
 };
@@ -187,14 +185,22 @@ SortItOut.CheckIfInside = function () {
 
     if (allBoxesCorrect) {
         Light.changeColor("#00FF00");
+        Sound.renderCorrectAnswer();
         gameFinished = true;
+        Money.summonStack(2);
+
         setTimeout(() => {
             SortItOut.resetAndRenderZone();
         }, 2000);
     } else {
-        Light.resetColor();
+        Light.changeColor("#FF0000");
+        Sound.renderWrongAnswer();
+        gameFinished = true;
+        setTimeout(() => {
+            SortItOut.resetAndRenderZone();
+        }, 2000);
+
     }
 };
-
 
 export { SortItOut };

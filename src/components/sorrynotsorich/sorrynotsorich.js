@@ -174,6 +174,13 @@ sorryNotSoRich.calculateMoney = function () {
     moneyAmount = Money.setMoney(correctBet);
 
     sorryNotSoRich.updateAnswerColors();
+    // Add animation to the wrong answer trapdoors
+    for (let i = 1; i <= 4; i++) {
+      if (!document.querySelector(`#bet${i}`).classList.contains("good-answer")) {
+        document.querySelector(`#trap${i}`).removeAttribute("animation__rotation", "property: rotation; to: 0 0 0; loop: false; dur: 1000");
+      document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");
+      }
+    }
 
     // Reset all bets to $0
     bets.forEach(bet => bet.setAttribute("value", "$0"));
@@ -182,9 +189,18 @@ sorryNotSoRich.calculateMoney = function () {
     if (correctBet === 0) {
       sorryNotSoRich.removeQuizZone();
     } else {
+      // Update and render a new question
       checkBetStatus();
       updateTotalBet();
       sorryNotSoRich.newQuestion();
+
+      //Reset the trapdoors
+      for (let i = 1; i <= 4; i++) {
+        if (!document.querySelector(`#bet${i}`).classList.contains("good-answer")) {
+        document.querySelector(`#trap${i}`).removeAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");
+        document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 0 0 0; loop: false; dur: 1000");
+        }
+      }
     }
   }, 2000);
   };

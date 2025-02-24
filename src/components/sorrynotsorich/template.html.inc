@@ -332,7 +332,6 @@
   scale="2.6 1.0 2.6">
 </a-box>
 <a-box
-animation__rotation="property: rotation; to: 90 0 0; loop: false; dur: 1000"
 id="trap2"
   position="0.175 0.937 -37.735"
   pivot="0 0 -0.65"

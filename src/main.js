@@ -31,7 +31,7 @@ import { Vr } from './components/vr/vr.js';
 
 // Appeler la vérification en continu pendant la scène
 function update() {
-    SortItOut.ChekIfInside();
+    // SortItOut.ChekIfInside();
     requestAnimationFrame(update); // Continuer l'appel à chaque frame
 }
 

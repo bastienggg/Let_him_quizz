@@ -32,7 +32,18 @@
     />
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
+
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+
+    <!-- import for the keyboard -->
+    <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
+    <script src="./src/components/super-keyboard/aframe-super-keyboard.js"></script>
+
+    <script type="text/javascript">
+      AFRAME.ASSETS_PATH = "./assets/materials";
+    </script>
     <script>
       gsap.registerPlugin();
     </script>
@@ -77,23 +88,23 @@
       physics="debug:false;"
       loading-screen="enabled: false"
     >
+        <!-- keyboard test -->
+        <!-- <a-entity id="keyboard"
+          super-keyboard="imagePath:./src/assets/keyboard/"
+          position="1.1 1.076 -35.5"
+          rotation="-30 0 0" ></a-entity>
+     -->
       <!-- Test screen top score on the left of the player while he plays -->
-       <a-box 
-       position="-9 3.6 -38"
-       rotation=""
-       width="1"
-       height="1"
-       depth="1"
-       color="#475cff"
-       scale="0.5 7 6"
-       >
-       </a-box>
-       <!-- keyboard test -->
-       <!-- <a-input position="-1.25 2.1 -5" placeholder="Username" color="black" scale="2 2 2" width="1"></a-input>
-
-       <a-keyboard></a-keyboard>
- -->
-
+      <a-box
+        position="-9 3.6 -38"
+        rotation=""
+        width="1"
+        height="1"
+        depth="1"
+        color="#475cff"
+        scale="0.5 7 6"
+      >
+      </a-box>
 
       <a-entity
         id="topScore"
@@ -557,23 +568,11 @@
       ></a-entity>
 
       <!-- Wrong answer Sound -->
-      <audio
-        id="wrongAnswerSound"
-        src=""
-        position="0 1.6 -3"
-      ></audio>
+      <audio id="wrongAnswerSound" src="" position="0 1.6 -3"></audio>
       <!--Correct answer Sound-->
-      <audio
-        id="correctAnswerSound"
-        src=""
-        position="0 1.6 -3"
-      ></audio>
+      <audio id="correctAnswerSound" src="" position="0 1.6 -3"></audio>
       <!--Tic tac sound-->
-      <audio
-        id="tictacSound"
-        src=""
-        position="0 1.6 -3"
-      ></audio>
+      <audio id="tictacSound" src="" position="0 1.6 -3"></audio>
     </a-scene>
 
     <script type="module" src="./src/main.js"></script>

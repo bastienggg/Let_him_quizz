@@ -12,6 +12,7 @@ import { Leaderboard } from './components/leaderboard/leaderboard.js';
 import { Rounds } from './components/rounds/rounds.js';
 import { SortItOut } from './components/sort-it-out/sort-it-out.js';
 import { Vr } from './components/vr/vr.js';
+
 // First mini game
 // TickingAway.renderQuizZone();
 // TickingAway.newQuestion();
@@ -34,6 +35,7 @@ function update() {
 
 // Démarre la vérification continue
 update();
+
 
 // Second mini game
 setTimeout(() => {

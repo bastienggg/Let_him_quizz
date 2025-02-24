@@ -1,3 +1,4 @@
+<a-entity id="sorrynotsorich-container">
 <a-asset-item
   id="moneyDropTableModel"
   src="./src/assets/modele3d/moneydroptable.glb"
@@ -318,4 +319,47 @@
     rotation="340 0 0"
   >
   </a-box>
+</a-entity>
+
+<a-box 
+  id="trap1"
+  pivot="0 0 -0.65"
+  position="-1.636 0.937 -37.735"
+  depth="0.5"
+  height="0.0001"
+  width="0.5"
+  color="#BABABA"
+  scale="2.6 1.0 2.6">
+</a-box>
+<a-box
+id="trap2"
+  position="0.175 0.937 -37.735"
+  pivot="0 0 -0.65"
+  depth="0.5"
+  height="0.0001"
+  width="0.5"
+  color="#BABABA"
+  scale="2.6 1.0 2.6">
+</a-box>
+<a-box
+id="trap3"
+  position="2.025 0.937 -37.735"
+  pivot="0 0 -0.65"
+  depth="0.5"
+  height="0.0001"
+  width="0.5"
+  color="#BABABA"
+  scale="2.6 1.0 2.6">
+</a-box>
+<a-box
+id="trap4"
+  position="3.837 0.937 -37.735"
+  pivot="0 0 -0.65"
+  depth="0.5"
+  height="0.0001"
+  width="0.5"
+  color="#BABABA"
+  scale="2.6 1.0 2.6">
+</a-box>
+
 </a-entity>

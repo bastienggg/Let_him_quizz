@@ -13,6 +13,12 @@ const templateFile = await fetch(
 );
 const template = await templateFile.text();
 
+const moneyTemplateFile = await fetch(
+  "src/components/sorrynotsorich/money-template.html.inc",
+);
+
+const moneyTemplate = await moneyTemplateFile.text();
+
 const scene = document.querySelector("#mainScene");
 
 let sorryNotSoRich = {};
@@ -123,6 +129,7 @@ sorryNotSoRich.calculateMoney = function () {
     document.querySelector("#minus3"),
     document.querySelector("#minus4"),
   ];
+  
 
   // Initialize bets to $0
   bets.forEach(bet => bet.setAttribute("value", "$0"));
@@ -216,6 +223,7 @@ sorryNotSoRich.calculateMoney = function () {
 
     document.querySelector("#validButton").addEventListener("click", handleValidButtonClick);
   };
+  
 
   // Remove existing event listeners and add new ones
   plusButtons.forEach((button, index) => {
@@ -244,5 +252,6 @@ sorryNotSoRich.removeQuizZone = function () {
   scene.removeChild(document.querySelector("#sorrynotsorich-container"));
 };
 
+//ajouter une template avec tous les billets
 
 export { sorryNotSoRich };

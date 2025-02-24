@@ -1,7 +1,7 @@
-import { Light } from "../light/light";
-import { SortItOutData } from "../../data/data-sortitout";
-import { Money } from "../money-counter/money-counter";
-import { Vr } from "../vr/vr";
+import { Light } from "../light/light.js";
+import { SortItOutData } from "../../data/data-sortitout.js";
+import { Money } from "../money-counter/money-counter.js";
+import { Vr } from "../vr/vr.js";
 
 let SortItOut = {};
 let gameFinished = false;

@@ -6,74 +6,79 @@ import { TickingAway } from "../ticking-away/ticking-away.js";
 import { FindThePlace } from "../find-the-place/find-the-place.js";
 import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
+import { SortItOut } from "../sort-it-out/sort-it-out.js";
 
 let Rounds = {};
 
-let actualRound = "TickingAway";
+let roundsOrder = [
+  "FindThePlace",
+  "TickingAway",
+  "SortItOut",
+  "SorryNotSoRich",
+];
+let actualRound = "";
 let roundCounter = 1;
 
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
 
-  // Money.summonStack(10);
-  // setTimeout(() => {
-  //   sorryNotSoRich.renderQuizZone();
-  // }, 8000);
   Rounds.nextRound();
 };
 
 Rounds.nextRound = async function () {
-  // End the game if the round counter is greater than 2  
-  if (roundCounter > 4) {
+  // End the game if the round counter is greater than the length of roundsOrder
+  if (roundCounter > roundsOrder.length) {
     Rounds.endGame();
     return;
   }
 
-  if (actualRound === "FindThePlace") {
-    // Remove the propositions zone
-    if (roundCounter != 1) {
-      TickingAway.removeQuizZone();
-    }
+  console.log("Round: ", roundCounter, " - ", roundsOrder[roundCounter - 1]);
 
+  // Remove the previous round's quiz zone if it's not the first round
+  if (roundCounter != 1) {
+    if (actualRound === "FindThePlace") {
+      FindThePlace.removeQuizZone();
+    } else if (actualRound === "TickingAway") {
+      TickingAway.removeQuizZone();
+    } else if (actualRound === "SortItOut") {
+      SortItOut.removeQuizZone();
+    } else if (actualRound === "SorryNotSoRich") {
+      sorryNotSoRich.removeQuizZone();
+    }
+  }
+
+    // Change the actual round to the next one
     setTimeout(() => {
+      actualRound = roundsOrder[roundCounter - 1];
+    }, 500); // Adjust the timeout duration as needed
+
+  // Render the current round's quiz zone
+  setTimeout(() => {
+    if (actualRound === "FindThePlace") {
       FindThePlace.renderPropositionsZone();
       FindThePlace.renderQuestion();
-
-      actualRound = "TickingAway";
-    }, 2000); // Adjust the timeout duration as needed
-  } else {
-    if (roundCounter != 1) {
-      FindThePlace.removeQuizZone();
-    }
-    setTimeout(() => {
+    } else if (actualRound === "TickingAway") {
       TickingAway.renderQuizZone();
       TickingAway.newQuestion();
       TickingAway.startTimer();
-      actualRound = "FindThePlace";
-    }, 2000); // Adjust the timeout duration as needed
-  }
+    } else if (actualRound === "SortItOut") {
+      SortItOut.renderSortItOutZone();
+    } else if (actualRound === "SorryNotSoRich") {
+      sorryNotSoRich.renderQuizZone();
+    }
+    
   roundCounter++;
+  }, 2000); // Adjust the timeout duration as needed
+
 };
 
 Rounds.endGame = function () {
-  // // Remove the quiz zone
-  // if (actualRound === "FindThePlace") {
-  //   FindThePlace.removeQuizZone();
-  // } else {
-  //   TickingAway.removeQuizZone();
-  // }
-
-  // // Remove the money counter
-  // Money.removeMoneyZone();
-
-
   // Add the user to the leaderboard
   Users.addUser("Test", Money.getMoney());
 
   // Render the leaderboard
   Leaderboard.renderZone();
 };
-
 
 export { Rounds };

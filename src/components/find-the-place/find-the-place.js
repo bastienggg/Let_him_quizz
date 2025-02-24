@@ -145,7 +145,7 @@ FindThePlace.answerClicked = function (event) {
     }, 1000);
 
     // add score
-    Money.summonStack(5);
+    Money.summonStack(6);
   } else {
     Light.flashColor("#ff0000");
     Sound.renderWrongAnswer();

@@ -11,8 +11,8 @@ import { SortItOut } from "../sort-it-out/sort-it-out.js";
 let Rounds = {};
 
 let roundsOrder = [
-  "FindThePlace",
   "TickingAway",
+  "FindThePlace", 
   "SortItOut",
   "SorryNotSoRich",
 ];

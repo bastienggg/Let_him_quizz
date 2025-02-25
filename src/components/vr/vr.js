@@ -24,28 +24,22 @@ Vr.setupControllerClickHandler = function () {
                 if (!raycaster) return;
 
                 let intersectedEls = raycaster.intersectedEls;
-                let intersectedEl = intersectedEls.find(obj => obj === el);
-                if (!intersectedEl) return;
+                if (intersectedEls.length === 0 || intersectedEls[0] !== el) return;
 
                 isGrabbed = true;
                 controller = evt.target;
-
-                // Désactive la physique pendant le grab
-                el.removeAttribute("dynamic-body");
-
+                el.setAttribute("dynamic-body", "mass: 0");
+                el.setAttribute("grab", "")
                 controller.addEventListener("triggerup", this.onGrabEnd);
             };
 
             this.onGrabEnd = () => {
                 if (isGrabbed) {
-                    // Restaure les paramètres physiques
-                    el.setAttribute("dynamic-body", "mass: 5; restitution: 0.5; friction: 0.5");
+                    el.setAttribute("dynamic-body", "mass: 1; restitution: 0.5; friction: 0.5");
+                    el.removeAttribute("grab");
                     isGrabbed = false;
-
-                    if (controller) {
-                        controller.removeEventListener("triggerup", this.onGrabEnd);
-                        controller = null;
-                    }
+                    controller.removeEventListener("triggerup", this.onGrabEnd);
+                    controller = null;
                 }
             };
 
@@ -58,17 +52,15 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
                     // Appliquer la position directement pour un déplacement fluide
-                    let offset = new THREE.Vector3(0, 0, -0.1).applyQuaternion(controllerQuat);
-                    let newPosition = controllerPos.clone().add(offset);
+                    let offset = new THREE.Vector3(0, 0, -0.1);
+                    offset.applyQuaternion(controllerQuat);
 
+                    let newPosition = controllerPos.clone().add(offset);
                     el.object3D.position.copy(newPosition);
                 }
             };
-
             // Écoute directement sur le contrôleur
-            el.sceneEl.addEventListener("controllerconnected", (evt) => {
-                evt.detail.target.addEventListener("triggerdown", this.onGrabStart);
-            });
+            el.sceneEl.addEventListener("triggerdown", this.onGrabStart);
         }
     });
 };

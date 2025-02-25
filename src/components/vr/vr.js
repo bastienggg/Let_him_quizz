@@ -51,14 +51,12 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
-                    // Calculer la distance initiale entre l'objet et le contrôleur
-                    if (!this.initialDistance) {
-                        this.initialDistance = el.object3D.position.distanceTo(controllerPos);
-                    }
+                    // Appliquer la position directement pour un déplacement fluide
+                    let offset = new THREE.Vector3(0, 0, 0);
+                    offset.applyQuaternion(controllerQuat);
 
-                    // Appliquer la position pour maintenir la distance initiale
-                    let direction = new THREE.Vector3().subVectors(el.object3D.position, controllerPos).normalize();
-                    let newPosition = controllerPos.clone().add(direction.multiplyScalar(this.initialDistance));
+                    let newPosition = controllerPos.clone().add(offset);
+                    newPosition.z = el.object3D.position.z; // Empêcher le déplacement sur l'axe Z
                     el.object3D.position.copy(newPosition);
                 }
             };

@@ -183,7 +183,7 @@ SortItOut.CheckIfInside = function () {
     });
 
     if (allBoxesCorrect) {
-        Light.changeColor("#00FF00");
+        Light.changeColor("#A3E447");
         Sound.renderCorrectAnswer();
         gameFinished = true;
         Money.summonStack(2);
@@ -192,7 +192,7 @@ SortItOut.CheckIfInside = function () {
             SortItOut.resetAndRenderZone();
         }, 2000);
     } else {
-        Light.changeColor("#FF0000");
+        Light.changeColor("#FF662F");
         Sound.renderWrongAnswer();
         gameFinished = true;
         setTimeout(() => {

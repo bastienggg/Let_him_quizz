@@ -51,8 +51,9 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
-                    // Bloquer le déplacement sur l'axe des Z
-                    let offset = new THREE.Vector3(0, 0, controllerPos.z - el.object3D.position.z);
+                    // Appliquer la position directement pour un déplacement fluide
+                    let offset = new THREE.Vector3(0, 0, -2);
+                    offset.applyQuaternion(controllerQuat);
 
                     let newPosition = controllerPos.clone().add(offset);
                     el.object3D.position.copy(newPosition);

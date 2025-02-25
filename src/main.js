@@ -25,7 +25,7 @@ import { Vr } from './components/vr/vr.js';
 // Money.renderMoneyZone();
 // Start the timer
 
-// Vr.setupControllerClickHandler();
+Vr.setupControllerClickHandler();
 
 // Appeler la vérification en continu pendant la scène
 function update() {

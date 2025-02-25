@@ -85,7 +85,7 @@ SortItOut.renderSortItOutZone = async function () {
     });
 
     SortItOut.setupDraggables();
-    Vr.setupControllerClickHandler();
+    Vr.setupControllerGrabHandler();
 };
 
 SortItOut.removeSortItOutZone = function () {

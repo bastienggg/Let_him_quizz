@@ -14,7 +14,7 @@
     depth="0.1"
     height="0.3"
     width="1"
-    color="#FF662F"
+    color="#green"
     rotation="340 0 0"
   >
   </a-box>
@@ -60,7 +60,7 @@
     depth="0.1"
     height="0.5"
     width="1.8"
-    color="green"
+    color="#A3E447"
   ></a-box>
 </a-entity>
 <a-entity class="answer" position="0 2 -39">

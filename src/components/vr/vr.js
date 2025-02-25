@@ -52,11 +52,10 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
                     // Appliquer la position directement pour un déplacement fluide
-                    let offset = new THREE.Vector3(0, 0, 0);
+                    let offset = new THREE.Vector3(0, 0, 1);
                     offset.applyQuaternion(controllerQuat);
 
                     let newPosition = controllerPos.clone().add(offset);
-                    newPosition.z = el.object3D.position.z; // Empêcher le déplacement sur l'axe Z
                     el.object3D.position.copy(newPosition);
                 }
             };

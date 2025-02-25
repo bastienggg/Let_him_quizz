@@ -2,6 +2,7 @@ import { Light } from "../light/light.js";
 import { SortItOutData } from "../../data/data-sortitout.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Vr } from "../vr/vr.js";
+import { Rounds } from "../rounds/rounds.js";
 
 let SortItOut = {};
 let gameFinished = false;
@@ -140,6 +141,7 @@ SortItOut.resetAndRenderZone = function () {
         console.log("Game finished after " + maxRounds + " rounds.");
         SortItOut.removeSortItOutZone();
         // Optionally, you can add code here to display a message or perform other actions when the game is finished
+        Rounds.nextRound();
     }
 };
 

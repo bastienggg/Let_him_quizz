@@ -51,16 +51,10 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
-                    // Appliquer la position du contrôleur
-                    let offset = new THREE.Vector3(0, 0, -0.1);
-                    offset.applyQuaternion(controllerQuat);
+                    // Bloquer le déplacement sur l'axe des Z
+                    let offset = new THREE.Vector3(0, 0, controllerPos.z - el.object3D.position.z);
 
                     let newPosition = controllerPos.clone().add(offset);
-
-                    // ✅ Limiter le déplacement sur l'axe Z entre 0 et 2
-                    newPosition.z = THREE.MathUtils.clamp(newPosition.z, -37.4, -37.6);
-
-                    // Mettre à jour la position de l'objet
                     el.object3D.position.copy(newPosition);
                 }
             };

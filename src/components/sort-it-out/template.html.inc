@@ -60,7 +60,7 @@
     depth="0.1"
     height="0.5"
     width="1.8"
-    color="#A3E447"
+    color="green"
   ></a-box>
 </a-entity>
 <a-entity class="answer" position="0 2 -39">

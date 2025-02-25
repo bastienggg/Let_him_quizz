@@ -29,16 +29,12 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
-  SortItOut.renderSortItOutZone();
+  Money.summonStack(10);
 
-
-
-  Rounds.nextRound();
-  // Money.summonStack(10);
-  // setTimeout(() => {
-  //   sorryNotSoRich.renderQuizZone();
-  // }, 8000);
   // Rounds.nextRound();
+  setTimeout(() => {
+    sorryNotSoRich.renderQuizZone();
+  }, 5000);
 };
 
 Rounds.nextRound = async function () {
@@ -57,7 +53,7 @@ Rounds.nextRound = async function () {
     } else if (actualRound === "TickingAway") {
       TickingAway.removeQuizZone();
     } else if (actualRound === "SortItOut") {
-      SortItOut.removeQuizZone();
+      SortItOut.removeSortItOutZone();
     } else if (actualRound === "SorryNotSoRich") {
       sorryNotSoRich.removeQuizZone();
     }

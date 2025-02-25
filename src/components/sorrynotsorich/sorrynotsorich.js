@@ -102,34 +102,14 @@ sorryNotSoRich.updateAnswerColors = function () {
   });
 };
 
+
+// Calculate the money that the player has and the money that he is betting
 // Calculate the money that the player has and the money that he is betting
 sorryNotSoRich.calculateMoney = function () {
 
   // Get the money amount gain from the previous games
   let moneyAmount = Money.getMoney();
 
-  //Attributes divs to variables
-  const bets = [
-    document.querySelector("#bet1"),
-    document.querySelector("#bet2"),
-    document.querySelector("#bet3"),
-    document.querySelector("#bet4"),
-  ];
-
-  const plusButtons = [
-    document.querySelector("#plus1"),
-    document.querySelector("#plus2"),
-    document.querySelector("#plus3"),
-    document.querySelector("#plus4"),
-  ];
-
-  const minusButtons = [
-    document.querySelector("#minus1"),
-    document.querySelector("#minus2"),
-    document.querySelector("#minus3"),
-    document.querySelector("#minus4"),
-  ];
-  
 
   // Initialize bets to $0
   bets.forEach(bet => bet.setAttribute("value", "$0"));
@@ -137,6 +117,10 @@ sorryNotSoRich.calculateMoney = function () {
   // Update the total bet and check if the player can bet more
   const updateTotalBet = () => {
     totalBet = bets.reduce((sum, bet) => sum + parseInt(bet.getAttribute("value").replace('$', '')), 0);
+    Money.updateMoney(moneyAmount - totalBet);
+    if (totalBet === moneyAmount) {
+      Money.removeAllMoneyStack();
+    }
   };
 
   const checkBetStatus = () => {
@@ -153,6 +137,7 @@ sorryNotSoRich.calculateMoney = function () {
     let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
     if (canBetMore(100)) {
       bets[index].setAttribute("value", `$${currentValue + 100}`);
+      Money.removeMoney(2); // Remove 2 bills (100 units)
       updateTotalBet();
       checkBetStatus();
       minusButtons[index].setAttribute("visible", true);
@@ -164,6 +149,7 @@ sorryNotSoRich.calculateMoney = function () {
     let currentValue = parseInt(bets[index].getAttribute("value").replace('$', ''));
     if (currentValue > 0) {
       bets[index].setAttribute("value", `$${currentValue - 100}`);
+      Money.summonStack(2); // Add 2 bills (100 units)
       updateTotalBet();
       checkBetStatus();
       document.querySelector("#validButton a-box").classList.remove("interactable");
@@ -176,7 +162,7 @@ sorryNotSoRich.calculateMoney = function () {
   // Handle the click on the valid button
   const handleValidButtonClick = () => {
     let correctAnswerBox = document.querySelector(".good-answer");
-    console.log("correcrAnwserBox" + correctAnswerBox);
+    console.log("correctAnswerBox: " + correctAnswerBox);
     let correctBet = parseInt(correctAnswerBox.getAttribute("value").replace('$', ''));
     moneyAmount = Money.setMoney(correctBet);
 
@@ -185,7 +171,7 @@ sorryNotSoRich.calculateMoney = function () {
     for (let i = 1; i <= 4; i++) {
       if (!document.querySelector(`#bet${i}`).classList.contains("good-answer")) {
         document.querySelector(`#trap${i}`).removeAttribute("animation__rotation", "property: rotation; to: 0 0 0; loop: false; dur: 1000");
-      document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");
+        document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");
       }
     }
 
@@ -193,23 +179,24 @@ sorryNotSoRich.calculateMoney = function () {
     bets.forEach(bet => bet.setAttribute("value", "$0"));
     // Check if the player has any money left
     setTimeout(() => {
-    if (correctBet === 0) {
-      sorryNotSoRich.removeQuizZone();
-    } else {
-      // Update and render a new question
-      checkBetStatus();
-      updateTotalBet();
-      sorryNotSoRich.newQuestion();
+      if (correctBet === 0) {
+        sorryNotSoRich.removeQuizZone();
+        Money.removeAllMoney();
+      } else {
+        // Update and render a new question
+        checkBetStatus();
+        updateTotalBet();
+        sorryNotSoRich.newQuestion();
 
-      //Reset the trapdoors
-      for (let i = 1; i <= 4; i++) {
-        if (!document.querySelector(`#bet${i}`).classList.contains("good-answer")) {
-        document.querySelector(`#trap${i}`).removeAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");
-        document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 0 0 0; loop: false; dur: 1000");
+        // Reset the trapdoors
+        for (let i = 1; i <= 4; i++) {
+          if (!document.querySelector(`#bet${i}`).classList.contains("good-answer")) {
+            document.querySelector(`#trap${i}`).removeAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");
+            document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 0 0 0; loop: false; dur: 1000");
+          }
         }
       }
-    }
-  }, 2000);
+    }, 2000);
   };
 
   const addEventListeners = () => {
@@ -223,7 +210,6 @@ sorryNotSoRich.calculateMoney = function () {
 
     document.querySelector("#validButton").addEventListener("click", handleValidButtonClick);
   };
-  
 
   // Remove existing event listeners and add new ones
   plusButtons.forEach((button, index) => {
@@ -240,13 +226,14 @@ sorryNotSoRich.calculateMoney = function () {
 
   document.querySelector("#validButton").replaceWith(document.querySelector("#validButton").cloneNode(true));
 
-    // Hide all minus buttons and the valid button at the beginning
-    minusButtons.forEach(button => button.setAttribute("visible", false));
-    document.querySelector("#validButton").setAttribute("visible", false);
-    document.querySelector("#validButton a-box").classList.remove("interactable");
+  // Hide all minus buttons and the valid button at the beginning
+  minusButtons.forEach(button => button.setAttribute("visible", false));
+  document.querySelector("#validButton").setAttribute("visible", false);
+  document.querySelector("#validButton a-box").classList.remove("interactable");
 
   addEventListeners();
 };
+
 
 sorryNotSoRich.removeQuizZone = function () {
   scene.removeChild(document.querySelector("#sorrynotsorich-container"));

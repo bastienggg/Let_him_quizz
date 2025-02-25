@@ -18,10 +18,10 @@ const scene = document.querySelector("#mainScene");
 let Rounds = {};
 
 let roundsOrder = [
+  "SortItOut",
   "TickingAway",
   "FindThePlace",
   "SorryNotSoRich",
-  "SortItOut",
 ];
 let actualRound = "";
 let roundCounter = 1;

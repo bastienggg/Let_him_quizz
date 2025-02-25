@@ -30,8 +30,8 @@ Vr.setupControllerClickHandler = function () {
                 isGrabbed = true;
                 controller = evt.target;
 
-                // Désactive la gravité pendant le grab
-                el.setAttribute("dynamic-body", "mass: 0");
+                // Désactive la physique pendant le grab
+                el.removeAttribute("dynamic-body");
 
                 controller.addEventListener("triggerup", this.onGrabEnd);
             };
@@ -57,11 +57,11 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
+                    // Appliquer la position directement pour un déplacement fluide
                     let offset = new THREE.Vector3(0, 0, -0.1).applyQuaternion(controllerQuat);
                     let newPosition = controllerPos.clone().add(offset);
 
-                    // Lissage du mouvement
-                    el.object3D.position.lerp(newPosition, 0.2);
+                    el.object3D.position.copy(newPosition);
                 }
             };
 

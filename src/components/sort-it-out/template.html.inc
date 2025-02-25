@@ -14,7 +14,7 @@
     depth="0.1"
     height="0.3"
     width="1"
-    color="red"
+    color="bleu"
     rotation="340 0 0"
   >
   </a-box>

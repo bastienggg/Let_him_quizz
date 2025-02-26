@@ -41,9 +41,9 @@ Rounds.startGame = async function () {
   //   sorryNotSoRich.renderQuizZone();
   // }, 8000);
   // Rounds.nextRound();
-  setTimeout(() => {
-    sorryNotSoRich.renderQuizZone();
-  }, 15000);
+  // setTimeout(() => {
+  //   sorryNotSoRich.renderQuizZone();
+  // }, 15000);
 };
 
 Rounds.nextRound = async function () {

@@ -36,7 +36,6 @@ function update() {
 // Démarre la vérification continue
 update();
 
-
 // Second mini game
 setTimeout(() => {
     Rounds.startGame();

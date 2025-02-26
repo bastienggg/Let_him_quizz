@@ -18,7 +18,6 @@ let Money = {};
 let moneyAmount = 0;
 
 Money.renderMoneyZone = function () {
-
   // Create the a-entity for the money counter
   const tempDiv = document.createElement("div");
   tempDiv.id = "moneyZone";
@@ -52,12 +51,12 @@ Money.summonStack = function (amount) {
       tempDiv.innerHTML = templateMoney.replace("{{x}}", x).replace("{{z}}", z);
 
       const entity = tempDiv.querySelector("#moneyStack");
-      
+
       // Add the entity to the scene
       scene.appendChild(entity);
 
       // Update the money counter
-      moneyAmount= moneyAmount + 50;
+      moneyAmount = moneyAmount + 50;
       Money.updateMoney(moneyAmount);
 
       // Remove the collisions of the entity after 5 seconds
@@ -81,6 +80,26 @@ Money.getMoney = function () {
 
 Money.setMoney = function (amount) {
   moneyAmount = amount;
+  Money.updateMoney(moneyAmount);
+  return moneyAmount;
+};
+
+Money.removeMoney = function (amount) {
+  const moneyStack = document.querySelectorAll("#moneyStack");
+  moneyAmount = moneyAmount - 50*amount;
+  Money.updateMoney(moneyAmount);
+  for (let i = 0; i < amount; i++) {
+    if (moneyStack[i]) {
+      setTimeout(() => {
+        moneyStack[i].remove();
+      }, i * 100);
+    }
+  }
+};
+
+Money.removeAllMoneyStack = function () {
+  const moneyStacks = document.querySelectorAll("#moneyStack");
+  moneyStacks.forEach(stack => stack.remove());
 };
 
 export { Money };

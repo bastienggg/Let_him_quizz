@@ -16,9 +16,9 @@ const scene = document.querySelector("#mainScene");
 let Rounds = {};
 
 let roundsOrder = [
-  "SortItOut",
   "TickingAway",
   "FindThePlace",
+  "SortItOut",
   "SorryNotSoRich",
 ];
 let actualRound = "";
@@ -36,14 +36,6 @@ Rounds.startGame = async function () {
 
   Rounds.nextRound();
 
-  // Money.summonStack(10);
-  // setTimeout(() => {
-  //   sorryNotSoRich.renderQuizZone();
-  // }, 8000);
-  // Rounds.nextRound();
-  setTimeout(() => {
-    sorryNotSoRich.renderQuizZone();
-  }, 15000);
 };
 
 Rounds.nextRound = async function () {

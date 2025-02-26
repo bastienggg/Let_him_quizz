@@ -8,9 +8,7 @@ import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
 import { SortItOut } from "../sort-it-out/sort-it-out.js";
 
-const templateFile = await fetch(
-  "src/components/rounds/template.html.inc",
-);
+const templateFile = await fetch("src/components/rounds/template.html.inc");
 const template = await templateFile.text();
 
 const scene = document.querySelector("#mainScene");
@@ -32,8 +30,12 @@ Rounds.startGame = async function () {
   // SortItOut.renderSortItOutZone();
 
 
+  document
+    .querySelector("#anchorman")
+    .addEventListener("click", Rounds.clickOnAnchorman);
 
   Rounds.nextRound();
+
   // Money.summonStack(10);
   // setTimeout(() => {
   //   sorryNotSoRich.renderQuizZone();
@@ -73,22 +75,15 @@ Rounds.nextRound = async function () {
     if (actualRound === "FindThePlace") {
       FindThePlace.renderPropositionsZone();
       FindThePlace.renderQuestion();
-      Rounds.explainGame("Find the correct place");
     } else if (actualRound === "TickingAway") {
       TickingAway.renderQuizZone();
       TickingAway.newQuestion();
       TickingAway.startTimer();
-      Rounds.explainGame("Answer the questions before the timer runs out");
     } else if (actualRound === "SortItOut") {
       SortItOut.renderSortItOutZone();
-      Rounds.explainGame("Sort the answers in the correct order");
-
     } else if (actualRound === "SorryNotSoRich") {
       sorryNotSoRich.renderQuizZone();
-      Rounds.explainGame("Bet on the correct answer but save some money !");
     }
-
-
 
     roundCounter++;
   }, 2000); // Adjust the timeout duration as needed
@@ -119,10 +114,9 @@ Rounds.explainGame = function (explanationText) {
 
 Rounds.removeExplanation = function () {
   // Remove the explanation
-
   explanationZone.setAttribute("animation", {
     property: "position",
-    to: "0 -5 0",
+    to: "0 -6 0",
     dur: 600,
     easing: "easeInOutQuad",
   });
@@ -130,7 +124,34 @@ Rounds.removeExplanation = function () {
   setTimeout(() => {
     const explanationZone = document.querySelector("#explanationZone");
     explanationZone.remove();
-  }, 1000);
-}
+  }, 700);
+};
+
+let isPopupOpen = false;
+
+Rounds.clickOnAnchorman = function () {
+  // Prevent the user from clicking on the anchorman again
+  if (isPopupOpen) return;
+  // Explain the game with a speech bubble
+  if (actualRound === "FindThePlace") {
+    Rounds.explainGame("Find the correct place");
+  } else if (actualRound === "TickingAway") {
+    Rounds.explainGame("Answer the questions before the timer runs out");
+  } else if (actualRound === "SortItOut") {
+    Rounds.explainGame("Sort the answers in the correct order");
+  } else if (actualRound === "SorryNotSoRich") {
+    Rounds.explainGame("Bet on the correct answer but save some money!");
+  }
+
+  isPopupOpen = true;
+
+  // Remove the explanation
+  setTimeout(() => {
+    Rounds.removeExplanation();
+    setTimeout(() => {
+      isPopupOpen = false;
+    }, 1000);
+  }, 5000);
+};
 
 export { Rounds };

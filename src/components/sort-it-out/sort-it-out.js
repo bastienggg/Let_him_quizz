@@ -137,6 +137,7 @@ SortItOut.resetAndRenderZone = function () {
         SortItOut.removeSortItOutZone();
         Rounds.nextRound();
         // Optionally, you can add code here to display a message or perform other actions when the game is finished
+        Rounds.nextRound();
     }
 };
 

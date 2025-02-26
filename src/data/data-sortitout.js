@@ -10,7 +10,7 @@ SortItOutData.getRandomSortItOut = async function () {
     let newSortItOut;
     do {
         // Fetch a random place
-        let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/sort?difficulty=easy");
+        let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/sort?difficulty=hard");
         newSortItOut = await response.json();
     } while (recentIds.includes(newSortItOut.id));
 

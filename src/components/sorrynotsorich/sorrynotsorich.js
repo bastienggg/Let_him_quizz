@@ -25,6 +25,7 @@ let sorryNotSoRich = {};
 
 let totalBet = 0;
 
+let questionCounter = 0;
 
 // Render the template in the scene
 sorryNotSoRich.renderQuizZone = function () {
@@ -38,10 +39,21 @@ sorryNotSoRich.renderQuizZone = function () {
   sorryNotSoRich.newQuestion();
 };
 
-
 // Get a new question from the MCQ data
 sorryNotSoRich.newQuestion = async function () {
 
+  //Increment the question counter
+  questionCounter++;
+
+  //Verify if the question counter is equal to 4
+  if (questionCounter === 4) {
+  setTimeout(() => {
+    sorryNotSoRich.removeQuizZone();
+    Rounds.nextRound();
+  }, 1500);
+  return;
+  }
+  
   //Get random hard question
   let question = await MCQ.getRandomQuestion("hard");
 
@@ -102,14 +114,40 @@ sorryNotSoRich.updateAnswerColors = function () {
   });
 };
 
-
-// Calculate the money that the player has and the money that he is betting
 // Calculate the money that the player has and the money that he is betting
 sorryNotSoRich.calculateMoney = function () {
 
   // Get the money amount gain from the previous games
   let moneyAmount = Money.getMoney();
 
+    //Attributes divs to variables
+    const bets = [
+      document.querySelector("#bet1"),
+      document.querySelector("#bet2"),
+      document.querySelector("#bet3"),
+      document.querySelector("#bet4"),
+    ];
+
+    const plusButtons = [
+      document.querySelector("#plus1"),
+      document.querySelector("#plus2"),
+      document.querySelector("#plus3"),
+      document.querySelector("#plus4"),
+    ];
+
+    const minusButtons = [
+      document.querySelector("#minus1"),
+      document.querySelector("#minus2"),
+      document.querySelector("#minus3"),
+      document.querySelector("#minus4"),
+    ];
+
+    const trapdoors = [
+      document.querySelector("#trap1"),
+      document.querySelector("#trap2"),
+      document.querySelector("#trap3"),
+      document.querySelector("#trap4"),
+    ];
 
   // Initialize bets to $0
   bets.forEach(bet => bet.setAttribute("value", "$0"));
@@ -127,7 +165,7 @@ sorryNotSoRich.calculateMoney = function () {
     const allBetsPlaced = totalBet === moneyAmount;
     plusButtons.forEach(button => button.setAttribute("visible", !allBetsPlaced));
     document.querySelector("#validButton").setAttribute("visible", allBetsPlaced);
-    document.querySelector("#validButton a-box").classList.add("interactable");
+    document.querySelector("#validButton a-box").classList.toggle("interactable", allBetsPlaced);
   };
 
   const canBetMore = (amount) => totalBet + amount <= moneyAmount;
@@ -138,6 +176,7 @@ sorryNotSoRich.calculateMoney = function () {
     if (canBetMore(100)) {
       bets[index].setAttribute("value", `$${currentValue + 100}`);
       Money.removeMoney(2); // Remove 2 bills (100 units)
+      addMoneyStackToTrapdoor(index);
       updateTotalBet();
       checkBetStatus();
       minusButtons[index].setAttribute("visible", true);
@@ -150,6 +189,7 @@ sorryNotSoRich.calculateMoney = function () {
     if (currentValue > 0) {
       bets[index].setAttribute("value", `$${currentValue - 100}`);
       Money.summonStack(2); // Add 2 bills (100 units)
+      removeMoneyStackFromTrapdoor(index);
       updateTotalBet();
       checkBetStatus();
       document.querySelector("#validButton a-box").classList.remove("interactable");
@@ -166,6 +206,11 @@ sorryNotSoRich.calculateMoney = function () {
     let correctBet = parseInt(correctAnswerBox.getAttribute("value").replace('$', ''));
     moneyAmount = Money.setMoney(correctBet);
 
+    //Remove the money from the trapdoors
+    setTimeout(() => {
+      removeAllMoneyStacksFromTrapdoors();
+    }, 1500);
+
     sorryNotSoRich.updateAnswerColors();
     // Add animation to the wrong answer trapdoors
     for (let i = 1; i <= 4; i++) {
@@ -180,8 +225,9 @@ sorryNotSoRich.calculateMoney = function () {
     // Check if the player has any money left
     setTimeout(() => {
       if (correctBet === 0) {
+        console.log("You lost all your money!");
         sorryNotSoRich.removeQuizZone();
-        Money.removeAllMoney();
+        Money.removeAllMoneyStack();
       } else {
         // Update and render a new question
         checkBetStatus();
@@ -198,6 +244,38 @@ sorryNotSoRich.calculateMoney = function () {
       }
     }, 2000);
   };
+
+  const addMoneyStackToTrapdoor = (index) => {
+    const trapdoor = trapdoors[index];
+    const moneyStack = document.createElement("a-entity");
+    moneyStack.setAttribute("gltf-model", "./src/assets/modele3d/money.glb");
+
+    // Calculate the position based on the number of money stacks already present
+    const existingStacks = trapdoor.querySelectorAll(".moneyStack").length;
+    const stackIndex = Math.floor(existingStacks / 5);
+    const yOffset = (existingStacks % 5) * 0.1; // Adjust the offset as needed
+    const xOffset = stackIndex * 0.2; // Adjust the offset for new stacks
+
+    moneyStack.setAttribute("position", `${xOffset} ${yOffset} 0.75`);
+    moneyStack.setAttribute("scale", "0.4 0.4 0.4");
+    moneyStack.classList.add("moneyStack");
+    trapdoor.appendChild(moneyStack);
+  };
+
+  const removeMoneyStackFromTrapdoor = (index) => {
+    const trapdoor = trapdoors[index];
+    const moneyStacks = trapdoor.querySelectorAll(".moneyStack");
+    if (moneyStacks.length > 0) {
+      trapdoor.removeChild(moneyStacks[moneyStacks.length - 1]);
+    }
+  };
+
+const removeAllMoneyStacksFromTrapdoors = () => {
+  trapdoors.forEach(trapdoor => {
+    const moneyStacks = trapdoor.querySelectorAll(".moneyStack");
+    moneyStacks.forEach(stack => trapdoor.removeChild(stack));
+  });
+};
 
   const addEventListeners = () => {
     plusButtons.forEach((button, index) => {
@@ -233,7 +311,6 @@ sorryNotSoRich.calculateMoney = function () {
 
   addEventListeners();
 };
-
 
 sorryNotSoRich.removeQuizZone = function () {
   scene.removeChild(document.querySelector("#sorrynotsorich-container"));

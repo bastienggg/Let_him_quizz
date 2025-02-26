@@ -29,12 +29,12 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
-  Money.summonStack(10);
+  Money.summonStack(30);
 
   // Rounds.nextRound();
   setTimeout(() => {
     sorryNotSoRich.renderQuizZone();
-  }, 5000);
+  }, 15000);
 };
 
 Rounds.nextRound = async function () {

@@ -3,6 +3,7 @@ import { Money } from "../money-counter/money-counter.js";
 import { Light } from "../light/light.js";
 import { Rounds } from "../rounds/rounds.js";
 import { Sound } from "../audio/audio.js";
+import { Animations } from "../animations/animations.js";
 
 const templateFile = await fetch(
   "src/components/ticking-away/template.html.inc",
@@ -135,7 +136,10 @@ TickingAway.answerClicked = function (event) {
   // check if the answer is the correct one
   // if yes, display a message and remove the quiz zone
   if (clickedBox.id === "good answer") {
+    // event of good answer
     Light.flashColor("#00ff00");
+    Animations.anchormanCheer();
+    Animations.audienceCheer();
     Sound.renderCorrectAnswer();
     setTimeout(() => {
       TickingAway.newQuestion();
@@ -147,6 +151,7 @@ TickingAway.answerClicked = function (event) {
     // if no, display a message and goes on  to the next question
   } else {
     Light.flashColor("#ff0000");
+    Animations.anchormanDeception();
     Sound.renderWrongAnswer();
     // Puts a delay before the next question
     setTimeout(() => {

@@ -8,18 +8,33 @@ import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
 import { SortItOut } from "../sort-it-out/sort-it-out.js";
 
+// Import of the speech bubble template
 const templateFile = await fetch("src/components/rounds/template.html.inc");
 const template = await templateFile.text();
+
+// Import of the explanation zone template
+const templateExplanationFile = await fetch("src/components/rounds/templateExplanation.html.inc");
+const templateExplanation = await templateExplanationFile.text();
+
+// Import of the menu template
+const templateMenuFile = await fetch("src/components/rounds/templateMenu.html.inc");
+const templateMenu = await templateMenuFile.text();
+
+// Import of the ending screen template
+const templateEndFile = await fetch("src/components/rounds/templateEnding.html.inc");
+const templateEnd = await templateEndFile.text();
+
 
 const scene = document.querySelector("#mainScene");
 
 let Rounds = {};
 
+// Boolean to check if the instructions are displayed
+let instructionsDisplayed = false;
+
 let roundsOrder = [
   "TickingAway",
-  "FindThePlace",
-  "SortItOut",
-  "SorryNotSoRich",
+  "FindThePlace"
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -27,21 +42,23 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
-  // SortItOut.renderSortItOutZone();
-
 
   document
     .querySelector("#anchorman")
     .addEventListener("click", Rounds.clickOnAnchorman);
 
-  Rounds.nextRound();
+  Rounds.renderMenu();
+
 
 };
 
 Rounds.nextRound = async function () {
   // End the game if the round counter is greater than the length of roundsOrder
   if (roundCounter > roundsOrder.length) {
+    setTimeout(() => {
     Rounds.endGame();
+  }
+    , 1000 );
     return;
   }
 
@@ -65,35 +82,68 @@ Rounds.nextRound = async function () {
     actualRound = roundsOrder[roundCounter - 1];
   }, 500); // Adjust the timeout duration as needed
 
-  // Render the current round's quiz zone
-  setTimeout(() => {
-    if (actualRound === "FindThePlace") {
-      FindThePlace.renderPropositionsZone();
-      FindThePlace.renderQuestion();
-    } else if (actualRound === "TickingAway") {
-      TickingAway.renderQuizZone();
-      TickingAway.newQuestion();
-      TickingAway.startTimer();
-    } else if (actualRound === "SortItOut") {
-      SortItOut.renderSortItOutZone();
-    } else if (actualRound === "SorryNotSoRich") {
-      sorryNotSoRich.renderQuizZone();
-    }
+  // Render the current round's explanation zone
+  Rounds.renderExplanationZone(roundExplanations[roundsOrder[roundCounter - 1]]);
 
-    roundCounter++;
-  }, 2000); // Adjust the timeout duration as needed
+  // Wait for the explanation to be read
+  const checkInstructionsDisplayed = async () => {
+    // If the instructions arent displayed, render the quiz zone
+    if (!instructionsDisplayed) {
+      setTimeout(() => {
+      if (actualRound === "FindThePlace") {
+        FindThePlace.renderPropositionsZone();
+        FindThePlace.renderQuestion();
+      } else if (actualRound === "TickingAway") {
+        TickingAway.renderQuizZone();
+        TickingAway.newQuestion();
+        TickingAway.startTimer();
+      } else if (actualRound === "SortItOut") {
+        SortItOut.renderSortItOutZone();
+      } else if (actualRound === "SorryNotSoRich") {
+        sorryNotSoRich.renderQuizZone();
+      }
+    }, 500);
+
+      roundCounter++;
+
+      // Else, check again after a short delay
+    } else {
+      setTimeout(checkInstructionsDisplayed, 100);
+    }
+  };
+
+  checkInstructionsDisplayed();
+  
 };
 
 Rounds.endGame = function () {
+  // Remove the quiz zone
+  if (actualRound === "FindThePlace") {
+    FindThePlace.removeQuizZone();
+  } else if (actualRound === "TickingAway") {
+    TickingAway.removeQuizZone();
+  } else if (actualRound === "SortItOut") {
+    SortItOut.removeSortItOutZone();
+  } else if (actualRound === "SorryNotSoRich") {
+    sorryNotSoRich.removeQuizZone();
+  }
+
   // Add the user to the leaderboard
   Users.addUser("Test", Money.getMoney());
 
   // Render the leaderboard
   Leaderboard.renderZone();
+
+  // Render the ending screen
+  const endingScreen = document.createElement("a-entity");
+  endingScreen.id = "endingScreen";
+  endingScreen.innerHTML = templateEnd.replace("{{final-score}}", Money.getMoney());
+  scene.appendChild(endingScreen);
+
 };
 
+  // Explain the game in a speech bubble
 Rounds.explainGame = function (explanationText) {
-  // Explain the game
 
   // Render the explanation
   const explanationHtml = document.createElement("a-entity");
@@ -127,6 +177,7 @@ let isPopupOpen = false;
 Rounds.clickOnAnchorman = function () {
   // Prevent the user from clicking on the anchorman again
   if (isPopupOpen) return;
+
   // Explain the game with a speech bubble
   if (actualRound === "FindThePlace") {
     Rounds.explainGame("Find the correct place");
@@ -147,6 +198,83 @@ Rounds.clickOnAnchorman = function () {
       isPopupOpen = false;
     }, 1000);
   }, 5000);
+};
+
+const roundExplanations = {
+  "FindThePlace": "Find the place \n In each round, you will be dropped in a place in the world. \n Then, you will have to guess between 4 propositions where you were. \n Look for signs, driving side, flags and other clues ! \n Each good answer gives you 300$",
+  "TickingAway": "Ticking away \n You will have 30 seconds to answer as much questions as you can. \n But be careful, a wrong answer will make you lose some time! \n Each good answer gives you 100$",
+  "SortItOut": "Sort it out \n Sort the answers in the crescent order by moving the colored cubes in the right box. \n Then, lock your answer and cross your fingers ! \n Each good answer gives you 200$",
+  "SorryNotSoRich": "Sorry not so rich \n Bet on the correct answer by spreading your money between the 4 propositions. \n But be careful, you will lose the money you bet on wrong answers !"
+}
+
+
+Rounds.renderExplanationZone = function (roundName) {
+  // Change the boolean
+  instructionsDisplayed = true;
+
+  // Render the explanation zone
+  const explanationZone = document.createElement("a-entity");
+  explanationZone.id = "explanationZone";
+  explanationZone.innerHTML = templateExplanation.replace(
+    "{{explanation}}",
+    roundName
+  );
+  scene.appendChild(explanationZone);
+
+  // add a listener on the button to continue
+  const button = document.querySelector("#validButton-explanation");
+  button.addEventListener("click", Rounds.removeExplanationZone);
+  
+
+}
+
+Rounds.removeExplanationZone = function () {
+  // Change the boolean
+  instructionsDisplayed = false;
+
+  // make an animation to remove the explanation zone
+  const explanationZone = document.querySelector("#explanationZone");
+  explanationZone.setAttribute("animation", {
+    property: "position",
+    to: "0 -6 0",
+    dur: 600,
+    easing: "easeInOutQuad",
+  });
+
+  // Remove the explanation zone
+  setTimeout(() => {
+    explanationZone.remove();
+  }, 700);
+}
+
+Rounds.renderMenu = function () {
+  // Render the menu
+  const menu = document.createElement("a-entity");
+  menu.id = "menuZone";
+  menu.innerHTML = templateMenu;
+  scene.appendChild(menu);
+
+  // Add the event listeners on the button
+  const startButton = document.querySelector("#startButton-menu");
+  startButton.addEventListener("click", Rounds.removeMenu);
+};
+
+Rounds.removeMenu = function () {
+  // Remove the menu
+  const menuZone = document.querySelector("#menuZone");
+  menuZone.setAttribute("animation", {
+    property: "position",
+    to: "0 -6 0",
+    dur: 600,
+    easing: "easeInOutQuad",
+  });
+
+  setTimeout(() => {
+    menuZone.remove();
+
+    // Start the first round
+    Rounds.nextRound();
+  }, 700);
 };
 
 export { Rounds };

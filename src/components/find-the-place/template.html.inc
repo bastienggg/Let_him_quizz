@@ -26,7 +26,7 @@
       depth="0.1"
       height="0.5"
       width="1.8"
-      color="#ff0000"
+      color="#FF662F"
     ></a-box>
   </a-entity>
   <a-entity class="answer" id="answer2" position="1 1 -3">
@@ -42,7 +42,7 @@
       depth="0.1"
       height="0.5"
       width="1.8"
-      color="#ff0000"
+      color="#FF662F"
     ></a-box>
   </a-entity>
   <a-entity class="answer" id="answer3" position="-1 0 -3">
@@ -58,7 +58,7 @@
       depth="0.1"
       height="0.5"
       width="1.8"
-      color="#ff0000"
+      color="#FF662F"
     ></a-box>
   </a-entity>
   <a-entity class="answer" id="answer4" position="1 0 -3">
@@ -74,7 +74,7 @@
       depth="0.1"
       height="0.5"
       width="1.8"
-      color="#ff0000"
+      color="#FF662F"
     ></a-box>
   </a-entity>
 </a-entity>

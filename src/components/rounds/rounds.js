@@ -16,9 +16,9 @@ const scene = document.querySelector("#mainScene");
 let Rounds = {};
 
 let roundsOrder = [
+  "SortItOut",
   "TickingAway",
   "FindThePlace",
-  "SortItOut",
   "SorryNotSoRich",
 ];
 let actualRound = "";
@@ -27,6 +27,8 @@ let roundCounter = 1;
 Rounds.startGame = async function () {
   // Render the money counter
   Money.renderMoneyZone();
+  // SortItOut.renderSortItOutZone();
+
 
   document
     .querySelector("#anchorman")
@@ -57,7 +59,7 @@ Rounds.nextRound = async function () {
     } else if (actualRound === "TickingAway") {
       TickingAway.removeQuizZone();
     } else if (actualRound === "SortItOut") {
-      SortItOut.removeQuizZone();
+      SortItOut.removeSortItOutZone();
     } else if (actualRound === "SorryNotSoRich") {
       sorryNotSoRich.removeQuizZone();
     }

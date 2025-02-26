@@ -19,22 +19,23 @@ Vr.setupControllerClickHandler = function () {
             let isGrabbed = false;
             let controller = null;
 
-            this.onGrabStart = function (evt) {
-                let raycaster = evt.traget.component.raycaster;
+            this.onGrabStart = (evt) => {
+                let raycaster = evt.target.components.raycaster;
                 if (!raycaster) return;
+
                 let intersectedEls = raycaster.intersectedEls;
                 if (intersectedEls.length === 0 || intersectedEls[0] !== el) return;
 
                 isGrabbed = true;
-                controller = evt.traget;
+                controller = evt.target;
                 el.setAttribute("dynamic-body", "mass: 0");
+                el.setAttribute("grab", "")
                 controller.addEventListener("triggerup", this.onGrabEnd);
-
             };
 
-            this.onGrabEnd = function () {
+            this.onGrabEnd = () => {
                 if (isGrabbed) {
-                    el.setAttribute("dynamic-body", "mass: 5; restitution: 0.5; friction:0.5");
+                    el.setAttribute("dynamic-body", "mass: 1; restitution: 0.5; friction: 0.5");
                     el.removeAttribute("grab");
                     isGrabbed = false;
                     controller.removeEventListener("triggerup", this.onGrabEnd);
@@ -50,19 +51,18 @@ Vr.setupControllerClickHandler = function () {
                     controller.object3D.getWorldPosition(controllerPos);
                     controller.object3D.getWorldQuaternion(controllerQuat);
 
-                    let offset = new THREE.Vector3(0, 0, -0.1);
+                    // Appliquer la position directement pour un déplacement fluide
+                    let offset = new THREE.Vector3(0, 0, -1);
                     offset.applyQuaternion(controllerQuat);
 
                     let newPosition = controllerPos.clone().add(offset);
                     el.object3D.position.copy(newPosition);
-
-                };
+                }
             };
-
+            // Écoute directement sur le contrôleur
             el.sceneEl.addEventListener("triggerdown", this.onGrabStart);
-
         }
-    })
+    });
 };
 
 

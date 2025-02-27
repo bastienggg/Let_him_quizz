@@ -6,7 +6,7 @@ import { Sound } from "../audio/audio.js";
 import { Animations } from "../animations/animations.js";
 
 const templateFile = await fetch(
-  "src/components/ticking-away/template.html.inc",
+  "./src/components/ticking-away/template.html.inc",
 );
 const template = await templateFile.text();
 
@@ -166,7 +166,7 @@ TickingAway.answerClicked = function (event) {
 TickingAway.startTimer = function () {
   // start the timer
   timerValue = 0;
-  let timeLimit = 10;
+  let timeLimit = 30;
   Sound.renderTictac();
 
 

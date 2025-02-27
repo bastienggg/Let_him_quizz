@@ -14,17 +14,6 @@ import { SortItOut } from './components/sort-it-out/sort-it-out.js';
 import { Vr } from './components/vr/vr.js';
 import { Keyboard } from './components/keyboard/keyboard.js';
 
-// First mini game
-// TickingAway.renderQuizZone();
-// TickingAway.newQuestion();
-// TickingAway.startTimer();
-
-// Second mini game
-// FindThePlace.renderPropositionsZone();
-// FindThePlace.renderQuestion();
-// Render the money counter
-// Money.renderMoneyZone();
-// Start the timer
 
 Vr.setupControllerClickHandler();
 

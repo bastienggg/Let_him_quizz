@@ -5,12 +5,12 @@ import { Rounds } from "../rounds/rounds.js";
 import { Sound } from "../audio/audio.js";
 
 const templateFile = await fetch(
-  "src/components/sorrynotsorich/template.html.inc",
+  "./src/components/sorrynotsorich/template.html.inc",
 );
 const template = await templateFile.text();
 
 const moneyTemplateFile = await fetch(
-  "src/components/sorrynotsorich/money-template.html.inc",
+  "./src/components/sorrynotsorich/money-template.html.inc",
 );
 
 const moneyTemplate = await moneyTemplateFile.text();
@@ -28,6 +28,8 @@ sorryNotSoRich.renderQuizZone = function () {
   const tempDiv = document.createElement("div");
   tempDiv.id = "sorryNotSoRichDiv";
   tempDiv.innerHTML = template;
+  
+  questionCounter = 0;
 
   while (tempDiv.firstChild) {
     scene.appendChild(tempDiv.firstChild);
@@ -44,7 +46,6 @@ sorryNotSoRich.newQuestion = async function () {
   //Verify if the question counter is equal to 4
   if (questionCounter === 4) {
     setTimeout(() => {
-      sorryNotSoRich.removeQuizZone();
       Rounds.nextRound();
     }, 1500);
     return;
@@ -327,6 +328,11 @@ sorryNotSoRich.removeQuizZone = function () {
   // remove the zone for the quiz with the 3d polygons for the answers
   const propositionsZone = document.querySelector("#sorrynotsorich-container");
 
+
+  setTimeout(() => {
+    propositionsZone.remove();
+  }, 800);
+
   // animation to remove the zone smoothly falling in the ground
   propositionsZone.setAttribute("animation", {
     property: "position",
@@ -335,9 +341,7 @@ sorryNotSoRich.removeQuizZone = function () {
     easing: "easeInOutQuad",
   });
 
-  setTimeout(() => {
-    propositionsZone.remove();
-  }, 800);
+  
 };
 
 export { sorryNotSoRich };

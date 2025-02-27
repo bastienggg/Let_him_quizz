@@ -109,14 +109,6 @@
       >
       </a-box>
 
-
-      <!-- Message tip in a speech bubble -->
-
-      <a-entity
-        id="topScore"
-        position="0 2 -3"
-        text="value: Top score: 0; color: #FFF; width: 4;"
-      ></a-entity>
       <a-assets>
         <a-asset-item
           id="tvModel"
@@ -360,8 +352,10 @@
       <!-- FPS counter -->
       <a-entity
         id="fps-counter"
-        position="0 2 -3"
+        position="5 1.7 -38.5"
         text="value: 0 FPS; color: #FFF; width: 4;"
+        rotation="0 0 0"
+        color="#000"
       ></a-entity>
       <script>
         const fpsCounter = document.querySelector("#fps-counter");

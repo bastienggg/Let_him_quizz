@@ -4,12 +4,17 @@ let Leaderboard = {};
 const scene = document.querySelector('#mainScene');
 
 const templateFile = await fetch(
-  "src/components/leaderboard/template.html.inc",
+  "./src/components/leaderboard/template.html.inc",
 );
 const template = await templateFile.text();
 
 Leaderboard.renderZone = async function() {
   let usersTop = await Users.getTopUsers();
+
+  // If there is already a leaderboard, remove it
+  if (document.querySelector("#scoreboard")) {
+    Leaderboard.remove();
+  }
 
   // Creating the empty leaderboard
   const tempDiv = document.createElement("div");
@@ -38,7 +43,9 @@ Leaderboard.renderZone = async function() {
 
 }
 
-Leaderboard.update = function() {
+Leaderboard.remove = function() {
+  const leaderboardZone = document.querySelector("#scoreboard");
+  leaderboardZone.remove();
 
 } 
 

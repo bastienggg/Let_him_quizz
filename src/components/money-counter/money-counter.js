@@ -1,13 +1,13 @@
 import { MCQ } from "../../data/data-mcq.js";
 // Import of the money counter template
 const templateFile = await fetch(
-  "src/components/money-counter/template.html.inc",
+  "./src/components/money-counter/template.html.inc",
 );
 const template = await templateFile.text();
 
 // Import of the money template
 const templateMoneyFile = await fetch(
-  "src/components/money-counter/money-template.html.inc",
+  "./src/components/money-counter/money-template.html.inc",
 );
 const templateMoney = await templateMoneyFile.text();
 

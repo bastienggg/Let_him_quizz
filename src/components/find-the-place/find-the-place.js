@@ -6,7 +6,7 @@ import { Sound } from "../audio/audio.js";
 import { Animations } from "../animations/animations.js";
 
 const templateFile = await fetch(
-  "src/components/find-the-place/template.html.inc",
+  "./src/components/find-the-place/template.html.inc",
 );
 const template = await templateFile.text();
 
@@ -19,6 +19,10 @@ let freezed = false;
 let FindThePlace = {};
 
 FindThePlace.renderPropositionsZone = function () {
+  // If the placeCounter is 3 or more, we set it back to 0
+  if (placeCounter >= 3) {
+    placeCounter = 0;
+  }
   // Create the zone for the quiz with the 3d polygons for the answers
   // Create the a-entities for the answers and the question from the template
   const tempDiv = document.createElement("div");

@@ -36,10 +36,9 @@ let instructionsDisplayed = false;
 //Set the order of the rounds
 let roundsOrder = [
   "TickingAway",
-  "SorryNotSoRich",
   "FindThePlace",
   "SortItOut",
-
+  "SorryNotSoRich",
 ];
 let actualRound = "";
 let roundCounter = 1;

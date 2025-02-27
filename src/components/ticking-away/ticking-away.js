@@ -166,7 +166,7 @@ TickingAway.answerClicked = function (event) {
 TickingAway.startTimer = function () {
   // start the timer
   timerValue = 0;
-  let timeLimit = 35;
+  let timeLimit = 10;
   Sound.renderTictac();
 
 
@@ -182,11 +182,11 @@ TickingAway.startTimer = function () {
 
     // If the timer reaches the time limit, remove the quiz zone and go to the next round
     if (timerValue === timeLimit) {
-      TickingAway.removeQuizZone();
       clearInterval(intervalId);
       // Goes to the next round
       Rounds.nextRound();
       Sound.stopTictac();
+      Sound.renderTictacEnding();
     }
   }, 1000);
 };

@@ -9,7 +9,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="1. {{user1}}"
+    value="{{user1}}"
     color="#FFF"
     position="0.1 5 0.1"
   ></a-text>
@@ -23,7 +23,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="2. {{user2}}"
+    value="{{user2}}"
     color="#FFF"
     position="0.1 4.5 0.1"
   ></a-text>
@@ -37,7 +37,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="3. {{user3}}"
+    value="{{user3}}"
     color="#FFF"
     position="0.1 4 0.1"
   ></a-text>
@@ -51,7 +51,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="4. {{user4}}"
+    value="{{user4}}"
     color="#FFF"
     position="0.1 3.5 0.1"
   ></a-text>
@@ -65,7 +65,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="5. {{user5}}"
+    value="{{user5}}"
     color="#FFF"
     position="0.1 3 0.1"
   ></a-text>
@@ -79,7 +79,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="6. {{user6}}"
+    value="{{user6}}"
     color="#FFF"
     position="0.1 2.5 0.1"
   ></a-text>
@@ -93,7 +93,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="7. {{user7}}"
+    value="{{user7}}"
     color="#FFF"
     position="0.1 2 0.1"
   ></a-text>
@@ -107,7 +107,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="8. {{user8}}"
+    value="{{user8}}"
     color="#FFF"
     position="0.1 1.5 0.1"
   ></a-text>
@@ -121,7 +121,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="9. {{user9}}"
+    value="{{user9}}"
     color="#FFF"
     position="0.1 1 0.1"
   ></a-text>
@@ -135,7 +135,7 @@
   <a-text
     align="center"
     scale="1.4 1.4 1.4"
-    value="10. {{user10}}"
+    value="{{user10}}"
     color="#FFF"
     position="0.1 0.5 0.1"
   ></a-text>

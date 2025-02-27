@@ -2,7 +2,7 @@
       animation__position="property: position; to: 1 2 -36; dur: 500; easing: linear;"
       animation__scale="property: scale; to: 1.03 1.02 1.03; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate;"
       id="menuZone"
-      position="1.5 0 -36"
+      position="1 0 -36"
     >
     <a-entity id="menu-screen" position="0 2 -3">
       <a-text
@@ -37,7 +37,7 @@
         depth="0.1"
         height="0.3"
         width="1"
-        color="#3246E7"
+        color="#FF662F"
         rotation="0 0 0"
     >
     </a-box>

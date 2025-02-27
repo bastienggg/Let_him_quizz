@@ -3,7 +3,7 @@
     value="Confirm"
     align="center"
     color="#FFF"
-    position="0 0.18 0.2"
+    position="0 0.05 0.1"
     scale="0.8 0.8 0.8  "
     rotation="340 0 0"
   >
@@ -30,7 +30,7 @@
   ></a-text>
 </a-entity>
 
-<a-entity class="answer" position="0 3 -39">
+<a-entity class="answer" position="-0.4 3 -39">
   <a-text
     id="answer1"
     align="center"
@@ -39,14 +39,15 @@
     position="0 0 0.1"
   ></a-text>
   <a-box
+    id="boxanswer1"
     position="0 0 0"
     depth="0.1"
     height="0.5"
-    width="1.8"
+    width="2.6"
     color="#FF662F"
   ></a-box>
 </a-entity>
-<a-entity class="answer" position="2 3 -39">
+<a-entity class="answer" position="2.4 3 -39">
   <a-text
     id="answer2"
     value="answer"
@@ -56,14 +57,15 @@
   ></a-text>
 
   <a-box
+    id="boxanswer2"
     position="0 0 0"
     depth="0.1"
     height="0.5"
-    width="1.8"
+    width="2.6"
     color="#A3E447"
   ></a-box>
 </a-entity>
-<a-entity class="answer" position="0 2 -39">
+<a-entity class="answer" position="-0.4 2 -39">
   <a-text
     id="answer3"
     align="center"
@@ -72,14 +74,15 @@
     position="0 0 0.1"
   ></a-text>
   <a-box
+    id="boxanswer3"
     position="0 0 0"
     depth="0.1"
     height="0.5"
-    width="1.8"
+    width="2.6"
     color="#35B1B5"
   ></a-box>
 </a-entity>
-<a-entity class="answer" position="2 2 -39">
+<a-entity class="answer" position="2.4 2 -39">
   <a-text
     id="answer4"
     align="center"
@@ -88,10 +91,11 @@
     position="0 0 0.1"
   ></a-text>
   <a-box
+    id="boxanswer4"
     position="0 0 0"
     depth="0.1"
     height="0.5"
-    width="1.8"
+    width="2.6"
     color="#9E35C1"
   ></a-box>
 </a-entity>

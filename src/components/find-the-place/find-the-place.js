@@ -19,6 +19,10 @@ let freezed = false;
 let FindThePlace = {};
 
 FindThePlace.renderPropositionsZone = function () {
+  // If the placeCounter is 3, we set it back to 0
+  if (placeCounter === 3) {
+    placeCounter = 0;
+  }
   // Create the zone for the quiz with the 3d polygons for the answers
   // Create the a-entities for the answers and the question from the template
   const tempDiv = document.createElement("div");

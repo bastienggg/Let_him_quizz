@@ -19,7 +19,7 @@ let freezed = false;
 
 TickingAway.renderQuizZone = function () {
   // Create the zone for the quiz with the 3d polygons for the answers
-
+  
   // Create the a-entities for the answers and the question from the template
 
   const tempDiv = document.createElement("div");
@@ -166,7 +166,7 @@ TickingAway.answerClicked = function (event) {
 TickingAway.startTimer = function () {
   // start the timer
   timerValue = 0;
-  let timeLimit = 10;
+  let timeLimit = 30;
   Sound.renderTictac();
 
 

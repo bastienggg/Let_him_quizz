@@ -11,6 +11,11 @@ const template = await templateFile.text();
 Leaderboard.renderZone = async function() {
   let usersTop = await Users.getTopUsers();
 
+  // If there is already a leaderboard, remove it
+  if (document.querySelector("#scoreboard")) {
+    Leaderboard.remove();
+  }
+
   // Creating the empty leaderboard
   const tempDiv = document.createElement("div");
   tempDiv.id = "leaderboardZone";
@@ -38,7 +43,9 @@ Leaderboard.renderZone = async function() {
 
 }
 
-Leaderboard.update = function() {
+Leaderboard.remove = function() {
+  const leaderboardZone = document.querySelector("#scoreboard");
+  leaderboardZone.remove();
 
 } 
 

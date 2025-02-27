@@ -36,8 +36,6 @@ let instructionsDisplayed = false;
 //Set the order of the rounds
 let roundsOrder = [
   "TickingAway",
-  "FindThePlace",
-  "SortItOut",
   "SorryNotSoRich",
 ];
 let actualRound = "";
@@ -177,8 +175,10 @@ Rounds.removeEndingScreen = function () {
     easing: "easeInOutQuad",
   });
 
+
   setTimeout(() => {
     endingScreen.remove();
+    Leaderboard.remove();
   }, 700);
 };
 

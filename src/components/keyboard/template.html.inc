@@ -1,4 +1,7 @@
-<a-entity id="keyboard" position="1.3 1 -37" rotation="-20 0 0">
+<a-entity id="keyboard" position="0.99 -3 -38" rotation="-20 0 0"
+        animation__position="property: position; to: 1.3 1 -37; dur: 500; easing: linear;"
+        animation__scale="property: scale; to: 1.005 1.01 1.005; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate;"
+      >
         <!-- Row 1 -->
         <a-box position="-1.5 0.3 0" width="0.25" height="0.25" depth="0.2" class="interactable">
           <a-text value="Q" align="center" position="0 0 0.1" color="#000" scale="0.8 0.8 0.8"></a-text>

@@ -7,6 +7,7 @@ import { FindThePlace } from "../find-the-place/find-the-place.js";
 import { Leaderboard } from "../leaderboard/leaderboard.js";
 import { sorryNotSoRich } from "../sorrynotsorich/sorrynotsorich.js";
 import { SortItOut } from "../sort-it-out/sort-it-out.js";
+import { Keyboard } from "../keyboard/keyboard.js";
 
 // Import of the speech bubble template
 const templateFile = await fetch("src/components/rounds/template.html.inc");
@@ -34,17 +35,21 @@ let instructionsDisplayed = false;
 
 let roundsOrder = [
   "TickingAway",
-  "FindThePlace",
-  "SortItOut",
-  "SorryNotSoRich",
   
 ];
 let actualRound = "";
 let roundCounter = 1;
 
 Rounds.startGame = async function () {
+  // Reset everything
+  Money.setMoney(0);
+  roundCounter = 1;
+
   // Render the money counter
   Money.renderMoneyZone();
+  
+  // Render the leaderboard
+  Leaderboard.renderZone();
 
   document
     .querySelector("#anchorman")
@@ -120,6 +125,7 @@ Rounds.nextRound = async function () {
 };
 
 Rounds.endGame = function () {
+
   // Remove the quiz zone
   if (actualRound === "FindThePlace") {
     FindThePlace.removeQuizZone();
@@ -131,16 +137,17 @@ Rounds.endGame = function () {
     sorryNotSoRich.removeQuizZone();
   }
 
-  // Add the user to the leaderboard
-
-  // Render the leaderboard
-  Leaderboard.renderZone();
+  setTimeout(() => {
+  // Render the keyboard
+  Keyboard.render();
+  Money.removeMoneyZone();
 
   // Render the ending screen
   const endingScreen = document.createElement("a-entity");
   endingScreen.id = "endingScreen";
   endingScreen.innerHTML = templateEnd.replace("{{final-score}}", Money.getMoney());
   scene.appendChild(endingScreen);
+  }, 1000);  
 
 };
 
@@ -157,6 +164,21 @@ Rounds.explainGame = function (explanationText) {
   setTimeout(() => {
     Rounds.removeExplanation();
   }, 3000);
+};
+
+// Remove the ending screen
+Rounds.removeEndingScreen = function () {
+  const endingScreen = document.querySelector("#endingScreen");
+  endingScreen.setAttribute("animation", {
+    property: "position",
+    to: "0 -6 0",
+    dur: 600,
+    easing: "easeInOutQuad",
+  });
+
+  setTimeout(() => {
+    endingScreen.remove();
+  }, 700);
 };
 
 Rounds.removeExplanation = function () {

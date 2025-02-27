@@ -2,6 +2,7 @@ import { Sound } from "../audio/audio.js";
 import { Animations } from "../animations/animations.js";
 import { Users } from "../../data/data-user.js";
 import { Money } from "../money-counter/money-counter.js";
+import { Rounds } from "../rounds/rounds.js";
 
 // Keyboard template
 const templateFile = await fetch("src/components/keyboard/template.html.inc");
@@ -33,10 +34,9 @@ Keyboard.render = function () {
 
 // Add the event listener to the keys
 Keyboard.keyClicked = function (event) {
+  // Limit the characters to 20
+  
   const key = event.target.querySelector("a-text").getAttribute("value");
-  console.log("Key presed : " + key);
-  console.log("textEntered : " + textEntered);
-  console.log(event.target);
 
   //animation when a key is pressed
   Animations.keyPressed(event.target);
@@ -51,6 +51,9 @@ Keyboard.keyClicked = function (event) {
     // remove the keyboard
     Keyboard.remove();
   } else {
+    if (textEntered.length >= 20) {
+      return;
+    }
     textEntered += key;
   }
 
@@ -62,6 +65,8 @@ Keyboard.renderInput = function () {
   tempDiv.id = "input";
   tempDiv.innerHTML = inputTemplate;
   scene.appendChild(tempDiv);
+
+  Keyboard.updateInput();
 };
 
 Keyboard.updateInput = function () {
@@ -81,12 +86,31 @@ Keyboard.remove = function () {
     easing: "easeInOutQuad",
   });
 
+  //remove the input
+  const input = document.querySelector("#input");
+  input.setAttribute("animation", {
+    property: "position",
+    to: "0.99 -3 -36",
+    dur: 1000,
+    easing: "easeInOutQuad",
+  });
+
+
+  
+  // Remove the ending screen
+  Rounds.removeEndingScreen();
+
   // Remove
   setTimeout(() => {
   keyboard.parentNode.removeChild(keyboard);
 
   const input = document.querySelector("#input");
   input.parentNode.removeChild(input);
+  
+
+  // Restart the game
+  Rounds.startGame();
+
   }, 1000);
   
 };

@@ -20,8 +20,13 @@ Leaderboard.renderZone = async function() {
 
   // Add user scores to the scoreboard
   usersTop.forEach((user, index) => {
-    templateEdited = templateEdited.replace(`{{user${index+1}}}`, user.username).replace(`{{score${index+1}}}`, user.score);
+    templateEdited = templateEdited.replace(`{{user${index+1}}}`, `${index+1}. ` + user.username).replace(`{{score${index+1}}}`, user.score);
   });
+
+  // If there is less than 10 users, leave the rest of the scoreboard empty
+  for (let i = usersTop.length; i < 10; i++) {
+    templateEdited = templateEdited.replace(`{{user${i+1}}}`, "").replace(`{{score${i+1}}}`, "");
+  }
 
   tempDiv.innerHTML = templateEdited;
 

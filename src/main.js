@@ -41,6 +41,5 @@ update();
 setTimeout(() => {
     Rounds.startGame();
     Leaderboard.renderZone();
-    Keyboard.render();
 }, 5000);
 

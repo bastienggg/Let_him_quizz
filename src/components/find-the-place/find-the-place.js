@@ -19,8 +19,8 @@ let freezed = false;
 let FindThePlace = {};
 
 FindThePlace.renderPropositionsZone = function () {
-  // If the placeCounter is 3, we set it back to 0
-  if (placeCounter === 3) {
+  // If the placeCounter is 3 or more, we set it back to 0
+  if (placeCounter >= 3) {
     placeCounter = 0;
   }
   // Create the zone for the quiz with the 3d polygons for the answers

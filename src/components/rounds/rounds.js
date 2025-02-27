@@ -132,7 +132,6 @@ Rounds.endGame = function () {
   }
 
   // Add the user to the leaderboard
-  Users.addUser("Test", Money.getMoney());
 
   // Render the leaderboard
   Leaderboard.renderZone();

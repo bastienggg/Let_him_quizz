@@ -47,6 +47,14 @@ Animations.anchormanDeception = function () {
   }, 1000);
 }
 
+Animations.keyPressed = function (key) {
+  key.setAttribute("animation", { property: "scale", to: "0.8 0.8 0.8", dur: 100, dir: "alternate", loop: "2" });
+
+  // stop the animation after 1 second
+  setTimeout (() => {
+    key.removeAttribute("animation");
+  }, 300);
+}
 
 
 export { Animations };

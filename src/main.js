@@ -28,7 +28,7 @@ update();
 
 // Second mini game
 setTimeout(() => {
-    console.log("Update camera height")
+    console.log("Games reimported")
     Rounds.startGame();
     Leaderboard.renderZone();
 }, 5000);

@@ -32,9 +32,10 @@ let Rounds = {};
 // Boolean to check if the instructions are displayed
 let instructionsDisplayed = false;
 
+//Set the order of the rounds
 let roundsOrder = [
-  "FindThePlace",
   "TickingAway",
+  "FindThePlace",
   "SortItOut",
   "SorryNotSoRich",
 ];
@@ -50,8 +51,6 @@ Rounds.startGame = async function () {
     .addEventListener("click", Rounds.clickOnAnchorman);
 
   Rounds.renderMenu();
-
-
 };
 
 Rounds.nextRound = async function () {

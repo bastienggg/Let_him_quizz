@@ -186,6 +186,7 @@ TickingAway.startTimer = function () {
       // Goes to the next round
       Rounds.nextRound();
       Sound.stopTictac();
+      Sound.renderTictacEnding();
     }
   }, 1000);
 };

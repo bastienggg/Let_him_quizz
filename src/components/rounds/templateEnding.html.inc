@@ -23,8 +23,9 @@
         align="center"
         value="Enter your name :"
         color="#FFF"
-        scale="1.4 1.4 1.4"
-        position="0 -1.5 0.1"
-      ></a-text>
+        scale="0.8 0.8 0.8"
+        rotation="0 0 0"
+    >
+    </a-text>
     </a-entity>
 </a-entity>

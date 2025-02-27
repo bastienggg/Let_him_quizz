@@ -33,9 +33,12 @@ let Rounds = {};
 // Boolean to check if the instructions are displayed
 let instructionsDisplayed = false;
 
+//Set the order of the rounds
 let roundsOrder = [
   "TickingAway",
-  
+  "FindThePlace",
+  "SortItOut",
+  "SorryNotSoRich",
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -56,8 +59,6 @@ Rounds.startGame = async function () {
     .addEventListener("click", Rounds.clickOnAnchorman);
 
   Rounds.renderMenu();
-
-
 };
 
 Rounds.nextRound = async function () {
@@ -247,14 +248,13 @@ Rounds.renderExplanationZone = function (roundName) {
 
   // add a listener on the button to continue
   const button = document.querySelector("#validButton-explanation");
-  button.addEventListener("click", Rounds.removeExplanationZone);
-  
-
+  button.addEventListener("click", Rounds.removeExplanationZone); 
 }
 
 Rounds.removeExplanationZone = function () {
   // Change the boolean
   instructionsDisplayed = false;
+  console.log("Remove explanation zone");
 
   // make an animation to remove the explanation zone
   const explanationZone = document.querySelector("#explanationZone");

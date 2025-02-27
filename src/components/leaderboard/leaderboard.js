@@ -4,7 +4,7 @@ let Leaderboard = {};
 const scene = document.querySelector('#mainScene');
 
 const templateFile = await fetch(
-  "src/components/leaderboard/template.html.inc",
+  "./src/components/leaderboard/template.html.inc",
 );
 const template = await templateFile.text();
 

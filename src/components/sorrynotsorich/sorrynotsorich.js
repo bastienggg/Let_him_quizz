@@ -5,12 +5,12 @@ import { Rounds } from "../rounds/rounds.js";
 import { Sound } from "../audio/audio.js";
 
 const templateFile = await fetch(
-  "src/components/sorrynotsorich/template.html.inc",
+  "./src/components/sorrynotsorich/template.html.inc",
 );
 const template = await templateFile.text();
 
 const moneyTemplateFile = await fetch(
-  "src/components/sorrynotsorich/money-template.html.inc",
+  "./src/components/sorrynotsorich/money-template.html.inc",
 );
 
 const moneyTemplate = await moneyTemplateFile.text();

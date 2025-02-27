@@ -23,7 +23,8 @@
         align="center"
         value="Enter your name :"
         color="#FFF"
-        scale="0.8 0.8 0.8"
+        position="0 -1.6 0.1"
+        scale="1 1 1"
         rotation="0 0 0"
     >
     </a-text>

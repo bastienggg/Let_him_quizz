@@ -6,7 +6,7 @@ import { Sound } from "../audio/audio.js";
 import { Animations } from "../animations/animations.js";
 
 const templateFile = await fetch(
-  "src/components/find-the-place/template.html.inc",
+  "./src/components/find-the-place/template.html.inc",
 );
 const template = await templateFile.text();
 

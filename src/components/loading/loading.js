@@ -1,4 +1,4 @@
-const templateFile = await fetch("src/components/loading/template.html.inc");
+const templateFile = await fetch("./src/components/loading/template.html.inc");
 const template = await templateFile.text();
 
 const scene = document.querySelector("#mainScene");

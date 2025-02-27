@@ -10,19 +10,19 @@ import { SortItOut } from "../sort-it-out/sort-it-out.js";
 import { Keyboard } from "../keyboard/keyboard.js";
 
 // Import of the speech bubble template
-const templateFile = await fetch("src/components/rounds/template.html.inc");
+const templateFile = await fetch("./src/components/rounds/template.html.inc");
 const template = await templateFile.text();
 
 // Import of the explanation zone template
-const templateExplanationFile = await fetch("src/components/rounds/templateExplanation.html.inc");
+const templateExplanationFile = await fetch("./src/components/rounds/templateExplanation.html.inc");
 const templateExplanation = await templateExplanationFile.text();
 
 // Import of the menu template
-const templateMenuFile = await fetch("src/components/rounds/templateMenu.html.inc");
+const templateMenuFile = await fetch("./src/components/rounds/templateMenu.html.inc");
 const templateMenu = await templateMenuFile.text();
 
 // Import of the ending screen template
-const templateEndFile = await fetch("src/components/rounds/templateEnding.html.inc");
+const templateEndFile = await fetch("./src/components/rounds/templateEnding.html.inc");
 const templateEnd = await templateEndFile.text();
 
 
@@ -36,7 +36,7 @@ let instructionsDisplayed = false;
 //Set the order of the rounds
 let roundsOrder = [
   "TickingAway",
-  "SorryNotSoRich",
+  "FindThePlace",
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -105,6 +105,7 @@ Rounds.nextRound = async function () {
           TickingAway.newQuestion();
           TickingAway.startTimer();
         } else if (actualRound === "SortItOut") {
+          SortItOut.resetCounter();
           SortItOut.renderSortItOutZone();
         } else if (actualRound === "SorryNotSoRich") {
           sorryNotSoRich.renderQuizZone();

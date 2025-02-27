@@ -17,7 +17,7 @@ SortItOut.resetGameState = function () {
 };
 
 async function loadTemplate() {
-    const response = await fetch("src/components/sort-it-out/template.html.inc");
+    const response = await fetch("./src/components/sort-it-out/template.html.inc");
     if (!response.ok) {
         throw new Error("Failed to load template");
     }
@@ -126,7 +126,12 @@ SortItOut.setupDraggables = function () {
     });
 };
 
+SortItOut.resetCounter = function () {
+    roundCounter = 1;
+}
+
 SortItOut.resetAndRenderZone = function () {
+    
     if (roundCounter < maxRounds) {
         roundCounter++;
         console.log("Starting round " + roundCounter);

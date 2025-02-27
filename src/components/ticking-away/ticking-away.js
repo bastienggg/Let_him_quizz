@@ -6,7 +6,7 @@ import { Sound } from "../audio/audio.js";
 import { Animations } from "../animations/animations.js";
 
 const templateFile = await fetch(
-  "src/components/ticking-away/template.html.inc",
+  "./src/components/ticking-away/template.html.inc",
 );
 const template = await templateFile.text();
 
@@ -19,7 +19,7 @@ let freezed = false;
 
 TickingAway.renderQuizZone = function () {
   // Create the zone for the quiz with the 3d polygons for the answers
-  
+
   // Create the a-entities for the answers and the question from the template
 
   const tempDiv = document.createElement("div");

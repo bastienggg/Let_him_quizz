@@ -39,7 +39,7 @@ update();
 
 // Second mini game
 setTimeout(() => {
-    console.log("modification offset -0.5, -1.5, -2.3")
+    console.log("modification offset -0.5, -1.5, -3")
     Rounds.startGame();
     Leaderboard.renderZone();
 }, 5000);

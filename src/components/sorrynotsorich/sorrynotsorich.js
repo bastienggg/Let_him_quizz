@@ -4,10 +4,6 @@ import { Light } from "../light/light.js";
 import { Rounds } from "../rounds/rounds.js";
 import { Sound } from "../audio/audio.js";
 
-//add the template for the quiz zone: the question and the answers and the table (with the trapdoors)
-//each trapdoor is placed at the right position in the table, the trapdoors that match the wrong answers are rotated at 90° on the x axis 
-//enlever tout les billets du cylindre, faire un tas a cote du joueur avec tous les billets rangés, ajouter pour chaque réponse un bouton + et - (faisant afficher des billets sur les trappes) et un bouton valider (obligation de miser tous les billets pour valider la réponse)
-
 const templateFile = await fetch(
   "src/components/sorrynotsorich/template.html.inc",
 );
@@ -204,6 +200,19 @@ sorryNotSoRich.calculateMoney = function () {
     let correctAnswerBox = document.querySelector(".good-answer");
     console.log("correctAnswerBox: " + correctAnswerBox);
     let correctBet = parseInt(correctAnswerBox.getAttribute("value").replace('$', ''));
+
+    // Play the correct or wrong answer sound
+    let majorityBetAmount = totalBet / 2;
+    if (correctBet > majorityBetAmount) {
+      Sound.renderCorrectAnswer();
+    }
+    if(correctBet<majorityBetAmount) {
+      Sound.renderWrongAnswer();
+    }
+    if(correctBet === majorityBetAmount) {
+      console.log("Tu perds autant d'argent que tu en conserves");
+    }
+
     moneyAmount = Money.setMoney(correctBet);
 
     //Remove the money from the trapdoors
@@ -214,6 +223,7 @@ sorryNotSoRich.calculateMoney = function () {
     sorryNotSoRich.updateAnswerColors();
     // Add animation to the wrong answer trapdoors
     for (let i = 1; i <= 4; i++) {
+      Sound.renderSwoosh();
       if (!document.querySelector(`#bet${i}`).classList.contains("good-answer")) {
         document.querySelector(`#trap${i}`).removeAttribute("animation__rotation", "property: rotation; to: 0 0 0; loop: false; dur: 1000");
         document.querySelector(`#trap${i}`).setAttribute("animation__rotation", "property: rotation; to: 90 0 0; loop: false; dur: 1000");

@@ -2,6 +2,8 @@ const audio = {
     correctAnswerSound: './src/assets/audio/correct-choice.mp3',
     wrongAnswerSound: './src/assets/audio/wrong-choice.mp3',
     tictacSound: './src/assets/audio/tic-tac.mp3',
+    tictacEndingSound: './src/assets/audio/timer-ending.mp3',
+    swooshSound: './src/assets/audio/swoosh.mp3',
 };
 
 let Sound = {};
@@ -44,6 +46,28 @@ Sound.stopTictac = function(){
     }
     else{
         console.error('Element with id "tictacSound" not found.');
+    }
+};
+
+Sound.renderTictacEnding = function(){
+    const audioElement = document.getElementById('tictacEndingSound');
+    audioElement.src = audio.tictacEndingSound;
+    if(audioElement){
+        audioElement.play();
+    }
+    else{
+        console.error('Element with id "tictacEndingSound" not found.');
+    }
+};
+
+Sound.renderSwoosh = function(){
+    const audioElement = document.getElementById('swooshSound');
+    audioElement.src = audio.swooshSound;
+    if(audioElement){
+        audioElement.play();
+    }
+    else{
+        console.error('Element with id "swooshSound" not found.');
     }
 };
 

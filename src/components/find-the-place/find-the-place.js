@@ -32,7 +32,6 @@ FindThePlace.renderPropositionsZone = function () {
 
   // Add the event listener for the answers
   const answers = document.querySelectorAll(".answer");
-
   answers.forEach((answer) => {
     answer.addEventListener("click", FindThePlace.answerClicked);
   });
@@ -61,6 +60,7 @@ FindThePlace.renderQuestion = async function () {
 
   // Renders the sky box with the image of the place inside the 360Box
   const skyElement = document.createElement("a-sky");
+  skyElement.setAttribute("class", "interactable");
   skyElement.setAttribute("position", "1.237 3 -35.03326");
   skyElement.setAttribute("id", "360Sky");
   skyElement.setAttribute("radius", "2");
@@ -139,11 +139,11 @@ FindThePlace.answerClicked = function (event) {
 
   // check if the answer is the correct one
   if (clickedBox.id === "good answer") {
+    Sound.renderCorrectAnswer();
     Light.flashColor("#00ff00");
     Animations.anchormanCheer();
     Animations.audienceCheer();
 
-    Sound.renderCorrectAnswer();
     setTimeout(() => {
       FindThePlace.newRound();
     }, 1000);
@@ -151,9 +151,9 @@ FindThePlace.answerClicked = function (event) {
     // add score
     Money.summonStack(6);
   } else {
+    Sound.renderWrongAnswer();
     Light.flashColor("#ff0000");
     Animations.anchormanDeception();
-    Sound.renderWrongAnswer();
     setTimeout(() => {
       FindThePlace.newRound();
     }, 1000);

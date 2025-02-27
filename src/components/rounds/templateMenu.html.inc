@@ -37,7 +37,7 @@
         depth="0.1"
         height="0.3"
         width="1"
-        color="#3246E7"
+        color="#FF662F"
         rotation="0 0 0"
     >
     </a-box>

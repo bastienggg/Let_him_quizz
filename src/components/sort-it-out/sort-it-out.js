@@ -74,7 +74,7 @@ SortItOut.renderSortItOutZone = async function () {
     const confirmButton = document.querySelector("#validButton");
     if (confirmButton) {
         confirmButton.addEventListener("click", () => {
-            SortItOut.CheckIfInside();
+            SortItOut.CheckIfInside(data);
             console.log("Check if inside");
         });
     }
@@ -136,12 +136,10 @@ SortItOut.resetAndRenderZone = function () {
         console.log("Game finished after " + maxRounds + " rounds.");
         SortItOut.removeSortItOutZone();
         Rounds.nextRound();
-        // Optionally, you can add code here to display a message or perform other actions when the game is finished
-        Rounds.nextRound();
     }
 };
 
-SortItOut.CheckIfInside = function () {
+SortItOut.CheckIfInside = function (data) {
     if (gameFinished) return;
 
     const boxes = document.querySelectorAll("[id^='movableBox']");
@@ -195,10 +193,19 @@ SortItOut.CheckIfInside = function () {
     } else {
         Light.changeColor("#FF662F");
         Sound.renderWrongAnswer();
+        data.responses.forEach((response, index) => {
+            const answer = document.querySelector(`#answer${index + 1}`);
+            const box = document.querySelector(`#boxanswer${index + 1}`);
+            if (answer) {
+                box.setAttribute("color", "#FF662F");
+                answer.setAttribute("value", "");
+                answer.setAttribute("value", (index + 1) + ") " + response.answer);
+            }
+        });
         gameFinished = true;
         setTimeout(() => {
             SortItOut.resetAndRenderZone();
-        }, 2000);
+        }, 6000);
 
     }
 };

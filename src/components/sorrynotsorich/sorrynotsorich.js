@@ -43,13 +43,13 @@ sorryNotSoRich.newQuestion = async function () {
 
   //Verify if the question counter is equal to 4
   if (questionCounter === 4) {
-  setTimeout(() => {
-    sorryNotSoRich.removeQuizZone();
-    Rounds.nextRound();
-  }, 1500);
-  return;
+    setTimeout(() => {
+      sorryNotSoRich.removeQuizZone();
+      Rounds.nextRound();
+    }, 1500);
+    return;
   }
-  
+
   //Get random hard question
   let question = await MCQ.getRandomQuestion("hard");
 
@@ -76,7 +76,8 @@ sorryNotSoRich.newQuestion = async function () {
     box.classList.remove("good-answer");
   });
   document.querySelectorAll(".good-answerbox").forEach((answer) => {
-    answer.classList.remove("good-answerbox");});
+    answer.classList.remove("good-answerbox");
+  });
 
   // Set the propositions to the answer elements
   document.querySelector("#answer1 a-text").setAttribute("value", propositions[0]);
@@ -116,34 +117,34 @@ sorryNotSoRich.calculateMoney = function () {
   // Get the money amount gain from the previous games
   let moneyAmount = Money.getMoney();
 
-    //Attributes divs to variables
-    const bets = [
-      document.querySelector("#bet1"),
-      document.querySelector("#bet2"),
-      document.querySelector("#bet3"),
-      document.querySelector("#bet4"),
-    ];
+  //Attributes divs to variables
+  const bets = [
+    document.querySelector("#bet1"),
+    document.querySelector("#bet2"),
+    document.querySelector("#bet3"),
+    document.querySelector("#bet4"),
+  ];
 
-    const plusButtons = [
-      document.querySelector("#plus1"),
-      document.querySelector("#plus2"),
-      document.querySelector("#plus3"),
-      document.querySelector("#plus4"),
-    ];
+  const plusButtons = [
+    document.querySelector("#plus1"),
+    document.querySelector("#plus2"),
+    document.querySelector("#plus3"),
+    document.querySelector("#plus4"),
+  ];
 
-    const minusButtons = [
-      document.querySelector("#minus1"),
-      document.querySelector("#minus2"),
-      document.querySelector("#minus3"),
-      document.querySelector("#minus4"),
-    ];
+  const minusButtons = [
+    document.querySelector("#minus1"),
+    document.querySelector("#minus2"),
+    document.querySelector("#minus3"),
+    document.querySelector("#minus4"),
+  ];
 
-    const trapdoors = [
-      document.querySelector("#trap1"),
-      document.querySelector("#trap2"),
-      document.querySelector("#trap3"),
-      document.querySelector("#trap4"),
-    ];
+  const trapdoors = [
+    document.querySelector("#trap1"),
+    document.querySelector("#trap2"),
+    document.querySelector("#trap3"),
+    document.querySelector("#trap4"),
+  ];
 
   // Initialize bets to $0
   bets.forEach(bet => bet.setAttribute("value", "$0"));
@@ -206,10 +207,10 @@ sorryNotSoRich.calculateMoney = function () {
     if (correctBet > majorityBetAmount) {
       Sound.renderCorrectAnswer();
     }
-    if(correctBet<majorityBetAmount) {
+    if (correctBet < majorityBetAmount) {
       Sound.renderWrongAnswer();
     }
-    if(correctBet === majorityBetAmount) {
+    if (correctBet === majorityBetAmount) {
       console.log("Tu perds autant d'argent que tu en conserves");
     }
 
@@ -280,12 +281,12 @@ sorryNotSoRich.calculateMoney = function () {
     }
   };
 
-const removeAllMoneyStacksFromTrapdoors = () => {
-  trapdoors.forEach(trapdoor => {
-    const moneyStacks = trapdoor.querySelectorAll(".moneyStack");
-    moneyStacks.forEach(stack => trapdoor.removeChild(stack));
-  });
-};
+  const removeAllMoneyStacksFromTrapdoors = () => {
+    trapdoors.forEach(trapdoor => {
+      const moneyStacks = trapdoor.querySelectorAll(".moneyStack");
+      moneyStacks.forEach(stack => trapdoor.removeChild(stack));
+    });
+  };
 
   const addEventListeners = () => {
     plusButtons.forEach((button, index) => {
@@ -323,7 +324,20 @@ const removeAllMoneyStacksFromTrapdoors = () => {
 };
 
 sorryNotSoRich.removeQuizZone = function () {
-  scene.removeChild(document.querySelector("#sorrynotsorich-container"));
+  // remove the zone for the quiz with the 3d polygons for the answers
+  const propositionsZone = document.querySelector("#sorrynotsorich-container");
+
+  // animation to remove the zone smoothly falling in the ground
+  propositionsZone.setAttribute("animation", {
+    property: "position",
+    to: "0.99 -3 -36",
+    dur: 1000,
+    easing: "easeInOutQuad",
+  });
+
+  setTimeout(() => {
+    propositionsZone.remove();
+  }, 800);
 };
 
 export { sorryNotSoRich };

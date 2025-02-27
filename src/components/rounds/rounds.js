@@ -35,10 +35,11 @@ let instructionsDisplayed = false;
 
 //Set the order of the rounds
 let roundsOrder = [
-  "SortItOut",
   "TickingAway",
-  "FindThePlace",
   "SorryNotSoRich",
+  "FindThePlace",
+  "SortItOut",
+
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -50,7 +51,7 @@ Rounds.startGame = async function () {
 
   // Render the money counter
   Money.renderMoneyZone();
-  
+
   // Render the leaderboard
   Leaderboard.renderZone();
 
@@ -139,16 +140,16 @@ Rounds.endGame = function () {
   }
 
   setTimeout(() => {
-  // Render the keyboard
-  Keyboard.render();
-  Money.removeMoneyZone();
+    // Render the keyboard
+    Keyboard.render();
+    Money.removeMoneyZone();
 
-  // Render the ending screen
-  const endingScreen = document.createElement("a-entity");
-  endingScreen.id = "endingScreen";
-  endingScreen.innerHTML = templateEnd.replace("{{final-score}}", Money.getMoney());
-  scene.appendChild(endingScreen);
-  }, 1000);  
+    // Render the ending screen
+    const endingScreen = document.createElement("a-entity");
+    endingScreen.id = "endingScreen";
+    endingScreen.innerHTML = templateEnd.replace("{{final-score}}", Money.getMoney());
+    scene.appendChild(endingScreen);
+  }, 1000);
 
 };
 

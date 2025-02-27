@@ -33,11 +33,11 @@ let Rounds = {};
 let instructionsDisplayed = false;
 
 let roundsOrder = [
+  "SortItOut",
   "TickingAway",
   "FindThePlace",
-  "SortItOut",
   "SorryNotSoRich",
-  
+
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -59,9 +59,9 @@ Rounds.nextRound = async function () {
   // End the game if the round counter is greater than the length of roundsOrder
   if (roundCounter > roundsOrder.length) {
     setTimeout(() => {
-    Rounds.endGame();
-  }
-    , 1000 );
+      Rounds.endGame();
+    }
+      , 1000);
     return;
   }
 
@@ -93,19 +93,19 @@ Rounds.nextRound = async function () {
     // If the instructions arent displayed, render the quiz zone
     if (!instructionsDisplayed) {
       setTimeout(() => {
-      if (actualRound === "FindThePlace") {
-        FindThePlace.renderPropositionsZone();
-        FindThePlace.renderQuestion();
-      } else if (actualRound === "TickingAway") {
-        TickingAway.renderQuizZone();
-        TickingAway.newQuestion();
-        TickingAway.startTimer();
-      } else if (actualRound === "SortItOut") {
-        SortItOut.renderSortItOutZone();
-      } else if (actualRound === "SorryNotSoRich") {
-        sorryNotSoRich.renderQuizZone();
-      }
-    }, 500);
+        if (actualRound === "FindThePlace") {
+          FindThePlace.renderPropositionsZone();
+          FindThePlace.renderQuestion();
+        } else if (actualRound === "TickingAway") {
+          TickingAway.renderQuizZone();
+          TickingAway.newQuestion();
+          TickingAway.startTimer();
+        } else if (actualRound === "SortItOut") {
+          SortItOut.renderSortItOutZone();
+        } else if (actualRound === "SorryNotSoRich") {
+          sorryNotSoRich.renderQuizZone();
+        }
+      }, 500);
 
       roundCounter++;
 
@@ -116,7 +116,7 @@ Rounds.nextRound = async function () {
   };
 
   checkInstructionsDisplayed();
-  
+
 };
 
 Rounds.endGame = function () {
@@ -145,7 +145,7 @@ Rounds.endGame = function () {
 
 };
 
-  // Explain the game in a speech bubble
+// Explain the game in a speech bubble
 Rounds.explainGame = function (explanationText) {
 
   // Render the explanation
@@ -227,7 +227,7 @@ Rounds.renderExplanationZone = function (roundName) {
   // add a listener on the button to continue
   const button = document.querySelector("#validButton-explanation");
   button.addEventListener("click", Rounds.removeExplanationZone);
-  
+
 
 }
 

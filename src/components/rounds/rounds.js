@@ -33,11 +33,10 @@ let Rounds = {};
 let instructionsDisplayed = false;
 
 let roundsOrder = [
-  "TickingAway",
   "FindThePlace",
+  "TickingAway",
   "SortItOut",
   "SorryNotSoRich",
-  
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -226,14 +225,13 @@ Rounds.renderExplanationZone = function (roundName) {
 
   // add a listener on the button to continue
   const button = document.querySelector("#validButton-explanation");
-  button.addEventListener("click", Rounds.removeExplanationZone);
-  
-
+  button.addEventListener("click", Rounds.removeExplanationZone); 
 }
 
 Rounds.removeExplanationZone = function () {
   // Change the boolean
   instructionsDisplayed = false;
+  console.log("Remove explanation zone");
 
   // make an animation to remove the explanation zone
   const explanationZone = document.querySelector("#explanationZone");

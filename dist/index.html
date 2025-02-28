@@ -3,629 +3,457 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Let Him Quizz</title>
     <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/assets/favicon-BY3Tjqfz.png"
+      href="./src/assets/favicon/favicon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/assets/favicon-BY3Tjqfz.png"
+      href="./src/assets/favicon/favicon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/assets/favicon-BY3Tjqfz.png"
+      href="./src/assets/favicon/favicon.png"
     />
-    <link rel="manifest" href="/assets/favicon-BY3Tjqfz.png" />
-
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="./src/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
-
-    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-
-    <!-- import for the keyboard -->
-    <script src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
-    <script src="./src/components/super-keyboard/aframe-super-keyboard.js"></script>
-
-    <script type="text/javascript">
-      AFRAME.ASSETS_PATH = "./assets/materials";
-    </script>
-    <script>
-      gsap.registerPlugin();
-    </script>
-    <title>LetHimQuizz</title>
-    <script type="module" crossorigin src="./assets/index-BPK2pngU.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D-UEiRy2.css">
+    <script type="module" crossorigin src="./assets/index-BXzkNQk9.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-D1ysZ1b0.css">
   </head>
-  <body style="margin: 0; overflow: hidden">
-    <div
-      class="flex h-screen w-screen flex-col items-center justify-center bg-slate-100"
+  <body class="overflow-x-hidden" id="home">
+    <nav
+      class="sticky top-0 z-50 flex flex-row items-center justify-between bg-white p-4"
     >
-      <h1 class="mb-40 text-center font-title text-7xl text-black">
-        Let Him Quizz
+      <h4 class="font-lucky text-3xl text-darckblue">Let Him Quizz</h4>
+      <ul class="flex flex-row items-center gap-10">
+        <li>
+          <a
+            href="#home"
+            class="rounded-lg border-4 border-darckblue px-6 py-2 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="./developement.html"
+            class="rounded-lg border-4 border-darckblue px-6 py-2 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+            >Code</a
+          >
+        </li>
+        <li>
+          <a
+            href="./game.html"
+            target="_blank"
+            class="rounded-lg border-4 border-darckblue px-6 py-2 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+            >Game</a
+          >
+        </li>
+      </ul>
+      <a
+        href="#team"
+        class="rounded-lg bg-lightblue p-4 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+        >Contact Us</a
+      >
+    </nav>
+    <header class="">
+      <div class="relative">
+        <div class="absolute z-20 h-full w-full bg-black bg-opacity-40"></div>
+        <div
+          class="absolute flex h-full w-full flex-col items-end justify-center gap-3 p-10"
+        >
+          <div class="flex w-11/12 flex-row items-end justify-between gap-5">
+            <h1
+              class="z-50 mb-6 w-1/2 text-left font-lucky text-9xl font-bold uppercase text-white"
+            >
+              Let<br />
+              Him<br />
+              Quizz
+            </h1>
+            <a
+              href="./game.html"
+              target="_blank"
+              class="z-30 rounded-md bg-lightblue p-4 font-lucky text-4xl text-white"
+              >Play Now</a
+            >
+          </div>
+          <div class="flex w-11/12 flex-row items-center justify-between">
+            <p class="z-50 text-left font-sans text-xl text-white">
+              Learn English with fun and interactive quizzes
+            </p>
+          </div>
+        </div>
+        <iframe
+          class="w-full"
+          height="1140"
+          src="https://www.youtube.com/embed/5laj9y2nBRs?autoplay=1&controls=0&mute=1&loop=1&modestbranding=1&showinfo=0&rel=0"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </header>
+    <main>
+      <section class="mt-56 flex flex-col items-center justify-center">
+        <h2 class="w-full text-center font-lucky text-8xl text-red">
+          Learn English Differently
+        </h2>
+        <div
+          class="relative mt-48 flex w-full flex-col gap-10 bg-red bg-opacity-20 p-20"
+        >
+          <h4 class="text-left font-lucky text-4xl text-red">
+            Learn English Through Culture, Not Just Words
+          </h4>
+          <p class="mt-5 w-2/3 text-left font-sans text-2xl text-darckblue">
+            Forget boring <span class="font-lucky">vocabulary lists</span> and
+            <span class="font-lucky">endless translations</span>! We believe
+            that learning a <span class="font-lucky">language</span> is not just
+            about <span class="font-lucky">memorizing words</span> , but about
+            understanding and using them in context. That’s why our
+            <span>game</span> lets you practice
+            <span class="font-lucky">English</span> through a
+            <span class="font-lucky">general knowledge quiz</span> because the
+            best way to learn is by engaging with real information. <br />
+            <br />
+            With every <span class="font-lucky">question</span> , you’ll
+            discover new <span class="font-lucky">words</span> and
+            <span class="font-lucky">expressions</span> while testing your
+            <span class="font-lucky">knowledge</span> about the
+            <span class="font-lucky">world</span>. You won’t just be learning
+            English you’ll be learning in English!<br />
+            <br />
+            Ready to <span class="font-lucky">level up</span> your
+            <span class="font-lucky">English</span> in a fun way? <br />
+            <br />
+            <span class="font-lucky">Let’s play!</span>
+          </p>
+          <img
+            src="./src/assets/landingpage/presentator.png"
+            alt=""
+            class="absolute -top-36 right-10"
+          />
+        </div>
+      </section>
+      <h1 class="my-80 w-full text-center font-lucky text-9xl text-darckblue">
+        How To Play ?
       </h1>
-      <div id="loading" class="mb-10 text-center text-2xl text-black">
-        Loading...
-      </div>
-      <div id="progress-bar-container">
-        <div id="progress-bar"></div>
-      </div>
-      <h3>A game by Brad , Enguerran et Bastien</h3>
-    </div>
+      <section class="my-80 flex flex-col items-center justify-center">
+        <div class="relative m-8 flex w-full flex-row items-center">
+          <img
+            src="./src/assets/landingpage/1.svg"
+            alt=""
+            class="absolute top-0"
+          />
+          <h4 class="ml-80 font-lucky text-8xl text-green">Ticking away</h4>
+        </div>
+        <div
+          class="flex w-full flex-row items-end justify-start gap-20 bg-green bg-opacity-20 p-20"
+        >
+          <p
+            class="ml-80 mt-5 w-2/3 text-left font-sans text-2xl text-darckblue"
+          >
+            Get ready for a
+            <span class="font-lucky">fast-paced</span> challenge! You’ll have
+            <span class="font-lucky">30 seconds</span> to answer as many
+            questions as possible.<br />
+            <br />
+            The catch? They come at you quickly, so you need to
+            <span class="font-lucky">click on the correct answers</span> faster
+            than a speeding bullet!<br />
+            Keep your wits sharp and see how many you can get right before
+            <span class="font-lucky">time runs out.</span><br />
+            <br />
+            <span class="font-lucky">Ready, set, go!</span>
+          </p>
+          <iframe
+            width="968"
+            height="360"
+            src="https://www.youtube.com/embed/5laj9y2nBRs?si=8H5Wnbq-D_qamFhL&amp;clip=Ugkx_9JS7gBl5dDgz52Td40JH6yA8bjWvj8A&amp;clipt=ELFMGNnIAg&autoplay=1&controls=0&loop=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="my-80 flex flex-col items-center justify-center">
+        <div class="relative m-8 flex w-full flex-row-reverse items-center">
+          <img
+            src="./src/assets/landingpage/2.svg"
+            alt=""
+            class="absolute top-0"
+          />
+          <h4 class="mr-96 font-lucky text-8xl text-purple">Find the place</h4>
+        </div>
+        <div
+          class="flex w-full flex-row items-end justify-start gap-20 bg-purple bg-opacity-20 p-20"
+        >
+          <iframe
+            width="968"
+            height="360"
+            src="https://www.youtube.com/embed/5laj9y2nBRs?si=JfMc58ZMcltIdJ-C&amp;clip=UgkxwhaEvuZ2_vTvmPfOivPjwMEgjvcfeaXt&amp;clipt=EJrUAhiC0wU&autoplay=1&controls=0&loop=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p
+            class="mr-80 mt-5 w-2/3 text-left font-sans text-2xl text-darckblue"
+          >
+            Get ready for a
+            <span class="font-lucky">mind-bending visual challenge!</span>
+            <br />
+            <br />
+            A <span class="font-lucky">360° picture</span> will appear around
+            you, and your job is to
+            <span class="font-lucky">guess exactly where you are.</span><br />
+            <br />
+            With <span class="font-lucky">3 rounds</span> to test your
+            knowledge, it's time to see how well you know the
+            <span class="font-lucky">world around you!</span> <br />
+            <br />
+            Don’t worry if you get lost — it's all part of the fun!<br />
+          </p>
+        </div>
+      </section>
+
+      <section class="my-80 flex flex-col items-center justify-center">
+        <div class="flex-row- relative m-8 flex w-full items-center">
+          <img
+            src="./src/assets/landingpage/3.svg"
+            alt=""
+            class="absolute top-0"
+          />
+          <h4 class="ml-80 font-lucky text-8xl text-lightblue">Sort it out</h4>
+        </div>
+        <div
+          class="flex w-full flex-row items-end justify-start gap-20 bg-lightblue bg-opacity-20 p-20"
+        >
+          <p
+            class="ml-80 mt-5 w-2/3 text-left font-sans text-2xl text-darckblue"
+          >
+            Think carefully!<br />
+            <br />
+            <span class="font-lucky">Four boxes</span> and
+            <span class="font-lucky">four cubes</span> will appear in front of
+            you, and a <span class="font-lucky">question</span> will pop up.
+            <br />
+            <br />
+            Your task? <span class="font-lucky">Sort the cubes</span> in the
+            correct order by placing them in the right boxes.<br />
+            <br />
+            Once you think everything is in place, hit the
+            <span class="font-lucky">button</span> to
+            <span class="font-lucky">validate your answer.</span> <br />
+            <br />
+            No rush, but be sure to double-check before you confirm!<br />
+          </p>
+          <iframe
+            width="968"
+            height="360"
+            src="https://www.youtube.com/embed/5laj9y2nBRs?si=vA0vO4gJd1rQ6ivy&amp;clip=UgkxOsCcWikh5QjBKVBpRH3dUUD8dcezvvfz&amp;clipt=EKv5BRiskwk&autoplay=1&controls=0&loop=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <section class="my-80 flex flex-col items-center justify-center">
+        <div class="relative m-8 flex w-full flex-row-reverse items-center">
+          <img
+            src="./src/assets/landingpage/4.svg"
+            alt=""
+            class="absolute top-0"
+          />
+          <h4 class="mr-96 font-lucky text-8xl text-red">sorry not so rich</h4>
+        </div>
+        <div
+          class="flex w-full flex-row items-end justify-start gap-20 bg-red bg-opacity-20 p-20"
+        >
+          <iframe
+            width="968"
+            height="360"
+            src="https://www.youtube.com/embed/5laj9y2nBRs?autoplay=1&controls=0&loop=1&si=gvfr4usJbue_6Ocp&amp;clip=UgkxyU8Hbbsa7MjnI_WyEGfpHkZM3XewRQWw&amp;clipt=ENCrCRj7-ws"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <p
+            class="mr-80 mt-5 w-2/3 text-left font-sans text-2xl text-darckblue"
+          >
+            Now it’s time to test your
+            <span class="font-lucky">strategy!</span> <br />
+            <br />
+            A <span class="font-lucky">question</span> will appear, and you’ll
+            have to decide how much of the
+            <span class="font-lucky">money</span> you’ve earned in
+            <span class="font-lucky">previous rounds</span> you want to risk.<br />
+            <br />
+            Drop your cash onto the
+            <span class="font-lucky">correct trap</span> based on your answer,
+            but be careful if you’re wrong, you lose
+            <span class="font-lucky">everything</span> you bet!<br />
+            <br />
+            Will you play it safe or take a chance for a
+            <span class="font-lucky">bigger prize?</span><br />
+          </p>
+        </div>
+      </section>
+      <h1
+        id="team"
+        class="my-80 w-full text-center font-lucky text-9xl text-darckblue"
+      >
+        Here is our team !
+      </h1>
+      <section class="flex w-full flex-row justify-center gap-24">
+        <div
+          class="flex w-1/5 flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowred"
+        >
+          <img
+            src="./src/assets/landingpage/enguerran.png"
+            alt=""
+            class="rounded-lg"
+          />
+          <h5 class="font-lucky text-3xl text-darckblue">
+            Enguerran<br />
+            Caro--Alquier
+          </h5>
+          <ul class="text-xl">
+            <li>- Ticking away</li>
+            <li>- Find the place</li>
+            <li>- Menu</li>
+            <li>- Rounds</li>
+            <li>- Keyboard</li>
+            <li>- Leaderboard</li>
+          </ul>
+          <div class="flex w-full flex-row justify-between">
+            <a href="https://www.instagram.com/engue_ca/">
+              <img src="./src/assets/landingpage/insta.svg" alt="" /> </a
+            ><a href="https://github.com/EnguerranCA">
+              <img src="./src/assets/landingpage/git.svg" alt="" /> </a
+            ><a
+              href="https://www.linkedin.com/in/enguerran-caro-alquier/?locale=fr_FR"
+            >
+              <img src="./src/assets/landingpage/linkedin.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="flex w-1/5 flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowgreen"
+        >
+          <img
+            src="./src/assets/landingpage/brad.png"
+            alt=""
+            class="rounded-lg"
+          />
+          <h5 class="font-lucky text-3xl text-darckblue">
+            Brad<br />
+            Savary
+          </h5>
+          <ul class="text-xl">
+            <li>- Data base</li>
+            <li>- API</li>
+            <li>- Sorry not so rich</li>
+            <li>- Sounds</li>
+            <li>- Readme</li>
+            <li>- Content for the site</li>
+          </ul>
+          <div class="flex w-full flex-row justify-between">
+            <a href="https://www.instagram.com/brad.svr/">
+              <img src="./src/assets/landingpage/insta.svg" alt="" /> </a
+            ><a href="https://github.com/BradSavary">
+              <img src="./src/assets/landingpage/git.svg" alt="" /> </a
+            ><a
+              href="https://www.linkedin.com/in/brad-savary-07322b294/?originalSubdomain=fr"
+            >
+              <img src="./src/assets/landingpage/linkedin.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="flex w-1/5 flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowblue"
+        >
+          <img
+            src="./src/assets/landingpage/bastien.png"
+            alt=""
+            class="rounded-lg"
+          />
+          <h5 class="font-lucky text-3xl text-darckblue">
+            Bastien<br />
+            Guitard
+          </h5>
+          <ul class="text-xl">
+            <li>- Scene</li>
+            <li>- Sort It out</li>
+            <li>- VR Comptability</li>
+            <li>- Designed the 2 sites</li>
+            <li>- Developed the landing page</li>
+            <li>- Developed the documentation</li>
+          </ul>
+          <div class="flex w-full flex-row justify-between">
+            <a href="https://www.instagram.com/bastien.g_/">
+              <img src="./src/assets/landingpage/insta.svg" alt="" /> </a
+            ><a href="https://github.com/bastienggg">
+              <img src="./src/assets/landingpage/git.svg" alt="" /> </a
+            ><a
+              href="https://www.linkedin.com/in/bastien-guitard-30585329b/?originalSubdomain=fr"
+            >
+              <img src="./src/assets/landingpage/linkedin.svg" alt="" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="justify-left relative mt-80 flex flex-row items-center bg-lightblue bg-opacity-20 p-20"
+      >
+        <div class="flex w-2/3 flex-col gap-20">
+          <h5 class="font-lucky text-5xl text-darckblue">
+            Do you want to know more about the game's development?
+          </h5>
+          <a
+            href="./developement.html"
+            class="w-fit rounded-lg bg-lightblue p-6 font-lucky text-3xl"
+            >Right this way!</a
+          >
+          <img
+            src="./src/assets/landingpage/chiken.png"
+            alt=""
+            class="absolute -top-40 right-8"
+          />
+        </div>
+      </section>
+    </main>
     <style>
-      #progress-bar-container {
-        width: 50%;
-        height: 30px;
-        background-color: #ccc;
-        z-index: 1000;
-        border-radius: 5px;
-        overflow: hidden;
+      html {
+        scroll-behavior: smooth;
       }
-      #progress-bar {
-        width: 0;
-        height: 100%;
-        background-color: #4d3ae1;
-      }
-      a-scene {
-        display: none;
+
+      nav ul li.active a {
+        font-weight: bold;
+        text-decoration: underline;
       }
     </style>
-
-    <a-scene
-      id="mainScene"
-      physics="gravity: -9.8 ; debug: false"
-      loading-screen="enabled: false"
-      raycaster="objects: .interactable"
-    >
-      <!-- keyboard test -->
-      <!-- <a-entity
-        id="keyboard"
-        class="interactable"
-        super-keyboard="imagePath:./src/assets/keyboard/"
-        position="1.1 1.076 -35.5"
-        rotation="-30 0 0"
-      ></a-entity> -->
-
-      <!-- Test screen top score on the left of the player while he plays -->
-      <a-box
-        position="-9 3.6 -38"
-        rotation=""
-        width="1"
-        height="1"
-        depth="1"
-        color="#475cff"
-        scale="0.5 7 6"
-      >
-      </a-box>
-
-      <a-assets>
-        <a-asset-item
-          id="tvModel"
-          src="./src/assets/modele3d/tv.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="beerModel"
-          src="./src/assets/modele3d/beer.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="roomModel"
-          src="./src/assets/modele3d/room.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="tableModel"
-          src="./src/assets/modele3d/table.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="sofaModel"
-          src="./src/assets/modele3d/sofa.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="stageModel"
-          src="./src/assets/modele3d/stage2.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="manModel"
-          src="./src/assets/modele3d/man.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="moneyDropTableModel"
-          src="./src/assets/modele3d/moneydroptable.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="spotModel"
-          src="./src/assets/modele3d/spot.glb"
-        ></a-asset-item>
-
-        <a-asset-item
-          id="chickenGuyModel"
-          src="./src/assets/audiance/Chicken_guy.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="citizen1Model"
-          src="./src/assets/audiance/Citizen_1.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="citizen2Model"
-          src="./src/assets/audiance/Citizen_2.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="citizen3Model"
-          src="./src/assets/audiance/Citizen_3.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="cryptoBroModel"
-          src="./src/assets/audiance/Crypto_Bro.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="femaleOfficerModel"
-          src="./src/assets/audiance/Female_Officer.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="foodWorkerModel"
-          src="./src/assets/audiance/Food_Worker.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="genericFemaleModel"
-          src="./src/assets/audiance/Generic_Female.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="genericMaleModel"
-          src="./src/assets/audiance/Generic_Male.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="maleOfficerModel"
-          src="./src/assets/audiance/Male_Officer.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="prisonerModel"
-          src="./src/assets/audiance/Prisoner.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="retailWorkerModel"
-          src="./src/assets/audiance/Retail_Worker.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="rubberDuckModel"
-          src="./src/assets/audiance/Rubber_Duck.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="santaClausModel"
-          src="./src/assets/audiance/Santa_Claus.glb"
-        ></a-asset-item>
-        <a-asset-item
-          id="snowmanModel"
-          src="./src/assets/audiance/Snowman.glb"
-        ></a-asset-item>
-      </a-assets>
-      <div id="LoadingPage"></div>
-      <!-- camera -->
-      <!-- <a-entity
-        id="camera"
-        camera=""
-        look-controls="enabled: true"
-        position="0 2.2 0"
-        rotation="0 0 0"
-        wasd-controls="enabled: false"
-      ></a-entity> -->
-
-      <!-- Conteneur de la caméra (rig) qui se déplace -->
-      <a-entity id="rig" position="0 2.2 0">
-        <a-entity id="head" camera look-controls position="0 1.5 0"></a-entity>
-
-        <!-- Contrôleurs VR -->
-        <a-entity
-          id="rightController"
-          laser-controls="hand: right"
-          raycaster="objects: .interactable; showLine: true"
-          oculus-touch-controls="hand: right"
-          vive-controls="hand: right"
-          windows-motion-controls="hand: right"
-        ></a-entity>
-
-        <a-entity
-          id="leftController"
-          oculus-touch-controls="hand: left"
-        ></a-entity>
-      </a-entity>
-
-      <!-- ambient light -->
-      <a-light
-        class="ambient"
-        type="ambient"
-        color="#ffffff"
-        intensity="0.3"
-        position="5.82373 119.06988 -24.14106"
-      ></a-light>
-
-      <a-light
-        class="light spot"
-        type="point"
-        color="#ffffff"
-        intensity="1"
-        position="5.82373 119.06988 -24.14106"
-      ></a-light>
-      <a-light
-        class="light spot"
-        type="point"
-        color="#ffffff"
-        intensity="0.5"
-        position="5.82373 16.31798 42.8702"
-      ></a-light>
-      <!-- tv -->
-      <a-entity
-        gltf-model="#tvModel"
-        position="5.94 4.28 -25"
-        scale="40 40 40"
-        rotation="0 269.09000000000003 0"
-      ></a-entity>
-
-      <!-- beer -->
-      <a-entity
-        gltf-model="#beerModel"
-        position="-22.0848 -5.36063 12.97207"
-        scale="0.5 0.5 0.5"
-        rotation="0 269.09000000000003 0"
-      ></a-entity>
-
-      <!-- room -->
-      <a-entity
-        gltf-model="#roomModel"
-        position="5.94 -22.45 -25"
-        scale="25 25 25"
-        rotation="0 269.09000000000003 0"
-      ></a-entity>
-
-      <!-- table -->
-      <a-entity
-        gltf-model="#tableModel"
-        position="1.21 -14.6 -29.76"
-        scale="30 30 40"
-        rotation=""
-        material="metalness: 0; roughness: 1; shader: standard"
-      ></a-entity>
-
-      <!-- sofa -->
-      <a-entity
-        gltf-model="#sofaModel"
-        position="24.39 -23.35 5"
-        scale="50 50 50"
-        rotation=""
-      ></a-entity>
-
-      <!-- stage -->
-      <a-entity
-        gltf-model="#stageModel"
-        position="1.23833 -1.63184 -37.98841"
-        scale="0.67 0.69 0.44"
-        rotation=""
-        shape=""
-      >
-        <a-box
-          position="0 0 0"
-          width="20"
-          height="3.6"
-          depth="10"
-          color="#FF0000"
-          opacity="0.5"
-          body="type: static; shape: box;"
-        ></a-box>
-        <a-box
-          position="0 0 0"
-          width="1"
-          height="1"
-          depth="1"
-          color="#FF0000"
-          opacity="0.5"
-        ></a-box>
-      </a-entity>
-
-      <!-- anchorman -->
-      <a-entity
-        gltf-model="#manModel"
-        position="4.967 0.2031 -39.14591"
-        scale="0.75 0.75 0.75"
-        rotation="-0.4 -40 2.4"
-        animation-mixer="clip: HumanArmature|Man_Idle;"
-        id="anchorman"
-        class="interactable"
-      ></a-entity>
-
-      <!-- money drop table -->
-      <!-- <a-entity
-        gltf-model="#moneyDropTableModel"
-        position="8.8 0.2031 -39.14591"
-        scale="0.75 0.75 0.75"
-        rotation="0 90 0"
-        material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
-      ></a-entity> -->
-      <!-- FPS counter -->
-      <a-entity
-        id="fps-counter"
-        position="5 1.7 -38.5"
-        text="value: 0 FPS; color: #FFF; width: 4;"
-        rotation="0 0 0"
-        color="#000"
-      ></a-entity>
-      <script>
-        const fpsCounter = document.querySelector("#fps-counter");
-        let lastFrameTime = performance.now();
-        let frameCount = 0;
-
-        function updateFPS() {
-          const now = performance.now();
-          frameCount++;
-          if (now >= lastFrameTime + 1000) {
-            const fps = frameCount;
-            fpsCounter.setAttribute("text", "value", `${fps} FPS`);
-            frameCount = 0;
-            lastFrameTime = now;
-          }
-          requestAnimationFrame(updateFPS);
-        }
-
-        updateFPS();
-      </script>
-      <a-sky color="#808080"></a-sky>
-      <!-- cylinder for money -->
-      <!-- it has 4 hit boxes on the sides and one on the floor -->
-      <a-cylinder
-        position="-4.525 2.600 -40.62386"
-        radius="0.7"
-        height="1.5"
-        color="#35B1B5"
-        scale="2.2 3 2.2"
-        material="opacity: 0.5; color: #d1d1ff"
-        body="type: static; shape: none;"
-        shape__side1="shape: box; halfExtents: 0.5 1.5 0.05; offset: 0 0 0.5;"
-        shape__side2="shape: box; halfExtents: 0.5 1.5 0.05; offset: 0 0 -0.5;"
-        shape__side3="shape: box; halfExtents: 0.05 1.5 0.5; offset: 0.5 0 0;"
-        shape__side4="shape: box; halfExtents: 0.05 1.5 0.5; offset: -0.5 0 0;"
-        shape__bottom="shape: cylinder; height: 0.05; radiusTop: 0.5; radiusBottom: 0.5; offset: 0 -0.75 0;"
-      ></a-cylinder>
-
-      <!-- screen -->
-      <a-box
-        position="0.99 3.22 -41.45168"
-        rotation=""
-        width="1"
-        height="1"
-        depth="1"
-        color="#475cff"
-        scale="8 5 1"
-        id="ecran"
-      ></a-box>
-
-      <!-- stage light -->
-      <!-- <a-entity
-        gltf-model="./src/assets/modele3d/spot.glb"
-        position="8.84924 7.47002 -33.78025"
-        scale="0.75 0.75 0.75"
-        rotation="-0.4 180 2.4"
-      ></a-entity> -->
-
-      <a-light
-        class="light spot"
-        type="point"
-        color="#b3b3ff"
-        intensity="1"
-        position="0.94658 6.536 -35.71878"
-      ></a-light>
-
-      <!-- stage floor -->
-      <a-plane
-        position="1.28077 -1.43517 -32.99556"
-        rotation="-90 0 0"
-        width="100"
-        height="100"
-        color="#000000"
-        scale="0.23 0.2 1"
-        material="metalness: 0; roughness: 1; shader: standard"
-      ></a-plane>
-
-      <!-- audiance -->
-      <a-entity
-        gltf-model="#chickenGuyModel"
-        position="10.2 -1.5 -24.8"
-        scale="1.3 1.4 1.3"
-        rotation="0 -150 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#citizen1Model"
-        position="7.3 -1.5 -24.9"
-        scale="1.1 1.2 1.1"
-        rotation="0 -160 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#citizen2Model"
-        position="4.1 -1.5 -24.7"
-        scale="1.5 1.6 1.5"
-        rotation="0 -170 0"
-        class="audience-member"
-      ></a-entity>
-
-      <a-entity
-        gltf-model="#citizen3Model"
-        position="-1.2 -1.5 -24.9"
-        scale="1.2 1.3 1.2"
-        rotation="0 -180 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#cryptoBroModel"
-        position="-4.4 -1.5 -24.8"
-        scale="1.4 1.5 1.4"
-        rotation="0 -190 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#femaleOfficerModel"
-        position="-7.1 -1.5 -24.9"
-        scale="1.3 1.4 1.3"
-        rotation="0 -200 0"
-        class="audience-member"
-      ></a-entity>
-      <!-- fin premiere ligne -->
-      <a-entity
-        gltf-model="#foodWorkerModel"
-        position="11.3 -1.5 -28.1"
-        scale="1.1 1.2 1.1"
-        rotation="0 -120 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#genericFemaleModel"
-        position="8.1 -1.5 -28.2"
-        scale="1.5 1.6 1.5"
-        rotation="0 -130 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#genericMaleModel"
-        position="5.4 -1.5 -28.3"
-        scale="1.2 1.3 1.2"
-        rotation="0 -140 0"
-        class="audience-member"
-      ></a-entity>
-
-      <a-entity
-        gltf-model="#maleOfficerModel"
-        position="-2.1 -1.5 -28.1"
-        scale="1.4 1.5 1.4"
-        rotation="0 -210 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#prisonerModel"
-        position="-5.2 -1.5 -28.2"
-        scale="1.3 1.4 1.3"
-        rotation="0 -220 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#retailWorkerModel"
-        position="-8.4 -1.5 -28.3"
-        scale="1.1 1.2 1.1"
-        rotation="0 -230 0"
-        class="audience-member"
-      ></a-entity>
-      <!-- fin deuxieme ligne -->
-
-      <a-entity
-        gltf-model="#rubberDuckModel"
-        position="11.2 -1.5 -30.6"
-        scale="1.5 1.6 1.5"
-        rotation="0 -110 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#santaClausModel"
-        position="8.4 -1.5 -30.4"
-        scale="1.2 1.3 1.2"
-        rotation="0 -120 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#snowmanModel"
-        position="5.3 -1.5 -30.5"
-        scale="1.4 1.5 1.4"
-        rotation="0 -130 0"
-        class="audience-member"
-      ></a-entity>
-
-      <a-entity
-        gltf-model="#citizen2Model"
-        position="-2.2 -1.5 -30.6"
-        scale="1.3 1.4 1.3"
-        rotation="0 -210 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#citizen3Model"
-        position="-5.3 -1.5 -30.4"
-        scale="1.1 1.2 1.1"
-        rotation="0 -220 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#citizen1Model"
-        position="-8.1 -1.5 -30.5"
-        scale="1.5 1.6 1.5"
-        rotation="0 -230 0"
-        class="audience-member"
-      ></a-entity>
-      <!-- fin troisieme ligne -->
-
-      <a-entity
-        gltf-model="#citizen1Model"
-        position="11.1 -1.5 -33.1"
-        scale="1.2 1.3 1.2"
-        rotation="0 -110 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#cryptoBroModel"
-        position="8.3 -1.5 -33.2"
-        scale="1.4 1.5 1.4"
-        rotation="0 -120 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#retailWorkerModel"
-        position="5.2 -1.5 -33.3"
-        scale="1.3 1.4 1.3"
-        rotation="0 -130 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#genericFemaleModel"
-        position="-2.3 -1.5 -33.1"
-        scale="1.1 1.2 1.1"
-        rotation="0 -210 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#foodWorkerModel"
-        position="-5.4 -1.5 -33.2"
-        scale="1.5 1.6 1.5"
-        rotation="0 -220 0"
-        class="audience-member"
-      ></a-entity>
-      <a-entity
-        gltf-model="#femaleOfficerModel"
-        position="-8.2 -1.5 -33.3"
-        scale="1.2 1.3 1.2"
-        rotation="0 -230 0"
-        class="audience-member"
-      ></a-entity>
-
-      <!-- Wrong answer Sound -->
-      <audio id="wrongAnswerSound" src="" position="0 1.6 -3"></audio>
-      <!--Correct answer Sound-->
-      <audio id="correctAnswerSound" src="" position="0 1.6 -3"></audio>
-      <!--Tic tac sound-->
-      <audio id="tictacSound" src="" position="0 1.6 -3"></audio>
-      <!--Tic tac ending sound-->
-      <audio id="tictacEndingSound" src="" position="0 1.6 -3"></audio>
-      <!--Swoosh sound-->
-      <audio id="swooshSound" src="" position="0 1.6 -3"></audio>
-    </a-scene>
-
-
-    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

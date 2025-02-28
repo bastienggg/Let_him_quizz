@@ -2,6 +2,7 @@
 import { Leaderboard } from './components/leaderboard/leaderboard.js';
 import { Rounds } from './components/rounds/rounds.js';
 import { Vr } from './components/vr/vr.js';
+import { Sound } from './components/audio/audio.js';
 
 
 

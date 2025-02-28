@@ -240,8 +240,8 @@ sorryNotSoRich.calculateMoney = function () {
     setTimeout(() => {
       if (correctBet === 0) {
         console.log("You lost all your money!");
-        sorryNotSoRich.removeQuizZone();
         Money.removeAllMoneyStack();
+        Rounds.nextRound(); 
       } else {
         // Update and render a new question
         checkBetStatus();

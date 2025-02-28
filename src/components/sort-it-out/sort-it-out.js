@@ -4,6 +4,7 @@ import { Money } from "../money-counter/money-counter.js";
 import { Vr } from "../vr/vr.js";
 import { Rounds } from "../rounds/rounds.js";
 import { Sound } from "../audio/audio.js";
+import { Animations } from "../animations/animations.js";
 
 let SortItOut = {};
 let gameFinished = false;
@@ -189,6 +190,7 @@ SortItOut.CheckIfInside = function (data) {
     if (allBoxesCorrect) {
         Light.changeColor("#A3E447");
         Sound.renderCorrectAnswer();
+        Animations.anchormanCheer();
         gameFinished = true;
         Money.summonStack(2);
 
@@ -198,6 +200,7 @@ SortItOut.CheckIfInside = function (data) {
     } else {
         Light.changeColor("#FF662F");
         Sound.renderWrongAnswer();
+        Animations.anchormanDeception();
         data.responses.forEach((response, index) => {
             const answer = document.querySelector(`#answer${index + 1}`);
             const box = document.querySelector(`#boxanswer${index + 1}`);

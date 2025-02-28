@@ -31,7 +31,7 @@
       color="#4CC3D9"
     ></a-box>
   </a-entity>
-  <a-entity class="answer" id="answer3" position="-1 0 -3">
+  <a-entity class="answer" id="answer3" position="-1 0 -3" >
     <a-text
       align="center"
       value="Answer 3"

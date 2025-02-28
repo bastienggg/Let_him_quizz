@@ -19,11 +19,11 @@
         position="0 -1 0.1"
       ></a-text>
     </a-entity>
-    <a-entity position="0.60 1.5 -1.5" rotation="-30 0 0">
+    <a-entity position="-0.2 1.5 -1.5" rotation="-30 0 0">
     <a-text
-    position="-0.5 -1.5 0.15"
+    position="-0.5 -1.5 0.1"
 
-        value="Start Game"
+        value="English Mode"
         align="center"
         color="#FFF"
         scale="0.8 0.8 0.8"
@@ -32,12 +32,36 @@
     </a-text>
     <a-box
         position="-0.5 -1.5 0"
-        class="interactable"
-        id="startButton-menu"
+        class="interactable startButton-menu"
+        data-category="english"
         depth="0.1"
         height="0.3"
-        width="1"
-        color="#FF662F"
+        width="1.1"
+        color="#9E35C1"
+        rotation="0 0 0"
+    >
+    </a-box>
+    </a-entity>
+
+    <a-entity position="1.2 1.5 -1.5" rotation="-30 0 0">
+    <a-text
+    position="-0.5 -1.5 0.1"
+
+        value="Trivia Mode"
+        align="center"
+        color="#FFF"
+        scale="0.8 0.8 0.8"
+        rotation="0 0 0"
+    >
+    </a-text>
+    <a-box
+        position="-0.5 -1.5 0"
+        class="interactable startButton-menu"
+        data-category="trivia"
+        depth="0.1"
+        height="0.3"
+        width="1.1"
+        color="#9E35C1"
         rotation="0 0 0"
     >
     </a-box>

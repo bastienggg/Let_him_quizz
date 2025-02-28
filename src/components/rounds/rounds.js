@@ -2,6 +2,7 @@ import { Place } from "../../data/data-place.js";
 import { Money } from "../money-counter/money-counter.js";
 import { Users } from "../../data/data-user.js";
 import { Light } from "../light/light.js";
+import { Sound } from "../audio/audio.js";
 import { TickingAway } from "../ticking-away/ticking-away.js";
 import { FindThePlace } from "../find-the-place/find-the-place.js";
 import { Leaderboard } from "../leaderboard/leaderboard.js";
@@ -35,9 +36,9 @@ let instructionsDisplayed = false;
 
 //Set the order of the rounds
 let roundsOrder = [
-  "SortItOut",
   "TickingAway",
   "FindThePlace",
+  "SortItOut",
   "SorryNotSoRich",
 ];
 let actualRound = "";
@@ -57,6 +58,7 @@ Rounds.startGame = async function () {
   document
     .querySelector("#anchorman")
     .addEventListener("click", Rounds.clickOnAnchorman);
+
 
   Rounds.renderMenu();
 };
@@ -284,8 +286,18 @@ Rounds.renderMenu = function () {
   scene.appendChild(menu);
 
   // Add the event listeners on the button
-  const startButton = document.querySelector("#startButton-menu");
-  startButton.addEventListener("click", Rounds.removeMenu);
+  const startButtons = document.querySelectorAll(".startButton-menu");
+
+  startButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      Rounds.removeMenu();
+      // Store the category in window
+      window.category = event.target.dataset.category;
+    });
+  } );
+  
+  
+
 };
 
 Rounds.removeMenu = function () {
@@ -297,6 +309,9 @@ Rounds.removeMenu = function () {
     dur: 600,
     easing: "easeInOutQuad",
   });
+
+  
+  Sound.renderOST();
 
   setTimeout(() => {
     menuZone.remove();

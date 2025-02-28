@@ -10,6 +10,8 @@ let SortItOut = {};
 let gameFinished = false;
 let roundCounter = 1;
 const maxRounds = 3;
+let canConfirm = false;
+console.log("Can confirm:" + canConfirm);
 
 SortItOut.resetGameState = function () {
     gameFinished = false;
@@ -73,12 +75,14 @@ SortItOut.renderSortItOutZone = async function () {
 
     // Ajoutez un gestionnaire d'événements pour le bouton "Confirmer"
     const confirmButton = document.querySelector("#validButton");
-    if (confirmButton) {
-        confirmButton.addEventListener("click", () => {
-            SortItOut.CheckIfInside(data);
-            console.log("Check if inside");
-        });
-    }
+        if (confirmButton) {
+            confirmButton.addEventListener("click", () => {
+            if (canConfirm === true) {
+                SortItOut.CheckIfInside(data);
+            } else {
+            }
+            });
+        }
 
     document.querySelectorAll("#movableBox1, #movableBox2, #movableBox3, #movableBox4").forEach(box => {
         box.setAttribute("draggable", "");
@@ -107,6 +111,7 @@ SortItOut.setupDraggables = function () {
 
             document.addEventListener("mousemove", (evt) => {
                 if (isDragging) {
+                    canConfirm = true;
                     const raycaster = document.querySelector("a-scene").components.raycaster;
                     const intersection = raycaster.getIntersection(el);
 
@@ -135,11 +140,13 @@ SortItOut.resetAndRenderZone = function () {
     
     if (roundCounter < maxRounds) {
         roundCounter++;
+        canConfirm = false;
         console.log("Starting round " + roundCounter);
         SortItOut.removeSortItOutZone();
         SortItOut.renderSortItOutZone();
     } else {
         console.log("Game finished after " + maxRounds + " rounds.");
+        canConfirm = false;
         SortItOut.removeSortItOutZone();
         Rounds.nextRound();
     }

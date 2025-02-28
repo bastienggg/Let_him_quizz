@@ -30,11 +30,42 @@
       rel="stylesheet"
     />
   </head>
-  <body class="overflow-x-hidden">
+  <body class="overflow-x-hidden" id="home">
+    <nav
+      class="sticky top-0 z-50 flex flex-row items-center justify-between bg-white p-4"
+    >
+      <h4 class="font-lucky text-3xl text-darckblue">Let Him Quizz</h4>
+      <ul class="flex flex-row items-center gap-10">
+        <li>
+          <a
+            href="#home"
+            class="rounded-lg border-4 border-darckblue px-6 py-2 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="./developement.html"
+            class="rounded-lg border-4 border-darckblue px-6 py-2 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+            >Code</a
+          >
+        </li>
+        <li>
+          <a
+            href="./index.html"
+            target="_blank"
+            class="rounded-lg border-4 border-darckblue px-6 py-2 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+            >Game</a
+          >
+        </li>
+      </ul>
+      <a
+        href="#team"
+        class="rounded-lg bg-lightblue p-4 font-lucky text-darckblue hover:bg-darckblue hover:text-white"
+        >Contact Us</a
+      >
+    </nav>
     <header class="">
-      <nav class="flex flex-row items-center justify-start p-4">
-        <h4 class="font-lucky text-3xl text-darckblue">Let Him Quizz</h4>
-      </nav>
       <div class="relative">
         <div class="absolute z-20 h-full w-full bg-black bg-opacity-40"></div>
         <div
@@ -49,7 +80,8 @@
               Quizz
             </h1>
             <a
-              href=""
+              href="./index.html"
+              target="_blank"
               class="z-30 rounded-md bg-lightblue p-4 font-lucky text-4xl text-white"
               >Play Now</a
             >
@@ -143,7 +175,7 @@
             <span class="font-lucky">Ready, set, go!</span>
           </p>
           <iframe
-            width="965"
+            width="968"
             height="360"
             src="https://www.youtube.com/embed/5laj9y2nBRs?si=8H5Wnbq-D_qamFhL&amp;clip=Ugkx_9JS7gBl5dDgz52Td40JH6yA8bjWvj8A&amp;clipt=ELFMGNnIAg&autoplay=1&controls=0&loop=1"
             title="YouTube video player"
@@ -168,7 +200,7 @@
           class="flex w-full flex-row items-end justify-start gap-20 bg-purple bg-opacity-20 p-20"
         >
           <iframe
-            width="965"
+            width="968"
             height="360"
             src="https://www.youtube.com/embed/5laj9y2nBRs?si=JfMc58ZMcltIdJ-C&amp;clip=UgkxwhaEvuZ2_vTvmPfOivPjwMEgjvcfeaXt&amp;clipt=EJrUAhiC0wU&autoplay=1&controls=0&loop=1"
             title="YouTube video player"
@@ -229,7 +261,7 @@
             No rush, but be sure to double-check before you confirm!<br />
           </p>
           <iframe
-            width="965"
+            width="968"
             height="360"
             src="https://www.youtube.com/embed/5laj9y2nBRs?si=vA0vO4gJd1rQ6ivy&amp;clip=UgkxOsCcWikh5QjBKVBpRH3dUUD8dcezvvfz&amp;clipt=EKv5BRiskwk&autoplay=1&controls=0&loop=1"
             title="YouTube video player"
@@ -254,7 +286,7 @@
           class="flex w-full flex-row items-end justify-start gap-20 bg-red bg-opacity-20 p-20"
         >
           <iframe
-            width="965"
+            width="968"
             height="360"
             src="https://www.youtube.com/embed/5laj9y2nBRs?autoplay=1&controls=0&loop=1&si=gvfr4usJbue_6Ocp&amp;clip=UgkxyU8Hbbsa7MjnI_WyEGfpHkZM3XewRQWw&amp;clipt=ENCrCRj7-ws"
             title="YouTube video player"
@@ -284,12 +316,15 @@
           </p>
         </div>
       </section>
-      <h1 class="my-80 w-full text-center font-lucky text-9xl text-darckblue">
+      <h1
+        id="team"
+        class="my-80 w-full text-center font-lucky text-9xl text-darckblue"
+      >
         Here is our team !
       </h1>
       <section class="flex w-full flex-row justify-center gap-24">
         <div
-          class="flex flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowred"
+          class="flex w-1/5 flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowred"
         >
           <img
             src="./src/assets/landingpage/enguerran.png"
@@ -300,6 +335,14 @@
             Enguerran<br />
             Caro--Alquier
           </h5>
+          <ul class="text-xl">
+            <li>- Ticking away</li>
+            <li>- Find the place</li>
+            <li>- Menu</li>
+            <li>- Rounds</li>
+            <li>- Keyboard</li>
+            <li>- Leaderboard</li>
+          </ul>
           <div class="flex w-full flex-row justify-between">
             <a href="https://www.instagram.com/engue_ca/">
               <img src="./src/assets/landingpage/insta.svg" alt="" /> </a
@@ -314,7 +357,7 @@
         </div>
 
         <div
-          class="flex flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowgreen"
+          class="flex w-1/5 flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowgreen"
         >
           <img
             src="./src/assets/landingpage/brad.png"
@@ -325,6 +368,14 @@
             Brad<br />
             Savary
           </h5>
+          <ul class="text-xl">
+            <li>- Data base</li>
+            <li>- API</li>
+            <li>- Sorry not so rich</li>
+            <li>- Sounds</li>
+            <li>- Readme</li>
+            <li>- Content for the site</li>
+          </ul>
           <div class="flex w-full flex-row justify-between">
             <a href="https://www.instagram.com/brad.svr/">
               <img src="./src/assets/landingpage/insta.svg" alt="" /> </a
@@ -339,7 +390,7 @@
         </div>
 
         <div
-          class="flex flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowblue"
+          class="flex w-1/5 flex-col gap-10 rounded-lg border-8 border-darckblue p-8 shadow-shadowblue"
         >
           <img
             src="./src/assets/landingpage/bastien.png"
@@ -350,6 +401,14 @@
             Bastien<br />
             Guitard
           </h5>
+          <ul class="text-xl">
+            <li>- Scene</li>
+            <li>- Sort It out</li>
+            <li>- VR Comptability</li>
+            <li>- Designed the 2 sites</li>
+            <li>- Developed the landing page</li>
+            <li>- Developed the documentation</li>
+          </ul>
           <div class="flex w-full flex-row justify-between">
             <a href="https://www.instagram.com/bastien.g_/">
               <img src="./src/assets/landingpage/insta.svg" alt="" /> </a
@@ -384,5 +443,15 @@
         </div>
       </section>
     </main>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      nav ul li.active a {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    </style>
   </body>
 </html>

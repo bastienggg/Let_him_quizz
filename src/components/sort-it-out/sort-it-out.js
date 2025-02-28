@@ -78,11 +78,8 @@ SortItOut.renderSortItOutZone = async function () {
         if (confirmButton) {
             confirmButton.addEventListener("click", () => {
             if (canConfirm === true) {
-                console.log("Can confirm:" + canConfirm);
                 SortItOut.CheckIfInside(data);
-                console.log("Check if inside");
             } else {
-                console.log("Cannot confirm yet. Can confirm:" + canConfirm);
             }
             });
         }
@@ -115,7 +112,6 @@ SortItOut.setupDraggables = function () {
             document.addEventListener("mousemove", (evt) => {
                 if (isDragging) {
                     canConfirm = true;
-                    console.log("Can confirm:" + canConfirm);
                     const raycaster = document.querySelector("a-scene").components.raycaster;
                     const intersection = raycaster.getIntersection(el);
 
@@ -145,14 +141,12 @@ SortItOut.resetAndRenderZone = function () {
     if (roundCounter < maxRounds) {
         roundCounter++;
         canConfirm = false;
-        console.log("Can confirm:" + canConfirm);
         console.log("Starting round " + roundCounter);
         SortItOut.removeSortItOutZone();
         SortItOut.renderSortItOutZone();
     } else {
         console.log("Game finished after " + maxRounds + " rounds.");
         canConfirm = false;
-        console.log("Can confirm:" + canConfirm);
         SortItOut.removeSortItOutZone();
         Rounds.nextRound();
     }

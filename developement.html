@@ -49,13 +49,13 @@
   <body>
     <main class="flex flex-row">
       <nav
-        class="sticky top-0 flex h-screen w-1/5 flex-col justify-between border-r-2 border-darckblue bg-slate-100 p-6"
+        class="sticky top-0 flex h-screen w-80 flex-col justify-between border-r-2 border-darckblue bg-slate-100 p-6"
       >
         <h1 class="text-center font-lucky text-4xl text-darckblue">
           Let Him Quizz
         </h1>
         <h2 class="text-center text-2xl text-darckblue">Menu</h2>
-        <ul class="mt-12 flex flex-col gap-8 text-xl uppercase text-darckblue">
+        <ul class="mt-12 flex flex-col gap-8 text-lg uppercase text-darckblue">
           <li class="">
             <a href="./landingpage.html" class="hover:underline">Home</a>
           </li>
@@ -76,7 +76,7 @@
               >Scene & Animation</a
             >
           </li>
-          <li class=""><a href=" ">Schedule</a></li>
+          <li class=""><a href="#schedule">Schedule</a></li>
           <li class="">
             <a href="#improvements" class="hover:underline"
               >Potential improvements for a V2</a
@@ -90,14 +90,15 @@
         <a
           href="https://github.com/bastienggg/Let_him_quizz"
           target="_blank"
-          class="flex w-full flex-row items-center justify-center gap-8 rounded-lg bg-darckblue p-6 font-lucky text-3xl text-white"
+          class="flex w-full flex-row items-center justify-center gap-4 rounded-lg bg-darckblue p-6 font-lucky text-xl text-white"
           ><img
+            class="aspect-square w-12"
             src="./src/assets/landingpage/gitclear.svg"
             alt=""
           />Repository</a
         >
       </nav>
-      <section class="flex w-full flex-col bg-gray-100 px-40 text-darckblue">
+      <section class="flex w-full flex-col bg-gray-100 px-20 text-darckblue">
         <h1 class="m-20 mt-52 text-center font-lucky text-6xl">
           The game's development
         </h1>
@@ -110,6 +111,7 @@
           Our HTTP requests also allow us to create the leaderboard and add the
           score along with the names of new players.
         </p>
+        
         <pre>
             <code class="php text-xl rounded-md">
 $router = [
@@ -120,6 +122,10 @@ $router = [
 ];
             </code>
           </pre>
+          <p class="text-xl">
+            Definition of routes.
+          </p>
+          
         <pre>
             <code class="php text-xl rounded-md">
 //https://.../api/MCQ?difficulty=easy; https://.../api/MCQ?difficulty=medium; https://.../api/MCQ?difficulty=hard
@@ -128,6 +134,9 @@ $router = [
 //https://.../api/place?param=random
             </code>
           </pre>
+          <p class="text-xl">
+            Available address for the API.
+          </p>
 
         <h3 class="mb-10 mt-20 text-left font-lucky text-3xl" id="FindThePlace">
           Find The Place
@@ -159,6 +168,9 @@ skyElement.setAttribute(
 );
               </code>
             </pre>
+            <p class="text-xl">
+              Implementation of the 360 photo.
+            </p>
         <pre>
                 <code class="javascript text-xl rounded-md">
 FindThePlace.startTimer = function () {
@@ -177,6 +189,9 @@ FindThePlace.startTimer = function () {
   };
                 </code>
               </pre>
+              <p class="text-xl">
+                Start the timer for the game "Find the Place."
+              </p>
         <pre>
                 <code class="javascript text-xl rounded-md">
 FindThePlace.renderPropositionsZone = function (){
@@ -193,6 +208,9 @@ FindThePlace.newRound = function (){
 };
                 </code>
               </pre>
+              <p class="text-xl">
+                All the functions available for the operation of the game "Find the Place."
+              </p>
         <pre>
                 <code class="javascript text-xl rounded-md">
 let propositions = place.propositions.slice();
@@ -202,6 +220,9 @@ for (let i = propositions.length - 1; i > 0; i--) {
 }
                 </code>
               </pre>
+              <p class="text-xl">
+                Used to randomize the solutions.
+              </p>
 
         <h3 class="mb-10 mt-20 text-left font-lucky text-3xl" id="sortitout">
           Sort It Out
@@ -255,6 +276,9 @@ SortItOut.setupDraggables = function () {
 };
             </code>
           </pre>
+          <p class="text-xl">
+            Function to set up the ability to move the boxes in a web format.
+          </p>
         <pre>
             <code class="javascript text-xl rounded-md">
 SortItOut.CheckIfInside = function (data) {
@@ -329,6 +353,9 @@ SortItOut.CheckIfInside = function (data) {
 };
             </code>
           </pre>
+          <p class="text-xl">
+            This function is used to verify if the boxes are in the correct place.
+          </p>
         <pre>
             <code class="javascript text-xl rounded-md">
 Vr.setupControllerClickHandler = function () {
@@ -385,6 +412,9 @@ Vr.setupControllerClickHandler = function () {
 };
             </code>
           </pre>
+          <p class="text-xl">
+            This function is used to move the boxes in VR.
+          </p>
         <h3
           class="mb-10 mt-20 text-left font-lucky text-3xl"
           id="SorryNotSoRich"
@@ -426,6 +456,9 @@ const addMoneyStackToTrapdoor = (index) => {
                 
             </code>
           </pre>
+          <p class="text-xl">
+            This function is used to place the money on the traps.
+          </p>
         <pre>
             <code class="javascript text-xl rounded-md">
 const audio = {
@@ -440,6 +473,9 @@ let Sound = {};
                 
             </code>
           </pre>
+          <p class="text-xl">
+            The sound for the games.
+          </p>
         <h3
           class="mb-10 mt-20 text-left font-lucky text-3xl"
           id="SceneAnimation"
@@ -455,6 +491,15 @@ let Sound = {};
           host, a popup appears to explain the rules of the current game.<br />
         </p>
         <img src="./src/assets/landingpage/sceneblender.png" alt="" />
+        <h3 class="mb-10 mt-20 text-left font-lucky text-3xl" id="schedule">
+          Schedule
+        </h3>
+        <p class="mb-10 text-xl">
+          <p class="mb-10 text-xl">
+            Here is our organization for this project.
+        </p>
+        </p>
+        <img src="./src/assets/landingpage/schedule.png" alt="" />
         <h3 class="mb-10 mt-20 text-left font-lucky text-3xl" id="improvements">
           Potential improvements for a V2
         </h3>

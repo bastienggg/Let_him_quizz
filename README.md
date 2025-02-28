@@ -8,16 +8,21 @@
 - **Money Hourglass**: Money falls into a cylinder as the player progresses, visually representing their earnings and points.
 - **Multiple Rounds**: Players face various types of challenges.
 
+## Category
+- **English**: Answer question about English language, grammar, vocabulary...
+- **Trivia**:  Answer question about different subject.
+
 ## Game Modes
 1. **⏲Ticking away (Timed MCQ)** – Answer as many questions as you can in 30s.
-2. **📊Sort it out** – Sort the boxes in the correct order (based on a given question).
-3. **🌎Find the place** – You land in a random 360 image and you have to find where it was taken.
+2. **🌎Find the place** – You land in a random 360 image and you have to find where it was taken.
+3. **📊Sort it out** – Sort the boxes in the correct order (based on a given question).
 4. **💵Sorry not so rich** – Spread your gains across 4 answers and bet on the good one.
 
 ## Technologies Used
 - **A-Frame**: A WebVR framework based on Three.js.
 - **HTML, JavaScript**: Game logic development.
 - **CSS**: Styling of UI elements.
+- **PHP**: Creation of an API.
 
 ## Installation & Execution
 1. git clone https://github.com/bastienggg/let-him-quizz.git
@@ -28,12 +33,7 @@
    ```bash
    cd let-him-quizz
    ```
-3. Open the `index.html` file in a WebXR-compatible browser (Chrome, Firefox).
-
-## Controls
-- **Movement**: Look to aim at interactive elements.
-- **Selection**: Click (if using a mouse) or VR interaction.
-- **Interacting with boxes and choices**: Look and click.
+3. Open the `landingpage.html` file.
 
 ## Objective
 Accumulate as much money as possible by answering questions correctly. And risk it all by betting what you've earned to try to win the jackpot !
@@ -42,7 +42,6 @@ Accumulate as much money as possible by answering questions correctly. And risk 
 - Bastien Guitard
 - Enguerran Caro--Alquier
 - Brad Savary
-
 
 ## Assets Used:
 -Poly-pizza:

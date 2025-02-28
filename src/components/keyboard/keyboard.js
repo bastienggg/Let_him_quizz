@@ -5,12 +5,12 @@ import { Money } from "../money-counter/money-counter.js";
 import { Rounds } from "../rounds/rounds.js";
 
 // Keyboard template
-const templateFile = await fetch("src/components/keyboard/template.html.inc");
+const templateFile = await fetch("./src/components/keyboard/template.html.inc");
 const template = await templateFile.text();
 
 // Input template
 const inputTemplateFile = await fetch(
-  "src/components/keyboard/templateInput.html.inc",
+  "./src/components/keyboard/templateInput.html.inc",
 );
 const inputTemplate = await inputTemplateFile.text();
 

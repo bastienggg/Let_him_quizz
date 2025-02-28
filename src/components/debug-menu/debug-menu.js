@@ -1,6 +1,6 @@
 import { MCQ } from "../../data/data-mcq.js";
 import { TickingAway } from "../ticking-away/ticking-away.js";
-const templateFile = await fetch("src/components/debug-menu/template.html.inc");
+const templateFile = await fetch("./src/components/debug-menu/template.html.inc");
 const template = await templateFile.text();
 
 const scene = document.querySelector("#mainScene");

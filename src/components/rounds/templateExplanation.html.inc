@@ -9,10 +9,10 @@
         align="center"
         value="{{explanation}}"
         color="#FFF"
-        position="0 -1 0.1"
+        position="0 -0.5 0.1"
       ></a-text>
     </a-entity>
-    <a-entity position="0.60 1 -1.5">
+    <a-entity position="0.60 1.5 -1.5" rotation="-30 0 0">
     <a-text
     position="-0.5 -1.5 0.15"
 

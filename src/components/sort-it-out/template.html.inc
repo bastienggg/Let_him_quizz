@@ -1,4 +1,4 @@
-<a-entity id="validButton" position="1.25 0.6 -36">
+<a-entity id="validButton" position="1.25 1.4 -36">
   <a-text
     value="Confirm"
     align="center"

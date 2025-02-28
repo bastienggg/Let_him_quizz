@@ -349,33 +349,6 @@
         rotation="0 90 0"
         material="metalness: 1; roughness: 1; specular: #fff; shader: standard"
       ></a-entity> -->
-      <!-- FPS counter -->
-      <a-entity
-        id="fps-counter"
-        position="5 1.7 -38.5"
-        text="value: 0 FPS; color: #FFF; width: 4;"
-        rotation="0 0 0"
-        color="#000"
-      ></a-entity>
-      <script>
-        const fpsCounter = document.querySelector("#fps-counter");
-        let lastFrameTime = performance.now();
-        let frameCount = 0;
-
-        function updateFPS() {
-          const now = performance.now();
-          frameCount++;
-          if (now >= lastFrameTime + 1000) {
-            const fps = frameCount;
-            fpsCounter.setAttribute("text", "value", `${fps} FPS`);
-            frameCount = 0;
-            lastFrameTime = now;
-          }
-          requestAnimationFrame(updateFPS);
-        }
-
-        updateFPS();
-      </script>
       <a-sky color="#808080"></a-sky>
       <!-- cylinder for money -->
       <!-- it has 4 hit boxes on the sides and one on the floor -->

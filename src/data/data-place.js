@@ -10,7 +10,7 @@ Place.getRandomPlace = async function () {
   let newPlace;
   // Fetch a random place and fetch again if the place has already been asked
   do {
-    let response = await fetch("https://bastienguitard.fr/LetHimQuizz/api/place?param=random");
+    let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/place?param=random");
     newPlace = await response.json();
   } while (latestPlaces.includes(newPlace.id));
 

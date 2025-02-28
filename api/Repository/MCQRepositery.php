@@ -20,6 +20,23 @@ LIMIT 1;");
         $answer = $sql->fetch(PDO::FETCH_OBJ);
         return $answer;
     }
+    public function findOneByCategory($category){
+        $sql = $this->cnx->prepare("SELECT * FROM `MCQ`
+WHERE `category` = :category ORDER BY RAND() LIMIT 1" );
+        $sql->bindParam(":category", $category);
+        $sql->execute();
+        $answer = $sql->fetch(PDO::FETCH_OBJ);
+        return $answer;
+    }
+    public function findOneByDifficultyAndCategory($difficulty, $category){
+        $sql = $this->cnx->prepare("SELECT * FROM `MCQ`
+WHERE `difficulty` = :difficulty AND `category` = :category ORDER BY RAND() LIMIT 1" );
+        $sql->bindParam(":difficulty", $difficulty);
+        $sql->bindParam(":category", $category);
+        $sql->execute();
+        $answer = $sql->fetch(PDO::FETCH_OBJ);
+        return $answer;
+    }
 
     public function find($empty){
 

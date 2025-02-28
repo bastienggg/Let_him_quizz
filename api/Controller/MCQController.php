@@ -12,9 +12,15 @@ class MCQController extends Controller{
     }
 
     protected function processGetRequest(HttpRequest $request){
-        $param = $request->getParam("difficulty");
-        if($param){
-            return $this->MCQ->findOneByDifficulty($param);
+        $difficulty = $request->getParam("difficulty");
+        $category = $request->getParam("category");
+
+        if($difficulty && $category){
+            return $this->MCQ->findOneByDifficultyAndCategory($difficulty, $category);
+        } elseif ($difficulty) {
+            return $this->MCQ->findOneByDifficulty($difficulty);
+        } elseif ($category) {
+            return $this->MCQ->findOneByCategory($category);
         }
 }}
 

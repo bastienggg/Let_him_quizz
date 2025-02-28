@@ -6,9 +6,14 @@ require_once "Controller/UserController.php";
 require_once "Controller/PlaceController.php";
 
 //https://.../api/MCQ?difficulty=easy; https://.../api/MCQ?difficulty=medium; https://.../api/MCQ?difficulty=hard
+//https://.../api/MCQ?category=trivia; https://.../api/MCQ?category=english;
+//api/MCQ?difficulty=easy&category=trivia;
+
 //https://.../api/sort?difficulty=easy; https://.../api/sort?difficulty=medium; https://.../api/sort?difficulty=hard
+
 //https://.../api/user?param=top10  https://.../api/user?param=addUser&username=John&score=666
-//https://.../api/place?param=random
+
+//https://.../api/place?param=random 
 
 $router = [
     "MCQ" => new MCQController(),

@@ -6,7 +6,7 @@ Users.getAll = function () {
 
 Users.getTopUsers = async function () {
   // Fetch the top players
-  let response = await fetch("https://bastienguitard.fr/LetHimQuizz/api/user?param=top10");
+  let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/user?param=top10");
   let usersTop = await response.json();
   
   return usersTop;
@@ -14,7 +14,7 @@ Users.getTopUsers = async function () {
 
 Users.addUser = async function (username, score) {
   // Add a new user
-  let response = await fetch("https://bastienguitard.fr/LetHimQuizz/api/user?param=addUser&username=" + username + "&score=" + score);
+  let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/user?param=addUser&username=" + username + "&score=" + score);
 }
 
 export { Users };

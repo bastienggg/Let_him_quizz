@@ -207,9 +207,11 @@ sorryNotSoRich.calculateMoney = function () {
     let majorityBetAmount = totalBet / 2;
     if (correctBet > majorityBetAmount) {
       Sound.renderCorrectAnswer();
+      Light.changeColor("green");
     }
     if (correctBet < majorityBetAmount) {
       Sound.renderWrongAnswer();
+      Light.changeColor("red");
     }
     if (correctBet === majorityBetAmount) {
       console.log("Tu perds autant d'argent que tu en conserves");

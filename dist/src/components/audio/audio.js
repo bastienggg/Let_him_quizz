@@ -4,6 +4,8 @@ const audio = {
     tictacSound: './src/assets/audio/tic-tac.mp3',
     tictacEndingSound: './src/assets/audio/timer-ending.mp3',
     swooshSound: './src/assets/audio/swoosh.mp3',
+    keyboardSound: './src/assets/audio/keyboard.wav',
+    ostSound: './src/assets/audio/ost.mp3'
 };
 
 let Sound = {};
@@ -70,5 +72,27 @@ Sound.renderSwoosh = function(){
         console.error('Element with id "swooshSound" not found.');
     }
 };
+
+Sound.keyboardSound = function(){
+    const audioElement = document.getElementById('keyboardSound');
+    audioElement.src = audio.keyboardSound;
+    if(audioElement){
+        audioElement.play();
+    }
+    else{
+        console.error('Element with id "keyboardSound" not found.');
+    }
+};  
+
+Sound.renderOST = function(){
+    const audioElement = document.getElementById('ostSound');
+    audioElement.src = audio.ostSound;
+    if(audioElement){
+        audioElement.play();
+    }
+    else{
+        console.error('Element with id "ostSound" not found.');
+    }
+}
 
 export { Sound };

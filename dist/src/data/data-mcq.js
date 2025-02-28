@@ -14,7 +14,7 @@ MCQ.getRandomQuestion = async function (difficulty) {
   // Fetch a random question based on the difficulty and fetch again if the question has already been asked
   let newQuestion;
   do {
-    let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/MCQ?difficulty=" + difficulty);
+    let response = await fetch("https://mmi.unilim.fr/~savary23/Let_Him_Quizz/api/MCQ?difficulty=" + difficulty + "&category=" + window.category);
     newQuestion = await response.json();
   } while (latestQuestions.includes(newQuestion.id));
 

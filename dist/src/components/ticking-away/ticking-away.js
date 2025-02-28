@@ -63,7 +63,7 @@ TickingAway.newQuestion = async function () {
 
   // reset the color of the boxes
   document.querySelectorAll(".answer a-box").forEach((box) => {
-    box.setAttribute("color", "#ff0000");
+    box.setAttribute("color", "#FF662F");
   });
 
   // get a new question from the MCQ module

@@ -34,6 +34,9 @@ Keyboard.render = function () {
 
 // Add the event listener to the keys
 Keyboard.keyClicked = function (event) {
+  //Add sound when a key is pressed
+  Sound.keyboardSound();
+
   // Limit the characters to 20
   
   const key = event.target.querySelector("a-text").getAttribute("value");
@@ -51,7 +54,7 @@ Keyboard.keyClicked = function (event) {
     // remove the keyboard
     Keyboard.remove();
   } else {
-    if (textEntered.length >= 20) {
+    if (textEntered.length >= 15) {
       return;
     }
     textEntered += key;

@@ -36,10 +36,10 @@ let instructionsDisplayed = false;
 
 //Set the order of the rounds
 let roundsOrder = [
-  "SorryNotSoRich",
   "TickingAway",
   "FindThePlace",
   "SortItOut",
+  "SorryNotSoRich",
 ];
 let actualRound = "";
 let roundCounter = 1;
@@ -49,7 +49,6 @@ Rounds.startGame = async function () {
   Money.setMoney(0);
   roundCounter = 1;
 
-  Money.summonStack(2);
 
   // Render the money counter
   Money.renderMoneyZone();
